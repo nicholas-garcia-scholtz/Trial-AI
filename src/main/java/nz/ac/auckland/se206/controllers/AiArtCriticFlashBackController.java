@@ -1,0 +1,208 @@
+package nz.ac.auckland.se206.controllers;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import nz.ac.auckland.apiproxy.chat.openai.ChatMessage;
+import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
+import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.ChatLogs;
+
+public class AiArtCriticFlashBackController {
+  private static String characterName = "AI Art Critic";
+
+  public static String getName() {
+    return characterName;
+  }
+
+  @FXML private Rectangle rectLantern1;
+  @FXML private Rectangle rectLantern2;
+  @FXML private Rectangle rectTower1;
+  @FXML private Rectangle rectTower2;
+  @FXML private Rectangle rectFountain1;
+  @FXML private Rectangle rectFountain2;
+  @FXML private Label timerLabel;
+  @FXML private Button btnBack;
+  @FXML private Button btnSend;
+  @FXML private TextArea chatLog;
+  @FXML private TextField userTextBox;
+
+  private final Map<Rectangle, Rectangle> rectangleMap = new HashMap<>();
+  private final Set<Rectangle> foundSimilarities = new HashSet<>();
+  private final Set<Rectangle> originalFeatures = new HashSet<>();
+  private final Set<Rectangle> aiFeatures = new HashSet<>();
+
+  private Rectangle selected = null;
+  private int numSelected = 0;
+  private Media artCriticAudio = null;
+  private MediaPlayer artCriticPlayer = null;
+
+  @FXML
+  private void handleSelect(MouseEvent event) {
+    // Get selected rectangle
+    Rectangle clickedRectangle = (Rectangle) event.getSource();
+
+    // Already found or incorrect selecting in progress
+    if (foundSimilarities.contains(clickedRectangle) || numSelected == 2) {
+      return;
+    }
+
+    // Deselect rectangle
+    if (clickedRectangle == selected) {
+      selected.setOpacity(0);
+      selected = null;
+      numSelected--;
+      return;
+    }
+
+    // Change selected rectangle
+    if (aiFeatures.contains(clickedRectangle) && aiFeatures.contains(selected)
+        || originalFeatures.contains(clickedRectangle) && originalFeatures.contains(selected)) {
+      selected.setOpacity(0);
+      selected = clickedRectangle;
+      selected.setOpacity(0.3);
+      return;
+    }
+
+    // No other objects are currently selected
+    if (selected == null) {
+      selected = clickedRectangle;
+      selected.setOpacity(0.3);
+      numSelected++;
+      return;
+    }
+
+    if (clickedRectangle == rectangleMap.get(selected)) {
+      // Match
+      selected.setOpacity(0.5);
+      clickedRectangle.setOpacity(0.5);
+      foundSimilarities.add(selected);
+      foundSimilarities.add(clickedRectangle);
+      selected = null;
+      numSelected = 0;
+      return;
+    }
+
+    // Not a match
+    Color colorSelected = (Color) selected.getFill();
+    Color colorClicked = (Color) clickedRectangle.getFill();
+    clickedRectangle.setOpacity(0.3);
+    selected.setFill(Color.RED);
+    clickedRectangle.setFill(Color.RED);
+
+    Thread incorrectMatchThread =
+        new Thread(
+            () -> {
+              numSelected = 2;
+              try {
+                Thread.sleep(1000);
+              } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+              }
+              Platform.runLater(
+                  () -> {
+                    selected.setFill(colorSelected);
+                    clickedRectangle.setFill(colorClicked);
+                    clickedRectangle.setOpacity(0);
+                    numSelected = 1; // Reset selection state
+                  });
+            });
+    incorrectMatchThread.start();
+  }
+
+  @FXML
+  public void initialize() {
+    // Give flashback
+    if (!App.getDoneFlashback(characterName)) {
+      try {
+        artCriticAudio =
+            new Media(App.class.getResource("/sounds/ArtCriticAudio.mp3").toURI().toString());
+        artCriticPlayer = new MediaPlayer(artCriticAudio);
+        artCriticPlayer.play();
+      } catch (java.net.URISyntaxException e) {
+        e.printStackTrace();
+      }
+      App.doneFlashback(characterName);
+    }
+
+    // Set up the timer
+    App.getTimer().setLabel(timerLabel);
+    timerLabel.setText(App.getTimer().getTime());
+
+    // Set up the similarities interactable
+    rectangleMap.put(rectLantern1, rectLantern2);
+    rectangleMap.put(rectLantern2, rectLantern1);
+
+    rectangleMap.put(rectTower1, rectTower2);
+    rectangleMap.put(rectTower2, rectTower1);
+
+    rectangleMap.put(rectFountain1, rectFountain2);
+    rectangleMap.put(rectFountain2, rectFountain1);
+
+    originalFeatures.add(rectLantern2);
+    originalFeatures.add(rectTower2);
+    originalFeatures.add(rectFountain2);
+
+    aiFeatures.add(rectLantern1);
+    aiFeatures.add(rectTower1);
+    aiFeatures.add(rectFountain1);
+
+    // Set up the AI
+    App.getChatLogs().setChat(chatLog, userTextBox, characterName);
+    List<ChatMessage> logs = ChatLogs.getChatMessages();
+    for (ChatMessage log : logs) {
+      if (log.getRole().equals("assistant")) {
+        chatLog.appendText(characterName + ": " + log.getContent() + "\n\n");
+      } else {
+        chatLog.appendText(log.getRole() + ": " + log.getContent() + "\n\n");
+      }
+    }
+    List<ChatMessage> chatLogHistory = ChatLogs.getTrialMessages();
+    for (ChatMessage log : chatLogHistory) {
+      App.getChatLogs().addMessageToChatCompletionRequest(log);
+    }
+  }
+
+  @FXML
+  private void onBtnBackClicked() {
+    // Stop playing audio if user switches scenes
+    if (artCriticPlayer != null) {
+      if (artCriticPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+        artCriticPlayer.stop();
+      }
+      artCriticPlayer.dispose();
+    }
+
+    // Switch to courtroom
+    try {
+      App.setRoot("courtroom");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @FXML
+  private void onBtnSendClicked() {
+    try {
+      App.getChatLogs().onSendMessage(userTextBox.getText().trim());
+    } catch (ApiProxyException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+}
