@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -8,6 +10,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import nz.ac.auckland.se206.controllers.AiArtCriticFlashBackController;
+import nz.ac.auckland.se206.controllers.AiArtistFlashbackController;
+import nz.ac.auckland.se206.controllers.ArtistFlashbackController;
 import nz.ac.auckland.se206.controllers.ChatController;
 
 /**
@@ -17,6 +22,43 @@ import nz.ac.auckland.se206.controllers.ChatController;
 public class App extends Application {
 
   private static Scene scene;
+  private static TimerCountdown timer;
+  private static ChatLogs chatLogs;
+  private static Map<String, Boolean> flashbackMap = new HashMap<>();
+  private static boolean playedGameContext = false;
+  private static boolean isGuilty = false;
+
+  public static void setVerdict(boolean guilty) {
+    isGuilty = guilty;
+  }
+
+  public static boolean getVerdict() {
+    return isGuilty;
+  }
+
+  public static boolean getPlayedGameContext() {
+    return playedGameContext;
+  }
+
+  public static void setPlayedGameContext() {
+    playedGameContext = true;
+  }
+
+  public static TimerCountdown getTimer() {
+    return timer;
+  }
+
+  public static ChatLogs getChatLogs() {
+    return chatLogs;
+  }
+
+  public static void doneFlashback(String name) {
+    flashbackMap.put(name, true);
+  }
+
+  public static boolean getDoneFlashback(String name) {
+    return flashbackMap.get(name);
+  }
 
   /**
    * The main method that launches the JavaFX application.
@@ -70,14 +112,19 @@ public class App extends Application {
   }
 
   /**
-   * This method is invoked when the application starts. It loads and shows the "room" scene.
+   * This method is invoked when the application starts. It loads and shows the "welcome" scene.
    *
    * @param stage the primary stage of the application
    * @throws IOException if the "src/main/resources/fxml/room.fxml" file is not found
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    Parent root = loadFxml("room");
+    flashbackMap.put(AiArtCriticFlashBackController.getName(), false);
+    flashbackMap.put(AiArtistFlashbackController.getName(), false);
+    flashbackMap.put(ArtistFlashbackController.getName(), false);
+    Parent root = loadFxml("welcome");
+    chatLogs = new ChatLogs();
+    timer = new TimerCountdown(2, 0, "verdict");
     scene = new Scene(root);
     stage.setScene(scene);
     stage.show();
