@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.CourtroomController">
+   <children>
+    <ImageView fitHeight="500.0" fitWidth="800.0" preserveRatio="false">
+      <image>
+          <Image url="@../images/AICourtRoom.png" />
+      </image>
+    </ImageView>
+    <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="42.0" prefWidth="94.0" style="-fx-background-color: #000000;" text="02:00" textFill="#3aff47">
+         <font>
+            <Font size="32.0" />
+         </font></Label>
+      <Button fx:id="btnMakeDecision" layoutX="615.0" layoutY="14.0" mnemonicParsing="false" onAction="#onMakeDecision" prefHeight="47.0" prefWidth="171.0" style="-fx-padding: 1 2 1 2; -fx-background-color: #000000;" text="Make Decision" textFill="#3aff47">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Rectangle fx:id="rectArtist" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="289.0" layoutX="28.0" layoutY="117.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="237.0" />
+      <Rectangle fx:id="rectDefendant" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="289.0" layoutX="288.0" layoutY="141.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="223.0" />
+      <Rectangle fx:id="rectCritic" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="299.0" layoutX="540.0" layoutY="110.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="205.0" />
+      <Label layoutX="100.0" layoutY="439.0" text="Artist" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="364.0" layoutY="439.0" text="AI Artist" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="615.0" layoutY="439.0" prefHeight="30.0" prefWidth="108.0" text="AI Art Critic" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
