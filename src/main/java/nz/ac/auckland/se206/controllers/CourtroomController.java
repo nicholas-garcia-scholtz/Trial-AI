@@ -14,7 +14,12 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 
 public class CourtroomController {
-  private static boolean isInitialised = false;
+  private static boolean isInitialised;
+
+  public static void newGame() {
+    isInitialised = false;
+  }
+
   private Media contextAudio = null;
   private MediaPlayer contextAudioPlayer = null;
   @FXML private Button btnMakeDecision;
