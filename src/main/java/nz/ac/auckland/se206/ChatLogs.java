@@ -41,6 +41,11 @@ public class ChatLogs {
   private TextField txtInput;
 
   public ChatLogs() {
+    // Initialise new messages
+    criticMessages = new ArrayList<>();
+    aiArtistMessages = new ArrayList<>();
+    artistMessages = new ArrayList<>();
+
     criticMessages.add(
         new ChatMessage(
             "assistant",
