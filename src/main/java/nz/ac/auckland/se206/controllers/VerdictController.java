@@ -19,7 +19,7 @@ public class VerdictController {
   private void selectedVerdict(ActionEvent event) {
     Button btnClicked = (Button) event.getSource();
     // Set if the user has declared the AI artist as guilt
-    App.setVerdict(verdictMap.get(btnClicked).equals("Guilty"));
+    App.setVerdict(verdictMap.get(btnClicked).equals("Not Guilty"));
     timer.endTimer();
   }
 
