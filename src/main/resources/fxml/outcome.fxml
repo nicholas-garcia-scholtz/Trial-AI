@@ -17,6 +17,7 @@
             <Font size="31.0" />
          </font>
       </Text>
+      <Text fx:id="txtAIRationaleText" layoutX="172.0" layoutY="267.0" style="-fx-font-size: 16px; -fx-fill: white;" text="AI evaluation will appear here..." textAlignment="CENTER" wrappingWidth="457.0" />
       <Text fill="WHITE" layoutX="216.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When it comes to creative pieces such as art which is sold commercially, AI should be aware not to copy an artist’s idea too closely and should adhere to creative integrity." textAlignment="CENTER" wrappingWidth="367.87499999999994">
          <font>
             <Font size="21.0" />

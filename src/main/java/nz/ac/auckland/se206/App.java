@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206;
 
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,6 +26,7 @@ public class App extends Application {
   private static Scene scene;
   private static TimerCountdown timer;
   private static ChatLogs chatLogs;
+  private static String rationale;
   private static Map<String, Boolean> flashbackMap;
   private static boolean playedGameContext;
   private static boolean isGuilty;
@@ -53,6 +55,14 @@ public class App extends Application {
 
   public static boolean getVerdict() {
     return isGuilty;
+  }
+
+  public static void setRationale(String userRationale) {
+    rationale = userRationale;
+  }
+
+  public static String getRationale() {
+    return rationale;
   }
 
   public static boolean getPlayedGameContext() {
