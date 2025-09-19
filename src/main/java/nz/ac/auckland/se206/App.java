@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206;
 
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,6 +28,7 @@ public class App extends Application {
   private static Map<String, Boolean> flashbackMap = new HashMap<>();
   private static boolean playedGameContext = false;
   private static boolean isGuilty = false;
+  private static String rationale;
 
   public static void setVerdict(boolean guilty) {
     isGuilty = guilty;
@@ -34,6 +36,14 @@ public class App extends Application {
 
   public static boolean getVerdict() {
     return isGuilty;
+  }
+
+  public static void setRationale(String userRationale) {
+    rationale = userRationale;
+  }
+
+  public static String getRationale() {
+    return rationale;
   }
 
   public static boolean getPlayedGameContext() {
