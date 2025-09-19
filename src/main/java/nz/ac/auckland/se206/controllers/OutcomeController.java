@@ -4,18 +4,34 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.OutcomeLogs;
 
 public class OutcomeController {
   @FXML private Text verdictText;
   @FXML private Text verdictMark;
   @FXML private Pane outcome;
+  @FXML private Text txtAIRationaleText;
 
   @FXML
   private void initialize() {
-    if (App.getVerdict()) {
-      outcome.setStyle("-fx-background-color: #00FF00;");
+    boolean verdict = App.getVerdict();
+    String rationale = App.getRationale();
+
+    // Set verdict UI
+    if (verdict) {
+      outcome.setStyle("-fx-background-color: #00FF00;"); // green
       verdictText.setText("Correct Verdict");
       verdictMark.setText("✓");
+      txtAIRationaleText.setStyle("-fx-fill: white; -fx-font-size: 16px;");
+    } else {
+      outcome.setStyle("-fx-background-color: #FF0000;"); // red
+      verdictText.setText("Incorrect Verdict");
+      verdictMark.setText("X");
+      txtAIRationaleText.setStyle("-fx-fill: white; -fx-font-size: 16px;");
     }
+
+    // Call LLM to evaluate rationale and set TextArea
+    OutcomeLogs outcomeLogs = new OutcomeLogs(txtAIRationaleText);
+    outcomeLogs.evaluateRationale(verdict, rationale);
   }
 }
