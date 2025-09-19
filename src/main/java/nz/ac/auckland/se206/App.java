@@ -15,6 +15,7 @@ import nz.ac.auckland.se206.controllers.AiArtCriticFlashBackController;
 import nz.ac.auckland.se206.controllers.AiArtistFlashbackController;
 import nz.ac.auckland.se206.controllers.ArtistFlashbackController;
 import nz.ac.auckland.se206.controllers.ChatController;
+import nz.ac.auckland.se206.controllers.CourtroomController;
 
 /**
  * This is the entry point of the JavaFX application. This class initializes and runs the JavaFX
@@ -25,10 +26,28 @@ public class App extends Application {
   private static Scene scene;
   private static TimerCountdown timer;
   private static ChatLogs chatLogs;
-  private static Map<String, Boolean> flashbackMap = new HashMap<>();
-  private static boolean playedGameContext = false;
-  private static boolean isGuilty = false;
   private static String rationale;
+  private static Map<String, Boolean> flashbackMap;
+  private static boolean playedGameContext;
+  private static boolean isGuilty;
+
+  public static void newGame(Stage stage) throws IOException {
+    // Reset all static fields
+    flashbackMap = new HashMap<>();
+    flashbackMap.put(AiArtCriticFlashBackController.getName(), false);
+    flashbackMap.put(AiArtistFlashbackController.getName(), false);
+    flashbackMap.put(ArtistFlashbackController.getName(), false);
+    playedGameContext = false;
+    isGuilty = false;
+    chatLogs = new ChatLogs();
+    timer = new TimerCountdown(2, 0, "verdict");
+
+    // Change all static variables for the controller classes to indicate that a new game has
+    // started
+    CourtroomController.newGame();
+
+    setRoot("welcome");
+  }
 
   public static void setVerdict(boolean guilty) {
     isGuilty = guilty;
@@ -125,16 +144,26 @@ public class App extends Application {
    * This method is invoked when the application starts. It loads and shows the "welcome" scene.
    *
    * @param stage the primary stage of the application
-   * @throws IOException if the "src/main/resources/fxml/room.fxml" file is not found
+   * @throws IOException if the "src/main/resources/fxml/welcome.fxml" file is not found
    */
   @Override
   public void start(final Stage stage) throws IOException {
+    // Initialise all variables
+    flashbackMap = new HashMap<>();
     flashbackMap.put(AiArtCriticFlashBackController.getName(), false);
     flashbackMap.put(AiArtistFlashbackController.getName(), false);
     flashbackMap.put(ArtistFlashbackController.getName(), false);
-    Parent root = loadFxml("welcome");
+    playedGameContext = false;
+    isGuilty = false;
     chatLogs = new ChatLogs();
     timer = new TimerCountdown(2, 0, "verdict");
+
+    // Change all static variables for the controller classes to indicate that a new game has
+    // started
+    CourtroomController.newGame();
+
+    // Load the welcome scene
+    Parent root = loadFxml("welcome");
     scene = new Scene(root);
     stage.setScene(scene);
     stage.show();
