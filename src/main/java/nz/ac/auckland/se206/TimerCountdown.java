@@ -80,7 +80,7 @@ public class TimerCountdown {
         () -> {
           label.setText("00:00");
           try {
-            App.setRoot(nextScene);
+            App.getGame().setRoot(nextScene);
           } catch (IOException e) {
             e.printStackTrace();
           }

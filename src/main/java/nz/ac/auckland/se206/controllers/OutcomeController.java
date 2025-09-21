@@ -20,8 +20,8 @@ public class OutcomeController {
 
   @FXML
   private void initialize() {
-    boolean verdict = App.getVerdict();
-    String rationale = App.getRationale();
+    boolean verdict = App.getGame().getVerdict();
+    String rationale = App.getGame().getRationale();
 
     // Set verdict UI
     if (verdict) {
