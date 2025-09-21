@@ -12,7 +12,7 @@ public class WelcomeController {
   @FXML
   private void onStartBtnClicked(ActionEvent event) {
     try {
-      App.setRoot("courtroom");
+      App.getGame().setRoot("courtroom");
     } catch (IOException e) {
       e.printStackTrace();
     }

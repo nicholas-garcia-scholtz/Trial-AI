@@ -7,14 +7,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import nz.ac.auckland.apiproxy.chat.openai.ChatMessage;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatLogs;
+import nz.ac.auckland.se206.interfaces.Flashback;
+import nz.ac.auckland.se206.interfaces.Interactable;
 
-public class AiArtistFlashbackController {
+public class AiArtistFlashbackController implements Flashback, Interactable {
   private static String characterName = "AI Artist";
 
   public static String getName() {
@@ -26,30 +26,11 @@ public class AiArtistFlashbackController {
   @FXML private Button btnSend;
   @FXML private TextArea chatLog;
   @FXML private TextField userTextBox;
-  private Media aiArtistAudio = null;
-  private MediaPlayer aiArtistPlayer = null;
 
   @FXML
   public void initialize() {
-    // Give flashback
-    if (!App.getDoneFlashback(characterName)) {
-      try {
-        aiArtistAudio =
-            new Media(App.class.getResource("/sounds/AIArtistAudio.mp3").toURI().toString());
-        aiArtistPlayer = new MediaPlayer(aiArtistAudio);
-        aiArtistPlayer.play();
-      } catch (java.net.URISyntaxException e) {
-        e.printStackTrace();
-      }
-      App.doneFlashback(characterName);
-    }
-
-    // Set up the timer
-    App.getTimer().setLabel(timerLabel);
-    timerLabel.setText(App.getTimer().getTime());
-
     // Set up the AI
-    App.getChatLogs().setChat(chatLog, userTextBox, characterName);
+    App.getGame().getChatLogs().setChat(chatLog, userTextBox, characterName);
     List<ChatMessage> logs = ChatLogs.getChatMessages();
     for (ChatMessage log : logs) {
       if (log.getRole().equals("assistant")) {
@@ -58,23 +39,12 @@ public class AiArtistFlashbackController {
         chatLog.appendText(log.getRole() + ": " + log.getContent() + "\n\n");
       }
     }
-    List<ChatMessage> chatLogHistory = ChatLogs.getTrialMessages();
-    for (ChatMessage log : chatLogHistory) {
-      App.getChatLogs().addMessageToChatCompletionRequest(log);
-    }
   }
 
   @FXML
   private void onBtnBackClicked() {
-    // Stop playing audio if user switches scenes
-    if (aiArtistPlayer != null) {
-      if (aiArtistPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-        aiArtistPlayer.stop();
-      }
-      aiArtistPlayer.dispose();
-    }
     try {
-      App.setRoot("courtroom");
+      App.getGame().setRoot("courtroom");
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -83,11 +53,25 @@ public class AiArtistFlashbackController {
   @FXML
   private void onBtnSendClicked() {
     try {
-      App.getChatLogs().onSendMessage(userTextBox.getText().trim());
+      App.getGame().getChatLogs().onSendMessage(userTextBox.getText().trim());
     } catch (ApiProxyException e) {
       e.printStackTrace();
     } catch (IOException e) {
       e.printStackTrace();
+    }
+  }
+
+  @Override
+  public void prepareScene() {
+    // Set up the timer
+    App.getGame().getTimer().setLabel(timerLabel);
+    timerLabel.setText(App.getGame().getTimer().getTime());
+
+    // Set up the AI
+    App.getGame().getChatLogs().setChat(chatLog, userTextBox, characterName);
+    List<ChatMessage> chatLogHistory = ChatLogs.getTrialMessages();
+    for (ChatMessage log : chatLogHistory) {
+      App.getGame().getChatLogs().addMessageToChatCompletionRequest(log);
     }
   }
 }
