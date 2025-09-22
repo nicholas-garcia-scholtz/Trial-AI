@@ -17,7 +17,7 @@ public class BubbleDragUtil {
   private ImageView bubble;
   private HumanMemoryController humanMemoryController;
   private boolean debounce = false;
-  private final int TOOLTIP_OFFSET = 12;
+  private final int TOOLTIP_OFFSET = 14;
 
   public BubbleDragUtil(
       ImageView bubble, HumanMemoryController humanMemoryController, String tooltipText) {
