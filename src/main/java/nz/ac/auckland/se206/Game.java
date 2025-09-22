@@ -54,7 +54,7 @@ public class Game {
         AiArtistFlashbackController.getName(),
         new AiDefendent("AIArtistFlashback", "AIArtistFlashback"));
     characters.put(
-        ArtistFlashbackController.getName(), new HumanArtist("ArtistFlashback", "ArtistFlashback"));
+        ArtistFlashbackController.getName(), new HumanArtist("ArtistFlashback", "HumanMemory"));
   }
 
   /**
