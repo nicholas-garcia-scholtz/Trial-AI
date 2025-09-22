@@ -1,9 +1,12 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.BubbleDragUtil;
 import nz.ac.auckland.se206.interfaces.Interactable;
 
@@ -14,6 +17,7 @@ public class HumanMemoryController implements Interactable {
   @FXML private ImageView bubble1;
   @FXML private ImageView bubble2;
   @FXML private ImageView bubble3;
+  @FXML private Label timerLabel;
 
   public ImageView canvasBoundsTarget;
 
@@ -29,9 +33,13 @@ public class HumanMemoryController implements Interactable {
   void onBtnSendClicked() {}
 
   @FXML
-  void onBtnBackClicked() {}
-
-  public void prepareScene() {}
+  void onBtnBackClicked() {
+    try {
+      App.getGame().setRoot("courtroom");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
   public void revealLayer(ImageView bubble) {
     ImageView layer;
@@ -50,5 +58,12 @@ public class HumanMemoryController implements Interactable {
     fadeTransition.setCycleCount(0);
     fadeTransition.setAutoReverse(false);
     fadeTransition.play();
+  }
+
+  @Override
+  public void prepareScene() {
+    // Set up the timer
+    App.getGame().getTimer().setLabel(timerLabel);
+    timerLabel.setText(App.getGame().getTimer().getTime());
   }
 }
