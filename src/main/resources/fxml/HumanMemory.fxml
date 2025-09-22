@@ -8,11 +8,13 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.HumanMemoryController">
    <children>
-    <ImageView fitHeight="500.0" fitWidth="600.0" preserveRatio="false">
+    <ImageView fitHeight="492.0" fitWidth="600.0" layoutY="38.0" preserveRatio="false">
       <image>
           <Image url="@../images/HumanInteractableCanvas.png" />
       </image>
@@ -39,22 +41,22 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fitHeight="293.0" fitWidth="139.0" layoutX="230.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="293.0" fitWidth="139.0" layoutX="230.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/HumanArtworkBackground.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="artworkLayer1" fitHeight="293.0" fitWidth="139.0" layoutX="230.0" layoutY="101.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="artworkLayer1" fitHeight="293.0" fitWidth="139.0" layoutX="230.0" layoutY="135.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/HumanArtworkBalloons.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="artworkLayer2" fitHeight="293.0" fitWidth="139.0" layoutX="231.0" layoutY="101.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="artworkLayer2" fitHeight="293.0" fitWidth="139.0" layoutX="231.0" layoutY="135.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/HumanArtworkClif.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="artworkLayer3" fitHeight="293.0" fitWidth="139.0" layoutX="230.0" layoutY="101.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="artworkLayer3" fitHeight="293.0" fitWidth="139.0" layoutX="230.0" layoutY="135.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/HumanArtworkPaperBoat.png" />
          </image>
@@ -67,7 +69,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="bubble2" fitHeight="157.0" fitWidth="170.0" layoutX="420.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="bubble2" fitHeight="157.0" fitWidth="170.0" layoutX="418.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/HumanInteractableBubble2.png" />
          </image>
@@ -75,5 +77,11 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="40.0" layoutX="-1.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+      <Text fill="#3aff47" layoutX="65.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drag Jean-Luc's memories onto the canvas to see what inspired his painting.">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
    </children>
 </Pane>
