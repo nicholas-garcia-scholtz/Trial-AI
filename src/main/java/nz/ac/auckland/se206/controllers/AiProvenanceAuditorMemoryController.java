@@ -9,6 +9,7 @@ import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import nz.ac.auckland.apiproxy.chat.openai.ChatMessage;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.App;
@@ -28,6 +29,9 @@ public class AiProvenanceAuditorMemoryController {
   @FXML private TextField userTextBox;
   @FXML private ScrollBar timelineScrollBar;
   @FXML private ImageView humanTimeline;
+  @FXML private ImageView humanTimelineAligned;
+  @FXML private Text slideInstructionText;
+  @FXML private Text timelinesAlignedText;
 
   @FXML
   public void initialize() {
@@ -51,18 +55,35 @@ public class AiProvenanceAuditorMemoryController {
       App.getChatLogs().addMessageToChatCompletionRequest(log);
     }
 
-    // Set up the scrollbar to move the Human Timeline
-    if (timelineScrollBar != null && humanTimeline != null) {
+    if (timelineScrollBar != null && humanTimeline != null && humanTimelineAligned != null) {
       timelineScrollBar.setMin(0);
-      timelineScrollBar.setMax(220); // how far you want it to move
+      timelineScrollBar.setMax(220);
       timelineScrollBar.setValue(0);
 
+      humanTimelineAligned.setVisible(false); // aligned timeline hidden initially
+      timelinesAlignedText.setVisible(false); // aligned message hidden initially
 
       timelineScrollBar
           .valueProperty()
           .addListener(
               (obs, oldVal, newVal) -> {
                 humanTimeline.setTranslateX(newVal.doubleValue());
+
+                if (newVal.doubleValue() >= timelineScrollBar.getMax()) {
+                  humanTimeline.setVisible(false);
+                  humanTimelineAligned.setVisible(true);
+
+                  timelineScrollBar.setVisible(false); // hide the scrollbar
+                  slideInstructionText.setVisible(false); // hide instruction
+                  timelinesAlignedText.setVisible(true); // show "timelines aligned" text
+                } else {
+                  humanTimeline.setVisible(true);
+                  humanTimelineAligned.setVisible(false);
+
+                  timelineScrollBar.setVisible(true);
+                  slideInstructionText.setVisible(true);
+                  timelinesAlignedText.setVisible(false);
+                }
               });
     }
   }
