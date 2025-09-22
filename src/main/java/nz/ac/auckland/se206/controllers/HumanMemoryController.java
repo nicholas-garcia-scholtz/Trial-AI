@@ -23,9 +23,13 @@ public class HumanMemoryController implements Interactable {
 
   @FXML
   public void initialize() {
-    BubbleDragUtil bubble1DragUtil = new BubbleDragUtil(bubble1, this);
-    BubbleDragUtil bubble2DragUtil = new BubbleDragUtil(bubble2, this);
-    BubbleDragUtil bubble3DragUtil = new BubbleDragUtil(bubble3, this);
+    BubbleDragUtil bubble1DragUtil =
+        new BubbleDragUtil(bubble1, this, "A balloon festival held in Jean-Luc's home town.");
+    BubbleDragUtil bubble2DragUtil =
+        new BubbleDragUtil(
+            bubble2, this, "Young Jean-Luc admires a painting at his local gallery.");
+    BubbleDragUtil bubble3DragUtil =
+        new BubbleDragUtil(bubble3, this, "Young Jean-Luc floats a paper boat on a rainy day.");
     canvasBoundsTarget = artworkLayer1;
   }
 

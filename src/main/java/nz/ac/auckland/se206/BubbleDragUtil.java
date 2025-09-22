@@ -3,7 +3,9 @@ package nz.ac.auckland.se206;
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.geometry.Bounds;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.stage.Popup;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.controllers.HumanMemoryController;
 
@@ -15,10 +17,22 @@ public class BubbleDragUtil {
   private ImageView bubble;
   private HumanMemoryController humanMemoryController;
   private boolean debounce = false;
+  private final int TOOLTIP_OFFSET = 12;
 
-  public BubbleDragUtil(ImageView bubble, HumanMemoryController humanMemoryController) {
+  public BubbleDragUtil(
+      ImageView bubble, HumanMemoryController humanMemoryController, String tooltipText) {
     this.bubble = bubble;
     this.humanMemoryController = humanMemoryController;
+
+    // Install a tooltip onto the bubble
+    Popup popup = new Popup();
+    Label tooltipLabel = new Label(tooltipText);
+    tooltipLabel.setStyle(
+        "-fx-background-color: black; "
+            + "-fx-text-fill: #3aff47; "
+            + "-fx-font-size: 12px; "
+            + "-fx-padding: 6 8 6 8;");
+    popup.getContent().add(tooltipLabel);
 
     // When a drag is initiated:
     bubble.setOnMousePressed(
@@ -41,6 +55,8 @@ public class BubbleDragUtil {
           }
           bubble.setLayoutX(event.getSceneX() - mouseOriginX);
           bubble.setLayoutY(event.getSceneY() - mouseOriginY);
+          popup.show(
+              bubble, event.getScreenX() + TOOLTIP_OFFSET, event.getScreenY() + TOOLTIP_OFFSET);
         });
 
     // Handle drag ending:
@@ -53,24 +69,40 @@ public class BubbleDragUtil {
             fadeOutAndHide();
             debounce = true;
             humanMemoryController.revealLayer(bubble);
+            popup.hide();
           } else {
             bubble.setLayoutX(startX);
             bubble.setLayoutY(startY);
           }
         });
 
-    // When the user hovers, emphasise by increasing scale
-    bubble.setOnMouseEntered(
+    // Move tooltip with cursor
+    bubble.setOnMouseMoved(
         e -> {
+          if (debounce) {
+            return;
+          }
+          popup.show(bubble, e.getScreenX() + TOOLTIP_OFFSET, e.getScreenY() + TOOLTIP_OFFSET);
+        });
+
+    // When the user hovers, emphasise by increasing scale, and show tooltip
+    bubble.setOnMouseEntered(
+        event -> {
+          Bounds b = bubble.localToScreen(bubble.getBoundsInLocal());
+          if (b != null) {
+            popup.show(
+                bubble, event.getScreenX() + TOOLTIP_OFFSET, event.getScreenY() + TOOLTIP_OFFSET);
+          }
           ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(150), bubble);
           scaleTransition.setToX(1.05);
           scaleTransition.setToY(1.05);
           scaleTransition.play();
         });
 
-    // When the user stops hovering, reset emphasis
+    // When the user stops hovering, reset emphasis, and hide tooltip
     bubble.setOnMouseExited(
-        e -> {
+        event -> {
+          popup.hide();
           ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(150), bubble);
           scaleTransition.setToX(1.0);
           scaleTransition.setToY(1.0);
