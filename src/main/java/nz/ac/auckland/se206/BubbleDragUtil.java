@@ -52,6 +52,7 @@ public class BubbleDragUtil {
           if (isBubbleOnTopOfCanvas()) {
             fadeOutAndHide();
             debounce = true;
+            humanMemoryController.revealLayer(bubble);
           } else {
             bubble.setLayoutX(startX);
             bubble.setLayoutY(startY);
