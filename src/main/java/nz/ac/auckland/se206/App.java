@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206;
 
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -163,7 +162,7 @@ public class App extends Application {
     CourtroomController.newGame();
 
     // Load the welcome scene
-    Parent root = loadFxml("welcome");
+    Parent root = loadFxml("AIArtProvenanceMemory");
     scene = new Scene(root);
     stage.setScene(scene);
     stage.show();

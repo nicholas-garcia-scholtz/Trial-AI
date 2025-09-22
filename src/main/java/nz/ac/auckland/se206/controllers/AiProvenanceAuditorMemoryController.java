@@ -32,6 +32,8 @@ public class AiProvenanceAuditorMemoryController {
   @FXML private ImageView humanTimelineAligned;
   @FXML private Text slideInstructionText;
   @FXML private Text timelinesAlignedText;
+  @FXML private ImageView aiExclamation;
+  @FXML private ImageView humanExclamation;
 
   @FXML
   public void initialize() {
@@ -62,6 +64,8 @@ public class AiProvenanceAuditorMemoryController {
 
       humanTimelineAligned.setVisible(false); // aligned timeline hidden initially
       timelinesAlignedText.setVisible(false); // aligned message hidden initially
+      aiExclamation.setVisible(false); // hide AI exclamation initially
+      humanExclamation.setVisible(false); // hide Human exclamation initially
 
       timelineScrollBar
           .valueProperty()
@@ -76,6 +80,9 @@ public class AiProvenanceAuditorMemoryController {
                   timelineScrollBar.setVisible(false); // hide the scrollbar
                   slideInstructionText.setVisible(false); // hide instruction
                   timelinesAlignedText.setVisible(true); // show "timelines aligned" text
+
+                  aiExclamation.setVisible(true); // show AI exclamation
+                  humanExclamation.setVisible(true); // show Human exclamation
                 } else {
                   humanTimeline.setVisible(true);
                   humanTimelineAligned.setVisible(false);
@@ -83,6 +90,9 @@ public class AiProvenanceAuditorMemoryController {
                   timelineScrollBar.setVisible(true);
                   slideInstructionText.setVisible(true);
                   timelinesAlignedText.setVisible(false);
+
+                  aiExclamation.setVisible(false);
+                  humanExclamation.setVisible(false);
                 }
               });
     }
