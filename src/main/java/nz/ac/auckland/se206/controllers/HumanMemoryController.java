@@ -13,11 +13,14 @@ public class HumanMemoryController implements Interactable {
   @FXML private ImageView bubble2;
   @FXML private ImageView bubble3;
 
+  public ImageView canvasBoundsTarget;
+
   @FXML
   public void initialize() {
     BubbleDragUtil bubble1DragUtil = new BubbleDragUtil(bubble1, this);
     BubbleDragUtil bubble2DragUtil = new BubbleDragUtil(bubble2, this);
     BubbleDragUtil bubble3DragUtil = new BubbleDragUtil(bubble3, this);
+    canvasBoundsTarget = artworkLayer1;
   }
 
   @FXML

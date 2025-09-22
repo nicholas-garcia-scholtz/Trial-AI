@@ -31,25 +31,9 @@
          <font>
             <Font size="32.0" />
          </font></Label>
-      <ImageView fx:id="bubble1" fitHeight="172.0" fitWidth="170.0" layoutX="14.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/HumanInteractableBubble1.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
       <ImageView fx:id="bubble3" fitHeight="157.0" fitWidth="170.0" layoutX="408.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/HumanInteractableBubble3.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fx:id="bubble2" fitHeight="157.0" fitWidth="170.0" layoutX="420.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/HumanInteractableBubble2.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -74,6 +58,22 @@
          <image>
             <Image url="@../images/HumanArtworkPaperBoat.png" />
          </image>
+      </ImageView>
+      <ImageView fx:id="bubble1" fitHeight="172.0" fitWidth="170.0" layoutX="14.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/HumanInteractableBubble1.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="bubble2" fitHeight="157.0" fitWidth="170.0" layoutX="420.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/HumanInteractableBubble2.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
    </children>
 </Pane>
