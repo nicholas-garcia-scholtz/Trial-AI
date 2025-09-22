@@ -18,8 +18,10 @@ public class HumanMemoryController implements Interactable {
   @FXML private ImageView bubble2;
   @FXML private ImageView bubble3;
   @FXML private Label timerLabel;
+  @FXML private Label titleLabel;
 
   public ImageView canvasBoundsTarget;
+  private int layerCount = 0;
 
   @FXML
   public void initialize() {
@@ -55,6 +57,10 @@ public class HumanMemoryController implements Interactable {
       layer = artworkLayer3;
     } else {
       throw new Error("Bubble doesnt have corresponding artwork layer");
+    }
+    layerCount += 1;
+    if (layerCount == 3) {
+      titleLabel.setText("Undeniably a masterpiece. But was it truly an original work?");
     }
     FadeTransition fadeTransition = new FadeTransition(Duration.millis(850), layer);
     fadeTransition.setFromValue(0);
