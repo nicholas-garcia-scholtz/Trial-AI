@@ -44,7 +44,7 @@ public class CourtroomController {
 
     if (sceneName != null) {
       try {
-        App.setRoot(sceneName);
+        App.getGame().setRoot(sceneName);
       } catch (IOException e) {
         e.printStackTrace();
       }
@@ -62,15 +62,15 @@ public class CourtroomController {
       }
       contextAudioPlayer.dispose();
     }
-    App.getTimer().endTimer();
+    App.getGame().getTimer().endTimer();
   }
 
   @FXML
   public void initialize() {
-    App.getTimer().setLabel(timerLabel);
+    App.getGame().getTimer().setLabel(timerLabel);
 
     // Play the game context audio when the game has just started
-    if (!App.getPlayedGameContext()) {
+    if (!App.getGame().getPlayedGameContext()) {
       try {
         contextAudio =
             new Media(App.class.getResource("/sounds/GameContext.mp3").toURI().toString());
@@ -79,21 +79,21 @@ public class CourtroomController {
       } catch (java.net.URISyntaxException e) {
         e.printStackTrace();
       }
-      App.setPlayedGameContext();
+      App.getGame().setPlayedGameContext();
     }
 
     // Update the timer label
-    timerLabel.setText(App.getTimer().getTime());
+    timerLabel.setText(App.getGame().getTimer().getTime());
     if (!isInitialised) {
-      Thread timerThread = new Thread(() -> App.getTimer().count());
+      Thread timerThread = new Thread(() -> App.getGame().getTimer().count());
       isInitialised = true;
       timerThread.setDaemon(true);
       timerThread.start();
     }
 
     // Link the rectangles with the scenes
-    rectangleSceneMap.put(rectCritic, "AIArtCriticFlashBack");
-    rectangleSceneMap.put(rectArtist, "ArtistFlashback");
-    rectangleSceneMap.put(rectDefendant, "AIArtistFlashback");
+    rectangleSceneMap.put(rectCritic, AiArtCriticFlashBackController.getName());
+    rectangleSceneMap.put(rectArtist, ArtistFlashbackController.getName());
+    rectangleSceneMap.put(rectDefendant, AiArtistFlashbackController.getName());
   }
 }

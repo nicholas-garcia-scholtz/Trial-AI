@@ -1,8 +1,6 @@
 package nz.ac.auckland.se206;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -10,82 +8,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import nz.ac.auckland.se206.controllers.AiArtCriticFlashBackController;
-import nz.ac.auckland.se206.controllers.AiArtistFlashbackController;
-import nz.ac.auckland.se206.controllers.ArtistFlashbackController;
 import nz.ac.auckland.se206.controllers.ChatController;
-import nz.ac.auckland.se206.controllers.CourtroomController;
 
 /**
  * This is the entry point of the JavaFX application. This class initializes and runs the JavaFX
  * application.
  */
 public class App extends Application {
-
+  private static Game game;
   private static Scene scene;
-  private static TimerCountdown timer;
-  private static ChatLogs chatLogs;
-  private static String rationale;
-  private static Map<String, Boolean> flashbackMap;
-  private static boolean playedGameContext;
-  private static boolean isGuilty;
 
   public static void newGame(Stage stage) throws IOException {
-    // Reset all static fields
-    flashbackMap = new HashMap<>();
-    flashbackMap.put(AiArtCriticFlashBackController.getName(), false);
-    flashbackMap.put(AiArtistFlashbackController.getName(), false);
-    flashbackMap.put(ArtistFlashbackController.getName(), false);
-    playedGameContext = false;
-    isGuilty = false;
-    chatLogs = new ChatLogs();
-    timer = new TimerCountdown(2, 0, "verdict");
-
-    // Change all static variables for the controller classes to indicate that a new game has
-    // started
-    CourtroomController.newGame();
-
-    setRoot("welcome");
+    game = new Game(stage);
+    game.setUpGame();
   }
 
-  public static void setVerdict(boolean guilty) {
-    isGuilty = guilty;
-  }
-
-  public static boolean getVerdict() {
-    return isGuilty;
-  }
-
-  public static void setRationale(String userRationale) {
-    rationale = userRationale;
-  }
-
-  public static String getRationale() {
-    return rationale;
-  }
-
-  public static boolean getPlayedGameContext() {
-    return playedGameContext;
-  }
-
-  public static void setPlayedGameContext() {
-    playedGameContext = true;
-  }
-
-  public static TimerCountdown getTimer() {
-    return timer;
-  }
-
-  public static ChatLogs getChatLogs() {
-    return chatLogs;
-  }
-
-  public static void doneFlashback(String name) {
-    flashbackMap.put(name, true);
-  }
-
-  public static boolean getDoneFlashback(String name) {
-    return flashbackMap.get(name);
+  public static Game getGame() {
+    return game;
   }
 
   /**
@@ -147,25 +86,7 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    // Initialise all variables
-    flashbackMap = new HashMap<>();
-    flashbackMap.put(AiArtCriticFlashBackController.getName(), false);
-    flashbackMap.put(AiArtistFlashbackController.getName(), false);
-    flashbackMap.put(ArtistFlashbackController.getName(), false);
-    playedGameContext = false;
-    isGuilty = false;
-    chatLogs = new ChatLogs();
-    timer = new TimerCountdown(2, 0, "verdict");
-
-    // Change all static variables for the controller classes to indicate that a new game has
-    // started
-    CourtroomController.newGame();
-
-    // Load the welcome scene
-    Parent root = loadFxml("AIArtProvenanceMemory");
-    scene = new Scene(root);
-    stage.setScene(scene);
-    stage.show();
-    root.requestFocus();
+    game = new Game(stage);
+    game.setUpGame();
   }
 }

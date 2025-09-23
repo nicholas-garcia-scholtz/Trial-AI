@@ -17,26 +17,21 @@ public class VerdictController {
   @FXML private Button btnSend;
   @FXML private TextField txtRationale;
 
-
   private Map<Button, String> verdictMap;
   private String selectedVerdict; // "Guilty" or "Not Guilty"
   private TimerCountdown timer;
 
-
-private void chooseVerdict(ActionEvent event) {
+  private void chooseVerdict(ActionEvent event) {
     Button btnClicked = (Button) event.getSource();
     selectedVerdict = verdictMap.get(btnClicked); // "Guilty" or "Not Guilty"
-
 
     // Reset both buttons to default color
     btnGuilty.setStyle("-fx-background-color: #3aff47;");
     btnNotGuilty.setStyle("-fx-background-color: #3aff47;");
 
-
     // Highlight the clicked button
     btnClicked.setStyle("-fx-background-color: #207c26ff;"); // change to any highlight color
-}
-
+  }
 
   @FXML
   private void onBtnNotGuiltyClicked(ActionEvent event) {
@@ -48,19 +43,17 @@ private void chooseVerdict(ActionEvent event) {
     chooseVerdict(event);
   }
 
-
   @FXML
   private void onBtnSendClicked(ActionEvent event) {
     if (selectedVerdict != null && !txtRationale.getText().isBlank()) {
       // Save the verdict and rationale into App
-      App.setVerdict(selectedVerdict.equals("Not Guilty"));
-      App.setRationale(txtRationale.getText());
-
+      App.getGame().setVerdict(selectedVerdict.equals("Not Guilty"));
+      App.getGame().setRationale(txtRationale.getText());
 
       // Stop timer and change scene
       timer.endTimer();
       try {
-        App.setRoot("outcome");
+        App.getGame().setRoot("outcome");
       } catch (Exception e) {
         e.printStackTrace();
       }
@@ -70,13 +63,11 @@ private void chooseVerdict(ActionEvent event) {
     }
   }
 
-
   @FXML
   public void initialize() {
     verdictMap = new HashMap<>();
     verdictMap.put(btnGuilty, "Guilty");
     verdictMap.put(btnNotGuilty, "Not Guilty");
-
 
     // Set up the timer
     timer = new TimerCountdown(0, 10, "outcome");
