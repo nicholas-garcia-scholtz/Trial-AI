@@ -2,7 +2,9 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -24,6 +26,9 @@ public class HumanMemoryController implements Interactable {
   @FXML private Label titleLabel;
   @FXML private TextField userTextBox;
   @FXML private TextArea chatLog;
+  @FXML private ImageView thinkingHeadshot;
+  @FXML private ImageView neutralHeadshot;
+  @FXML private Button btnSend;
 
   public ImageView canvasBoundsTarget;
   private int layerCount = 0;
@@ -38,6 +43,7 @@ public class HumanMemoryController implements Interactable {
 
   @FXML
   private void onBtnSendClicked() {
+    startLoading();
     ChatService.get().addPlayerMessage(userTextBox.getText());
     appendToChat("[You] " + userTextBox.getText());
     userTextBox.setText("");
@@ -48,6 +54,7 @@ public class HumanMemoryController implements Interactable {
             (String result) -> {
               appendToChat("[Jean-Luc] " + result);
               System.out.println(ChatService.get().getTranscript());
+              stopLoading();
             });
   }
 
@@ -60,7 +67,22 @@ public class HumanMemoryController implements Interactable {
     }
   }
 
+  private void startLoading() {
+    thinkingHeadshot.setVisible(true);
+    neutralHeadshot.setVisible(false);
+    btnSend.setVisible(false);
+    userTextBox.setDisable(true);
+  }
+
+  private void stopLoading() {
+    thinkingHeadshot.setVisible(false);
+    neutralHeadshot.setVisible(true);
+    btnSend.setVisible(true);
+    userTextBox.setDisable(false);
+  }
+
   private void appendToChat(String message) {
+    Platform.runLater(() -> chatLog.positionCaret(chatLog.getLength()));
     chatLog.setText(chatLog.getText() + "\n\n" + message);
   }
 
