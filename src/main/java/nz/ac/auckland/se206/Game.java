@@ -6,6 +6,7 @@ import java.util.Map;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.characters.AiAuditor;
 import nz.ac.auckland.se206.characters.AiDefendent;
@@ -42,6 +43,7 @@ public class Game {
     stage.setResizable(false);
     stage.setTitle("Trial AI");
     stage.getIcons().clear();
+    scene.setFill(Color.BLACK);
     stage.show();
     root.requestFocus();
   }
