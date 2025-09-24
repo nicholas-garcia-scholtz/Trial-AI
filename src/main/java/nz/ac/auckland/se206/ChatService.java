@@ -46,6 +46,10 @@ public class ChatService {
     return chatServiceInstance;
   }
 
+  public static void reset() {
+    chatServiceInstance = new ChatService();
+  }
+
   public ChatService() {
     for (Map.Entry<ChatCharacter, ChatCompletionRequest> entry : chatCompletionMap.entrySet()) {
       try {
