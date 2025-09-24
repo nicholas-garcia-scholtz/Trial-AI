@@ -4,10 +4,13 @@ import java.io.IOException;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.BubbleDragUtil;
+import nz.ac.auckland.se206.ChatService;
 import nz.ac.auckland.se206.interfaces.Interactable;
 
 public class HumanMemoryController implements Interactable {
@@ -19,24 +22,25 @@ public class HumanMemoryController implements Interactable {
   @FXML private ImageView bubble3;
   @FXML private Label timerLabel;
   @FXML private Label titleLabel;
+  @FXML private TextField userTextBox;
+  @FXML private TextArea chatLog;
 
   public ImageView canvasBoundsTarget;
   private int layerCount = 0;
 
   @FXML
   public void initialize() {
-    BubbleDragUtil bubble1DragUtil =
-        new BubbleDragUtil(bubble1, this, "A balloon festival held in Jean-Luc's home town.");
-    BubbleDragUtil bubble2DragUtil =
-        new BubbleDragUtil(
-            bubble2, this, "Young Jean-Luc admires a painting at his local gallery.");
-    BubbleDragUtil bubble3DragUtil =
-        new BubbleDragUtil(bubble3, this, "Young Jean-Luc floats a paper boat on a rainy day.");
+    new BubbleDragUtil(bubble1, this, "A balloon festival held in Jean-Luc's home town.");
+    new BubbleDragUtil(bubble2, this, "Young Jean-Luc admires a painting at his local gallery.");
+    new BubbleDragUtil(bubble3, this, "Young Jean-Luc floats a paper boat on a rainy day.");
     canvasBoundsTarget = artworkLayer1;
   }
 
   @FXML
-  void onBtnSendClicked() {}
+  void onBtnSendClicked() {
+    ChatService.get().addPlayerMessage(userTextBox.getText());
+    userTextBox.setText("");
+  }
 
   @FXML
   void onBtnBackClicked() {
@@ -72,7 +76,6 @@ public class HumanMemoryController implements Interactable {
 
   @Override
   public void prepareScene() {
-    // Set up the timer
     App.getGame().getTimer().setLabel(timerLabel);
     timerLabel.setText(App.getGame().getTimer().getTime());
   }

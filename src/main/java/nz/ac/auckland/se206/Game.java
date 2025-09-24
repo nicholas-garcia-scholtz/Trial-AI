@@ -21,7 +21,6 @@ public class Game {
 
   private Scene scene;
   private TimerCountdown timer;
-  private ChatLogs chatLogs;
   private String rationale;
   private boolean playedGameContext;
   private boolean isGuilty;
@@ -30,7 +29,6 @@ public class Game {
     // Initialise all other game variables
     playedGameContext = false;
     isGuilty = false;
-    chatLogs = new ChatLogs();
     timer = new TimerCountdown(5, 0, "verdict");
 
     // Change all static variables for the controller classes to indicate that a new game has
@@ -110,9 +108,5 @@ public class Game {
 
   public TimerCountdown getTimer() {
     return timer;
-  }
-
-  public ChatLogs getChatLogs() {
-    return chatLogs;
   }
 }
