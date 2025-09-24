@@ -70,14 +70,14 @@ public class HumanMemoryController implements Interactable {
   private void startLoading() {
     thinkingHeadshot.setVisible(true);
     neutralHeadshot.setVisible(false);
-    btnSend.setVisible(false);
+    btnSend.setDisable(true);
     userTextBox.setDisable(true);
   }
 
   private void stopLoading() {
     thinkingHeadshot.setVisible(false);
     neutralHeadshot.setVisible(true);
-    btnSend.setVisible(true);
+    btnSend.setDisable(false);
     userTextBox.setDisable(false);
   }
 
