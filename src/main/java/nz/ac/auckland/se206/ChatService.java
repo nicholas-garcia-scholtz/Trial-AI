@@ -18,9 +18,9 @@ public class ChatService {
   private String transcript;
 
   public static enum ChatCharacter {
-    AIDEFENDANT("EaselMind", "aidefendant"),
-    AIWITNESS("ARPA", "aiwitness"),
-    HUMANWITNESS("Jean-Luc", "humanwitness");
+    AIDEFENDANT("EaselMind", "aidefendant.txt"),
+    AIWITNESS("ARPA", "aiwitness.txt"),
+    HUMANWITNESS("Jean-Luc", "humanwitness.txt");
 
     private final String displayName;
     private final String characterPromptId;
@@ -51,11 +51,11 @@ public class ChatService {
   }
 
   public ChatService() {
-    for (Map.Entry<ChatCharacter, ChatCompletionRequest> entry : chatCompletionMap.entrySet()) {
+    for (ChatCharacter character : ChatCharacter.values()) {
       try {
         ApiProxyConfig config = ApiProxyConfig.readConfig();
         chatCompletionMap.put(
-            entry.getKey(),
+            character,
             new ChatCompletionRequest(config)
                 .setN(1)
                 .setTemperature(0.2)
@@ -66,15 +66,16 @@ public class ChatService {
         System.out.println("Api proxy exception");
         e.printStackTrace();
       }
-      ChatCompletionRequest chatCompletion = chatCompletionMap.get(entry.getKey());
+      ChatCompletionRequest chatCompletion = chatCompletionMap.get(character);
       Map<String, String> entryMap = new HashMap<>();
-      entryMap.put("character", entry.getKey().getDisplayName());
+      entryMap.put("character", character.getDisplayName());
+      Map<String, String> emptyMap = new HashMap<>();
       chatCompletion.addMessage(
-          "system", PromptEngineering.getPrompt("generalcontextprefix", null));
+          "system", PromptEngineering.getPrompt("generalcontextprefix.txt", emptyMap));
       chatCompletion.addMessage(
-          "system", PromptEngineering.getPrompt(entry.getKey().getCharacterPromptId(), null));
+          "system", PromptEngineering.getPrompt(character.getCharacterPromptId(), emptyMap));
       chatCompletion.addMessage(
-          "system", PromptEngineering.getPrompt("generalcontextsuffix", entryMap));
+          "system", PromptEngineering.getPrompt("generalcontextsuffix.txt", entryMap));
     }
   }
 
@@ -119,7 +120,8 @@ public class ChatService {
               ChatMessage resultMessage =
                   chatCompletionResult.getChoices().iterator().next().getChatMessage();
               addCharacterMessage(character, resultMessage.getContent());
-              return resultMessage.getContent();
+              // Remove the [something] tag if it exists  to sanitise the string
+              return resultMessage.getContent().replaceFirst("^\\[[^\\]]+\\]\\s*", "");
             } catch (ApiProxyException e) {
               e.printStackTrace();
             }

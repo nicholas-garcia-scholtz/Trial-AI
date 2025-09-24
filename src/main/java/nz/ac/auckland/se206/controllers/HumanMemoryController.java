@@ -37,13 +37,22 @@ public class HumanMemoryController implements Interactable {
   }
 
   @FXML
-  void onBtnSendClicked() {
+  private void onBtnSendClicked() {
     ChatService.get().addPlayerMessage(userTextBox.getText());
+    appendToChat("[You] " + userTextBox.getText());
     userTextBox.setText("");
+    System.out.println(ChatService.get().getTranscript());
+    ChatService.get()
+        .generateCharacterResponse(
+            ChatService.ChatCharacter.HUMANWITNESS,
+            (String result) -> {
+              appendToChat("[Jean-Luc] " + result);
+              System.out.println(ChatService.get().getTranscript());
+            });
   }
 
   @FXML
-  void onBtnBackClicked() {
+  private void onBtnBackClicked() {
     try {
       App.getGame().setRoot("courtroom");
     } catch (IOException e) {
@@ -51,14 +60,34 @@ public class HumanMemoryController implements Interactable {
     }
   }
 
+  private void appendToChat(String message) {
+    chatLog.setText(chatLog.getText() + "\n\n" + message);
+  }
+
   public void revealLayer(ImageView bubble) {
     ImageView layer;
     if (bubble.equals(bubble1)) {
       layer = artworkLayer1;
+      ChatService.get()
+          .addSystemMessage(
+              "Through an interactable memory flashback, it is revealed that the balloons in"
+                  + " Jean-Luc's painting were inspired by a balloon festival held in Jean-Luc's"
+                  + " home town.");
     } else if (bubble.equals(bubble2)) {
       layer = artworkLayer2;
+      ChatService.get()
+          .addSystemMessage(
+              "Through an interactable memory flashback, it is revealed that the floating island"
+                  + " with door in Jean-Luc's painting was subconciously inspired by a gallery"
+                  + " painting he saw as a child. The painting wasn't actually a 100% original"
+                  + " idea.");
     } else if (bubble.equals(bubble3)) {
       layer = artworkLayer3;
+      ChatService.get()
+          .addSystemMessage(
+              "Through an interactable memory flashback, it is revealed that the paper boat in"
+                  + " Jean-Luc's painting was inspired by Jean-Luc playing with one in the rain as"
+                  + " a child.");
     } else {
       throw new Error("Bubble doesnt have corresponding artwork layer");
     }
