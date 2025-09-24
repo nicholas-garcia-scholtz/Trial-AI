@@ -1,0 +1,43 @@
+.text-area {
+  -fx-control-inner-background: black;
+  /* background inside the text area */
+  -fx-background-color: black;
+  -fx-border-color: #3aff47;
+  -fx-border-width: 2px;
+  -fx-text-fill: #3aff47;
+  /* text color */
+}
+
+.text-area .scroll-pane {
+  -fx-background-color: transparent;
+  /* remove grey */
+}
+
+.text-area .scroll-bar:vertical,
+.text-area .scroll-bar:horizontal {
+  -fx-background-color: black;
+  /* scrollbar track background */
+}
+
+.text-area .scroll-bar:vertical .thumb,
+.text-area .scroll-bar:horizontal .thumb {
+  -fx-background-color: #3aff47;
+  /* draggable part */
+  -fx-background-radius: 5;
+}
+
+.text-area .scroll-bar:vertical .increment-button,
+.text-area .scroll-bar:vertical .decrement-button,
+.text-area .scroll-bar:horizontal .increment-button,
+.text-area .scroll-bar:horizontal .decrement-button {
+  -fx-background-color: black;
+  /* hide arrow buttons */
+}
+
+.text-area .scroll-bar:vertical .increment-arrow,
+.text-area .scroll-bar:vertical .decrement-arrow,
+.text-area .scroll-bar:horizontal .increment-arrow,
+.text-area .scroll-bar:horizontal .decrement-arrow {
+  -fx-background-color: #3aff47;
+  /* arrow color if you keep them */
+}

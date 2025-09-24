@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -9,17 +10,20 @@
 
 <StackPane xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WelcomeController">
    <children>
-      <Pane prefHeight="500.0" prefWidth="800.0">
+      <Pane prefHeight="720.0" prefWidth="1080.0">
          <children>
-            <ImageView fitHeight="500.0" fitWidth="800.0" layoutY="0.0" preserveRatio="false">
+            <ImageView fitHeight="720.0" fitWidth="1080.0" layoutY="0.0" preserveRatio="true">
               <image>
                   <Image url="@../images/StartGameBackground.png" />
               </image>
             </ImageView>
-            <Button fx:id="startBtn" layoutX="315.0" layoutY="267.0" mnemonicParsing="false" onAction="#onStartBtnClicked" prefHeight="78.0" prefWidth="171.0" style="-fx-background-color: #000000;" text="Start" textFill="#3aff47">
+            <Button fx:id="startBtn" layoutX="455.0" layoutY="450.0" mnemonicParsing="false" onAction="#onStartBtnClicked" prefHeight="78.0" prefWidth="171.0" style="-fx-background-color: #000000;" text="Start" textFill="#3aff47">
                <font>
                   <Font size="37.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children></Pane>
    </children>

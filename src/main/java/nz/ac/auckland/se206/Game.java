@@ -6,6 +6,7 @@ import java.util.Map;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.characters.AiAuditor;
 import nz.ac.auckland.se206.characters.AiDefendent;
@@ -21,7 +22,6 @@ public class Game {
 
   private Scene scene;
   private TimerCountdown timer;
-  private ChatLogs chatLogs;
   private String rationale;
   private boolean playedGameContext;
   private boolean isGuilty;
@@ -30,7 +30,6 @@ public class Game {
     // Initialise all other game variables
     playedGameContext = false;
     isGuilty = false;
-    chatLogs = new ChatLogs();
     timer = new TimerCountdown(5, 0, "verdict");
 
     // Change all static variables for the controller classes to indicate that a new game has
@@ -39,8 +38,12 @@ public class Game {
 
     // Load the welcome scene
     Parent root = loadFxml("welcome");
-    scene = new Scene(root);
+    scene = new Scene(root, 1080, 720);
     stage.setScene(scene);
+    stage.setResizable(false);
+    stage.setTitle("Trial AI");
+    stage.getIcons().clear();
+    scene.setFill(Color.BLACK);
     stage.show();
     root.requestFocus();
   }
@@ -110,9 +113,5 @@ public class Game {
 
   public TimerCountdown getTimer() {
     return timer;
-  }
-
-  public ChatLogs getChatLogs() {
-    return chatLogs;
   }
 }

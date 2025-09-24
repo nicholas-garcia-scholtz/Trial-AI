@@ -21,6 +21,7 @@ public class App extends Application {
   public static void newGame(Stage stage) throws IOException {
     game = new Game(stage);
     game.setUpGame();
+    ChatService.reset();
   }
 
   public static Game getGame() {

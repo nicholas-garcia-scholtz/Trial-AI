@@ -11,28 +11,29 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.HumanMemoryController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.HumanMemoryController">
    <children>
-    <ImageView fitHeight="492.0" fitWidth="600.0" layoutY="38.0" preserveRatio="false">
+    <ImageView fitHeight="683.0" fitWidth="766.0" layoutY="38.0" preserveRatio="false">
       <image>
           <Image url="@../images/HumanInteractableCanvas.png" />
       </image>
     </ImageView>
-      <TextArea fx:id="chatLog" editable="false" layoutX="600.0" prefHeight="385.0" prefWidth="200.0" style="-fx-control-inner-background: #000000; -fx-text-fill: #3aff47;" wrapText="true" />
-      <TextField fx:id="userTextBox" alignment="TOP_LEFT" layoutX="600.0" layoutY="385.0" prefHeight="75.0" prefWidth="200.0" promptText="Talk to the AI art critic" style="-fx-control-inner-background: #000000; -fx-text-fill: #3aff47; -fx-border-color: #3aff47; -fx-prompt-text-fill: #3aff47; -fx-border-width: 2px; -fx-background-radius: 5;" />
-      <Button fx:id="btnSend" layoutX="600.0" layoutY="460.0" mnemonicParsing="false" onAction="#onBtnSendClicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #000000; -fx-text-fill: #3aff47;" text="Send">
+      <TextField fx:id="userTextBox" alignment="TOP_LEFT" layoutX="762.0" layoutY="567.0" onAction="#onBtnSendClicked" prefHeight="114.0" prefWidth="318.0" promptText="Talk to Jean-Luc" style="-fx-control-inner-background: #000000; -fx-text-fill: #3aff47; -fx-border-color: #3aff47; -fx-prompt-text-fill: #3aff47; -fx-border-width: 2px; -fx-background-radius: 5;">
          <font>
-            <Font size="18.0" />
-         </font></Button>
-      <Button fx:id="btnBack" layoutX="700.0" layoutY="460.0" mnemonicParsing="false" onAction="#onBtnBackClicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #000000; -fx-text-fill: #3aff47;" text="Back">
+            <Font size="14.0" />
+         </font></TextField>
+      <Button fx:id="btnSend" layoutX="762.0" layoutY="681.0" mnemonicParsing="false" onAction="#onBtnSendClicked" prefHeight="33.0" prefWidth="318.0" style="-fx-background-color: #000000; -fx-text-fill: #3aff47; -fx-border-color: #3aff47; -fx-border-width: 2;" text="Send">
          <font>
-            <Font size="18.0" />
-         </font></Button>
-      <Label fx:id="timerLabel" alignment="CENTER" layoutX="14.0" layoutY="439.0" prefHeight="42.0" prefWidth="94.0" style="-fx-background-color: #000000;" text="02:00" textAlignment="CENTER" textFill="#3aff47">
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label fx:id="timerLabel" alignment="CENTER" layoutX="45.0" layoutY="624.0" prefHeight="42.0" prefWidth="94.0" style="-fx-background-color: #000000;" text="02:00" textAlignment="CENTER" textFill="#3aff47">
          <font>
             <Font size="32.0" />
          </font></Label>
-      <ImageView fx:id="bubble3" fitHeight="157.0" fitWidth="170.0" layoutX="408.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="bubble3" fitHeight="170.0" fitWidth="170.0" layoutX="540.0" layoutY="482.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/HumanInteractableBubble3.png" />
          </image>
@@ -40,27 +41,27 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fitHeight="293.0" fitWidth="139.0" layoutX="230.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="278.0" fitWidth="201.0" layoutX="289.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/HumanArtworkBackground.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="artworkLayer1" fitHeight="293.0" fitWidth="139.0" layoutX="230.0" layoutY="135.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="artworkLayer1" fitHeight="278.0" fitWidth="185.0" layoutX="289.0" layoutY="179.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/HumanArtworkBalloons.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="artworkLayer2" fitHeight="293.0" fitWidth="139.0" layoutX="231.0" layoutY="135.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="artworkLayer2" fitHeight="278.0" fitWidth="198.0" layoutX="289.0" layoutY="179.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/HumanArtworkClif.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="artworkLayer3" fitHeight="293.0" fitWidth="139.0" layoutX="230.0" layoutY="135.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="artworkLayer3" fitHeight="281.0" fitWidth="185.0" layoutX="290.0" layoutY="179.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/HumanArtworkPaperBoat.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="bubble1" fitHeight="172.0" fitWidth="170.0" layoutX="14.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="bubble1" fitHeight="170.0" fitWidth="170.0" layoutX="45.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/HumanInteractableBubble1.png" />
          </image>
@@ -68,7 +69,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="bubble2" fitHeight="157.0" fitWidth="170.0" layoutX="418.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="bubble2" fitHeight="170.0" fitWidth="170.0" layoutX="549.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/HumanInteractableBubble2.png" />
          </image>
@@ -76,11 +77,38 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="40.0" layoutX="-1.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
-      <Label fx:id="titleLabel" alignment="CENTER" layoutX="28.0" layoutY="9.0" prefHeight="22.0" prefWidth="545.0" text="Drag Jean-Luc's memories onto the canvas to see what inspired his painting." textFill="#3aff47">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="59.0" layoutX="-1.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="766.0" />
+      <Label fx:id="titleLabel" alignment="CENTER" layoutX="92.0" layoutY="5.0" prefHeight="47.0" prefWidth="674.0" text="Drag Jean-Luc's memories onto the canvas to see what inspired his painting." textFill="#3aff47">
          <font>
-            <Font size="14.0" />
+            <Font size="17.0" />
          </font>
       </Label>
+      <Button fx:id="btnBack" alignment="CENTER" layoutX="14.0" layoutY="8.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onBtnBackClicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #000000; -fx-text-fill: #3aff47; -fx-border-color: #3aff47; -fx-border-width: 2;" text="◀  Back" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <TextArea fx:id="chatLog" editable="false" focusTraversable="false" layoutX="762.0" layoutY="197.0" prefHeight="370.0" prefWidth="318.0" style="-fx-control-inner-background: #000000; -fx-text-fill: #3aff47; -fx-border-color: #3aff47; -fx-border-width: 2;" stylesheets="@../css/textarea.css" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></TextArea>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" layoutX="762.0" stroke="#3aff47" strokeType="INSIDE" strokeWidth="3.0" width="318.0" />
+      <ImageView fitHeight="189.0" fitWidth="309.0" layoutX="767.0" layoutY="4.0" opacity="0.77" pickOnBounds="true">
+         <image>
+            <Image url="@../images/neuronbackground.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="neutralHeadshot" fitHeight="189.0" fitWidth="206.0" layoutX="826.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/HumanWitnessHeadshot.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="thinkingHeadshot" fitHeight="189.0" fitWidth="206.0" layoutX="827.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/HumanWitnessHeadshotThinking.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

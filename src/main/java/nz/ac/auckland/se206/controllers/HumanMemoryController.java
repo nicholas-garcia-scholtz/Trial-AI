@@ -2,12 +2,17 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.BubbleDragUtil;
+import nz.ac.auckland.se206.ChatService;
 import nz.ac.auckland.se206.interfaces.Interactable;
 
 public class HumanMemoryController implements Interactable {
@@ -19,27 +24,42 @@ public class HumanMemoryController implements Interactable {
   @FXML private ImageView bubble3;
   @FXML private Label timerLabel;
   @FXML private Label titleLabel;
+  @FXML private TextField userTextBox;
+  @FXML private TextArea chatLog;
+  @FXML private ImageView thinkingHeadshot;
+  @FXML private ImageView neutralHeadshot;
+  @FXML private Button btnSend;
 
   public ImageView canvasBoundsTarget;
   private int layerCount = 0;
 
   @FXML
   public void initialize() {
-    BubbleDragUtil bubble1DragUtil =
-        new BubbleDragUtil(bubble1, this, "A balloon festival held in Jean-Luc's home town.");
-    BubbleDragUtil bubble2DragUtil =
-        new BubbleDragUtil(
-            bubble2, this, "Young Jean-Luc admires a painting at his local gallery.");
-    BubbleDragUtil bubble3DragUtil =
-        new BubbleDragUtil(bubble3, this, "Young Jean-Luc floats a paper boat on a rainy day.");
+    new BubbleDragUtil(bubble1, this, "A balloon festival held in Jean-Luc's home town.");
+    new BubbleDragUtil(bubble2, this, "Young Jean-Luc admires a painting at his local gallery.");
+    new BubbleDragUtil(bubble3, this, "Young Jean-Luc floats a paper boat on a rainy day.");
     canvasBoundsTarget = artworkLayer1;
   }
 
   @FXML
-  void onBtnSendClicked() {}
+  private void onBtnSendClicked() {
+    startLoading();
+    ChatService.get().addPlayerMessage(userTextBox.getText());
+    appendToChat("[You] " + userTextBox.getText());
+    userTextBox.setText("");
+    System.out.println(ChatService.get().getTranscript());
+    ChatService.get()
+        .generateCharacterResponse(
+            ChatService.ChatCharacter.HUMANWITNESS,
+            (String result) -> {
+              appendToChat("[Jean-Luc] " + result);
+              System.out.println(ChatService.get().getTranscript());
+              stopLoading();
+            });
+  }
 
   @FXML
-  void onBtnBackClicked() {
+  private void onBtnBackClicked() {
     try {
       App.getGame().setRoot("courtroom");
     } catch (IOException e) {
@@ -47,14 +67,49 @@ public class HumanMemoryController implements Interactable {
     }
   }
 
+  private void startLoading() {
+    thinkingHeadshot.setVisible(true);
+    neutralHeadshot.setVisible(false);
+    btnSend.setDisable(true);
+    userTextBox.setDisable(true);
+  }
+
+  private void stopLoading() {
+    thinkingHeadshot.setVisible(false);
+    neutralHeadshot.setVisible(true);
+    btnSend.setDisable(false);
+    userTextBox.setDisable(false);
+  }
+
+  private void appendToChat(String message) {
+    Platform.runLater(() -> chatLog.positionCaret(chatLog.getLength()));
+    chatLog.setText(chatLog.getText() + "\n\n" + message);
+  }
+
   public void revealLayer(ImageView bubble) {
     ImageView layer;
     if (bubble.equals(bubble1)) {
       layer = artworkLayer1;
+      ChatService.get()
+          .addSystemMessage(
+              "Through an interactable memory flashback, it is revealed that the balloons in"
+                  + " Jean-Luc's painting were inspired by a balloon festival held in Jean-Luc's"
+                  + " home town.");
     } else if (bubble.equals(bubble2)) {
       layer = artworkLayer2;
+      ChatService.get()
+          .addSystemMessage(
+              "Through an interactable memory flashback, it is revealed that the floating island"
+                  + " with door in Jean-Luc's painting was subconciously inspired by a gallery"
+                  + " painting he saw as a child. The painting wasn't actually a 100% original"
+                  + " idea.");
     } else if (bubble.equals(bubble3)) {
       layer = artworkLayer3;
+      ChatService.get()
+          .addSystemMessage(
+              "Through an interactable memory flashback, it is revealed that the paper boat in"
+                  + " Jean-Luc's painting was inspired by Jean-Luc playing with one in the rain as"
+                  + " a child.");
     } else {
       throw new Error("Bubble doesnt have corresponding artwork layer");
     }
@@ -72,7 +127,6 @@ public class HumanMemoryController implements Interactable {
 
   @Override
   public void prepareScene() {
-    // Set up the timer
     App.getGame().getTimer().setLabel(timerLabel);
     timerLabel.setText(App.getGame().getTimer().getTime());
   }

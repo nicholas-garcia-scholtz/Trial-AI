@@ -3,7 +3,6 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javafx.application.Platform;
@@ -15,10 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import nz.ac.auckland.apiproxy.chat.openai.ChatMessage;
-import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.ChatLogs;
 import nz.ac.auckland.se206.interfaces.Flashback;
 import nz.ac.auckland.se206.interfaces.Interactable;
 
@@ -141,17 +137,6 @@ public class AiArtCriticFlashBackController implements Flashback, Interactable {
     aiFeatures.add(rectLantern1);
     aiFeatures.add(rectTower1);
     aiFeatures.add(rectFountain1);
-
-    // Set up the AI
-    App.getGame().getChatLogs().setChat(chatLog, userTextBox, characterName);
-    List<ChatMessage> logs = ChatLogs.getChatMessages();
-    for (ChatMessage log : logs) {
-      if (log.getRole().equals("assistant")) {
-        chatLog.appendText(characterName + ": " + log.getContent() + "\n\n");
-      } else {
-        chatLog.appendText(log.getRole() + ": " + log.getContent() + "\n\n");
-      }
-    }
   }
 
   @FXML
@@ -165,27 +150,12 @@ public class AiArtCriticFlashBackController implements Flashback, Interactable {
   }
 
   @FXML
-  private void onBtnSendClicked() {
-    try {
-      App.getGame().getChatLogs().onSendMessage(userTextBox.getText().trim());
-    } catch (ApiProxyException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+  private void onBtnSendClicked() {}
 
   @Override
   public void prepareScene() {
     // Set up the timer
     App.getGame().getTimer().setLabel(timerLabel);
     timerLabel.setText(App.getGame().getTimer().getTime());
-
-    // Set up the AI
-    App.getGame().getChatLogs().setChat(chatLog, userTextBox, characterName);
-    List<ChatMessage> chatLogHistory = ChatLogs.getTrialMessages();
-    for (ChatMessage log : chatLogHistory) {
-      App.getGame().getChatLogs().addMessageToChatCompletionRequest(log);
-    }
   }
 }
