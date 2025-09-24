@@ -37,8 +37,11 @@ public class Game {
 
     // Load the welcome scene
     Parent root = loadFxml("welcome");
-    scene = new Scene(root);
+    scene = new Scene(root, 1080, 720);
     stage.setScene(scene);
+    stage.setResizable(false);
+    stage.setTitle("Trial AI");
+    stage.getIcons().clear();
     stage.show();
     root.requestFocus();
   }
