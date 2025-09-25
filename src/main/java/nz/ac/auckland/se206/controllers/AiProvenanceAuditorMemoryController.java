@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.ChatService;
 import nz.ac.auckland.se206.interfaces.Interactable;
 
 public class AiProvenanceAuditorMemoryController implements Interactable {
@@ -26,6 +28,8 @@ public class AiProvenanceAuditorMemoryController implements Interactable {
   @FXML private Text timelinesAlignedText;
   @FXML private ImageView aiExclamation;
   @FXML private ImageView humanExclamation;
+  @FXML private ImageView thinkingHeadshot;
+  @FXML private ImageView neutralHeadshot;
 
   @FXML
   public void initialize() {
@@ -74,13 +78,46 @@ public class AiProvenanceAuditorMemoryController implements Interactable {
   @FXML
   private void onBtnBackClicked() {
     try {
-      App.setRoot("courtroom");
+      App.getGame().setRoot("courtroom");
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
 
-  void onBtnSendClicked() {}
+  @FXML
+  private void onBtnSendClicked() {
+    // When the send button is clicked, send the message to the LLM
+    startLoading();
+    ChatService.get().addPlayerMessage(userTextBox.getText());
+    appendToChat("[You] " + userTextBox.getText());
+    userTextBox.setText("");
+    ChatService.get()
+        .generateCharacterResponse(
+            ChatService.ChatCharacter.AIWITNESS,
+            (String result) -> {
+              appendToChat("[ARPA] " + result);
+              stopLoading();
+            });
+  }
+
+  private void startLoading() {
+    thinkingHeadshot.setVisible(true);
+    neutralHeadshot.setVisible(false);
+    btnSend.setDisable(true);
+    userTextBox.setDisable(true);
+  }
+
+  private void stopLoading() {
+    thinkingHeadshot.setVisible(false);
+    neutralHeadshot.setVisible(true);
+    btnSend.setDisable(false);
+    userTextBox.setDisable(false);
+  }
+
+  private void appendToChat(String message) {
+    Platform.runLater(() -> chatLog.positionCaret(chatLog.getLength()));
+    chatLog.setText(chatLog.getText() + "\n\n" + message);
+  }
 
   @Override
   public void prepareScene() {

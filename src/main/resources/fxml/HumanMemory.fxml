@@ -93,7 +93,10 @@
       <TextArea fx:id="chatLog" editable="false" focusTraversable="false" layoutX="762.0" layoutY="197.0" prefHeight="370.0" prefWidth="318.0" style="-fx-control-inner-background: #000000; -fx-text-fill: #3aff47; -fx-border-color: #3aff47; -fx-border-width: 2;" stylesheets="@../css/textarea.css" wrapText="true">
          <font>
             <Font size="14.0" />
-         </font></TextArea>
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></TextArea>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" layoutX="762.0" stroke="#3aff47" strokeType="INSIDE" strokeWidth="3.0" width="318.0" />
       <ImageView fitHeight="189.0" fitWidth="309.0" layoutX="767.0" layoutY="4.0" opacity="0.77" pickOnBounds="true">
          <image>
