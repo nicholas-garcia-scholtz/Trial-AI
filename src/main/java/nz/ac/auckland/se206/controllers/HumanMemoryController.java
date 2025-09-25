@@ -47,13 +47,11 @@ public class HumanMemoryController implements Interactable {
     ChatService.get().addPlayerMessage(userTextBox.getText());
     appendToChat("[You] " + userTextBox.getText());
     userTextBox.setText("");
-    System.out.println(ChatService.get().getTranscript());
     ChatService.get()
         .generateCharacterResponse(
             ChatService.ChatCharacter.HUMANWITNESS,
             (String result) -> {
               appendToChat("[Jean-Luc] " + result);
-              System.out.println(ChatService.get().getTranscript());
               stopLoading();
             });
   }
