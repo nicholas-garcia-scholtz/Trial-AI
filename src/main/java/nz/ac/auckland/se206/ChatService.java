@@ -64,7 +64,7 @@ public class ChatService {
                 .setTemperature(0.2)
                 .setTopP(0.5)
                 .setModel(Model.GPT_4_1_MINI)
-                .setMaxTokens(100));
+                .setMaxTokens(300));
       } catch (ApiProxyException e) {
         System.out.println("Api proxy exception");
         e.printStackTrace();
