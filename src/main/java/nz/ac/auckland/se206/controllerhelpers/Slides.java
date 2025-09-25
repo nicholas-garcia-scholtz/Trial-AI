@@ -17,6 +17,12 @@ public class Slides {
   private ImageView myImageView3;
   private int index = 0;
 
+  private double layoutX1 = -1600.0;
+  private double layoutX2 = 60.0;
+  private double layoutX3 = 1600.0;
+
+  private double layoutY1 = 72.0;
+
   private List<Image> slides;
 
   private Slides(
@@ -31,14 +37,14 @@ public class Slides {
     myImageView3.setOpacity(0);
     myImageView2.setImage(slides.get(0));
 
-    myImageView1.setLayoutX(-725.0);
-    myImageView1.setLayoutY(52.0);
+    myImageView1.setLayoutX(layoutX1);
+    myImageView1.setLayoutY(layoutY1);
 
-    myImageView2.setLayoutX(45.0);
-    myImageView2.setLayoutY(52.0);
+    myImageView2.setLayoutX(layoutX2);
+    myImageView2.setLayoutY(layoutY1);
 
-    myImageView3.setLayoutX(878.0);
-    myImageView3.setLayoutY(52.0);
+    myImageView3.setLayoutX(layoutX3);
+    myImageView3.setLayoutY(layoutY1);
   }
 
   private Timeline animateSlide(ImageView imageView, double currentX) {
@@ -48,16 +54,16 @@ public class Slides {
     double nextLayoutX = 0.0;
 
     // Fade out
-    if (currentX == 45.0) {
-      nextLayoutX = -725.0;
+    if (currentX == layoutX2) {
+      nextLayoutX = layoutX1;
       firstOpacity = 1.0;
       secondOpacity = 0.0;
-    } else if (currentX == 878.0) {
-      nextLayoutX = 45.0;
+    } else if (currentX == layoutX3) {
+      nextLayoutX = layoutX2;
       firstOpacity = 0.0;
       secondOpacity = 1.0;
     } else {
-      nextLayoutX = 878.0;
+      nextLayoutX = layoutX3;
       firstOpacity = 0.0;
       secondOpacity = 0.0;
     }
@@ -69,7 +75,7 @@ public class Slides {
             new KeyValue(imageView.layoutXProperty(), currentX),
             new KeyValue(imageView.opacityProperty(), firstOpacity)),
         new KeyFrame(
-            Duration.seconds(1.5),
+            Duration.seconds(2),
             new KeyValue(imageView.layoutXProperty(), nextLayoutX, Interpolator.EASE_OUT),
             new KeyValue(imageView.opacityProperty(), secondOpacity, Interpolator.EASE_OUT)));
   }
