@@ -19,9 +19,9 @@ public class AiDefendentFlashbackController implements Flashback {
   @FXML
   public void initialize() {
     slides =
-        new Slides.Builder("images/cafe.png", myImageView1, myImageView2, myImageView3)
-            .addSlide("images/AIArtistFlashback.png")
-            .addSlide("images/AICourtRoom.png")
+        new Slides.Builder("images/ArtistFlashback.png", myImageView1, myImageView2, myImageView3)
+            .addSlide("images/ArtistFlashback.png")
+            .addSlide("images/ArtistFlashback.png")
             .addSlide("images/ArtistFlashback.png")
             .build();
   }
