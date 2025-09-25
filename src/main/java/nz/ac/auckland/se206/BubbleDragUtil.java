@@ -17,7 +17,7 @@ public class BubbleDragUtil {
   private ImageView bubble;
   private HumanMemoryController humanMemoryController;
   private boolean debounce = false;
-  private final int TOOLTIP_OFFSET = 14;
+  private final int tooltipOffset = 14;
 
   public BubbleDragUtil(
       ImageView bubble, HumanMemoryController humanMemoryController, String tooltipText) {
@@ -56,7 +56,7 @@ public class BubbleDragUtil {
           bubble.setLayoutX(event.getSceneX() - mouseOriginX);
           bubble.setLayoutY(event.getSceneY() - mouseOriginY);
           popup.show(
-              bubble, event.getScreenX() + TOOLTIP_OFFSET, event.getScreenY() + TOOLTIP_OFFSET);
+              bubble, event.getScreenX() + tooltipOffset, event.getScreenY() + tooltipOffset);
         });
 
     // Handle drag ending:
@@ -82,7 +82,7 @@ public class BubbleDragUtil {
           if (debounce) {
             return;
           }
-          popup.show(bubble, e.getScreenX() + TOOLTIP_OFFSET, e.getScreenY() + TOOLTIP_OFFSET);
+          popup.show(bubble, e.getScreenX() + tooltipOffset, e.getScreenY() + tooltipOffset);
         });
 
     // When the user hovers, emphasise by increasing scale, and show tooltip
@@ -91,7 +91,7 @@ public class BubbleDragUtil {
           Bounds b = bubble.localToScreen(bubble.getBoundsInLocal());
           if (b != null) {
             popup.show(
-                bubble, event.getScreenX() + TOOLTIP_OFFSET, event.getScreenY() + TOOLTIP_OFFSET);
+                bubble, event.getScreenX() + tooltipOffset, event.getScreenY() + tooltipOffset);
           }
           ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(150), bubble);
           scaleTransition.setToX(1.05);
@@ -111,7 +111,8 @@ public class BubbleDragUtil {
   }
 
   private boolean isBubbleOnTopOfCanvas() {
-    ImageView canvasBoundsTarget = this.humanMemoryController.canvasBoundsTarget;
+    // Check if the dragged bubble is within the bounds of the painting canvas
+    ImageView canvasBoundsTarget = this.humanMemoryController.getCanvasBoundsTarget();
     Bounds targetBounds = canvasBoundsTarget.localToScene(canvasBoundsTarget.getBoundsInLocal());
     Bounds bubbleBounds = bubble.localToScene(bubble.getBoundsInLocal());
 
@@ -125,6 +126,7 @@ public class BubbleDragUtil {
   }
 
   private void fadeOutAndHide() {
+    // Fade the bubble out and make it invisible
     FadeTransition fadeTransition = new FadeTransition(Duration.millis(500), bubble);
     fadeTransition.setFromValue(1);
     fadeTransition.setToValue(0);

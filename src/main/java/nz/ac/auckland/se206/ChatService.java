@@ -13,9 +13,6 @@ import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.prompts.PromptEngineering;
 
 public class ChatService {
-  private static ChatService chatServiceInstance;
-  private Map<ChatCharacter, ChatCompletionRequest> chatCompletionMap = new HashMap<>();
-  private String transcript;
 
   public static enum ChatCharacter {
     AIDEFENDANT("EaselMind", "aidefendant.txt"),
@@ -39,6 +36,8 @@ public class ChatService {
     }
   }
 
+  private static ChatService chatServiceInstance;
+
   public static ChatService get() {
     if (chatServiceInstance == null) {
       chatServiceInstance = new ChatService();
@@ -49,6 +48,10 @@ public class ChatService {
   public static void reset() {
     chatServiceInstance = new ChatService();
   }
+
+  private String transcript;
+
+  private Map<ChatCharacter, ChatCompletionRequest> chatCompletionMap = new HashMap<>();
 
   public ChatService() {
     for (ChatCharacter character : ChatCharacter.values()) {
@@ -96,6 +99,7 @@ public class ChatService {
   }
 
   public void addCharacterMessage(ChatService.ChatCharacter character, String message) {
+    // Add a message to the chat transcript for a particular AI character
     transcript += "\n[" + character.getDisplayName() + "] " + message;
     for (Map.Entry<ChatCharacter, ChatCompletionRequest> entry : chatCompletionMap.entrySet()) {
       String openAiRole = "user";
