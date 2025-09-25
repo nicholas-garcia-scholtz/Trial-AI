@@ -30,7 +30,7 @@ public class HumanMemoryController implements Interactable {
   @FXML private ImageView neutralHeadshot;
   @FXML private Button btnSend;
 
-  public ImageView canvasBoundsTarget;
+  private ImageView canvasBoundsTarget;
   private int layerCount = 0;
 
   @FXML
@@ -43,6 +43,7 @@ public class HumanMemoryController implements Interactable {
 
   @FXML
   private void onBtnSendClicked() {
+    // When the send button is clicked, send the message to the LLM
     startLoading();
     ChatService.get().addPlayerMessage(userTextBox.getText());
     appendToChat("[You] " + userTextBox.getText());
@@ -129,5 +130,9 @@ public class HumanMemoryController implements Interactable {
   public void prepareScene() {
     App.getGame().getTimer().setLabel(timerLabel);
     timerLabel.setText(App.getGame().getTimer().getTime());
+  }
+
+  public ImageView getCanvasBoundsTarget() {
+    return canvasBoundsTarget;
   }
 }
