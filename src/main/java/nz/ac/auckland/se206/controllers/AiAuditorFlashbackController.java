@@ -31,7 +31,7 @@ public class AiAuditorFlashbackController implements Flashback {
     boolean continueSlides = slides.nextSlide();
     if (!continueSlides) {
       try {
-        App.getGame().setRoot("courtroom");
+        App.getGame().setRoot("AIAuditorMemory");
       } catch (IOException e) {
         e.printStackTrace();
       }
