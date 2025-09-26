@@ -32,11 +32,12 @@ public class AiDefendentFlashbackController implements Flashback {
             .addSlide("images/AiDefendentFlashback3.png")
             .addSlide("images/AiDefendentFlashback4.png")
             .addSlide("images/AiDefendentFlashback5.png")
-            .build();
+            .build(); // builder design pattern
   }
 
   @FXML
   private void onNextSlideClicked(ActionEvent event) {
+    // transition to next slide when the button is clicked
     boolean continueSlides = slides.nextSlide();
 
     // If there are no more slides, go to the next scene

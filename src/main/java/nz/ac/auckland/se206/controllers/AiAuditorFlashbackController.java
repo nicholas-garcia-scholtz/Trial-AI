@@ -20,6 +20,7 @@ public class AiAuditorFlashbackController implements Flashback {
 
   @FXML
   public void initialize() {
+    // Initialise the flashback with all of the images in the slideshow
     slides =
         new Slides.Builder(
                 "images/AIAuditorMetaFlashback.png",
@@ -30,11 +31,12 @@ public class AiAuditorFlashbackController implements Flashback {
             .addSlide("images/AIAuditorCompareFlashback.png")
             .addSlide("images/AIAuditorScanningFlashback.png")
             .addSlide("images/AIAuditorPercentageFlashback.png")
-            .build();
+            .build(); // builder design pattern
   }
 
   @FXML
   private void onNextSlideClicked(ActionEvent event) {
+    // When the next slide button is clicked, transition to the next slide
     boolean continueSlides = slides.nextSlide();
     if (!continueSlides) {
       try {

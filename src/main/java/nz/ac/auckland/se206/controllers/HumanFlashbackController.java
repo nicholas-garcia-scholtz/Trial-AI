@@ -20,6 +20,7 @@ public class HumanFlashbackController implements Flashback {
 
   @FXML
   public void initialize() {
+    // Initialise the flashback with all of the images in the slideshow
     slides =
         new Slides.Builder(
                 "images/humanflashback1.png",
@@ -30,11 +31,12 @@ public class HumanFlashbackController implements Flashback {
             .addSlide("images/humanflashback2.png")
             .addSlide("images/humanflashback3.png")
             .addSlide("images/humanflashback4.png")
-            .build();
+            .build(); // builder design pattern
   }
 
   @FXML
   private void onNextSlideClicked(ActionEvent event) {
+    // when the next slide button is clicked, transition to the next slide
     boolean continueSlides = slides.nextSlide();
     if (!continueSlides) {
       try {
