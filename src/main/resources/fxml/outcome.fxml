@@ -17,12 +17,12 @@
             <Font size="48.0" />
          </font>
       </Text>
-      <Text fx:id="txtAiRationaleText" layoutX="312.0" layoutY="391.0" style="-fx-font-size: 20px; -fx-fill: #3aff47;" text="AI evaluation will appear here..." textAlignment="CENTER" wrappingWidth="457.0">
+      <Text fx:id="txtAiRationaleText" layoutX="312.0" layoutY="391.0" style="-fx-font-size: 20px; -fx-fill: #3aff47;" text="Loading..." textAlignment="CENTER" wrappingWidth="457.0">
          <font>
             <Font size="24.0" />
          </font></Text>
-        <Button fx:id="btnRestartGame" layoutX="437.0" layoutY="519.0" mnemonicParsing="false" onAction="#onBtnRestartGame" prefHeight="67.0" prefWidth="207.0" style="-fx-background-color: #000000; -fx-background-radius: 30px; -fx-border-width: 2px; -fx-border-color: #3aff47; -fx-border-radius: 30px; -fx-font-size: 20px; -fx-text-fill: #3aff47;" text="Restart Game" />
-      <Text fill="#3aff47" layoutX="466.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rationale">
+        <Button fx:id="btnRestartGame" layoutX="437.0" layoutY="592.0" mnemonicParsing="false" onAction="#onBtnRestartGame" prefHeight="67.0" prefWidth="207.0" style="-fx-background-color: #000000; -fx-background-radius: 30px; -fx-border-width: 2px; -fx-border-color: #3aff47; -fx-border-radius: 30px; -fx-font-size: 20px; -fx-text-fill: #3aff47;" text="Restart Game" />
+      <Text fill="#3aff47" layoutX="359.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feedback on your rationale:">
          <font>
             <Font size="30.0" />
          </font>
