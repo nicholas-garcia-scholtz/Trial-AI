@@ -21,6 +21,12 @@ import nz.ac.auckland.se206.ChatService;
 import nz.ac.auckland.se206.interfaces.Interactable;
 
 public class AiDefendentMemoryController implements Interactable {
+  private static String characterName = "AI Defendent";
+
+  public static String getName() {
+    return characterName;
+  }
+
   @FXML private ImageView trainingData1;
   @FXML private ImageView trainingData2;
   @FXML private ImageView trainingData3;

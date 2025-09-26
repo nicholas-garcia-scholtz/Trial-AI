@@ -15,6 +15,11 @@ import nz.ac.auckland.se206.ChatService;
 import nz.ac.auckland.se206.interfaces.Interactable;
 
 public class AiProvenanceAuditorMemoryController implements Interactable {
+  private static String characterName = "AI Art Provenance Auditor";
+
+  public static String getName() {
+    return characterName;
+  }
 
   @FXML private Label timerLabel;
   @FXML private Button btnBack;
