@@ -42,26 +42,26 @@ public class TimerCountdown {
   public void count() {
     int seconds;
     int minutes;
-    String out;
     for (int i = 0; i < numSeconds && continueTimer; i++) {
 
       seconds = (numSeconds - i) % 60;
       minutes = (numSeconds - i) / 60;
 
-      // Set up a string for the formatting of the time
+      StringBuilder timeBuilder = new StringBuilder();
+
+      // Add minutes with leading zero if needed
       if (minutes < 10) {
-        out = "0" + minutes;
-      } else {
-        out = "" + minutes;
+        timeBuilder.append("0");
       }
+      timeBuilder.append(minutes).append(":");
 
+      // Add seconds with leading zero if needed
       if (seconds < 10) {
-        out = out + ":0" + seconds;
-      } else {
-        out = out + ":" + seconds;
+        timeBuilder.append("0");
       }
+      timeBuilder.append(seconds);
 
-      displayTime = out;
+      displayTime = timeBuilder.toString();
 
       // Update the timer label
       Platform.runLater(
