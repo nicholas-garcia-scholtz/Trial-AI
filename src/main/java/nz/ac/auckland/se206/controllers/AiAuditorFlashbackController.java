@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import nz.ac.auckland.se206.App;
@@ -14,13 +15,14 @@ public class AiAuditorFlashbackController implements Flashback {
   @FXML private ImageView myImageView1;
   @FXML private ImageView myImageView2;
   @FXML private ImageView myImageView3;
+  @FXML private Button btnNextSlide;
   private Slides slides;
 
   @FXML
   public void initialize() {
     slides =
         new Slides.Builder(
-                "images/AIAuditorMetaFlashback.png", myImageView1, myImageView2, myImageView3)
+                "images/AIAuditorMetaFlashback.png", myImageView1, myImageView2, myImageView3, btnNextSlide)
             .addSlide("images/AIAuditorCompareFlashback.png")
             .addSlide("images/AIAuditorScanningFlashback.png")
             .addSlide("images/AIAuditorPercentageFlashback.png")

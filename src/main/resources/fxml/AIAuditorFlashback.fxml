@@ -19,7 +19,7 @@
          <font>
             <Font size="32.0" />
          </font></Label>
-      <Button layoutX="1029.0" layoutY="301.0" mnemonicParsing="false" onAction="#onNextSlideClicked" style="-fx-background-color: transparent; -fx-padding: -5px -5px -5px -5px;" text="&gt;" textFill="#3aff47">
+      <Button fx:id="btnNextSlide" layoutX="1029.0" layoutY="301.0" mnemonicParsing="false" onAction="#onNextSlideClicked" style="-fx-background-color: transparent; -fx-padding: -5px -5px -5px -5px;" text="&gt;" textFill="#3aff47">
          <font>
             <Font size="88.0" />
          </font>
