@@ -58,7 +58,7 @@ public class AiDefendentMemoryController implements Interactable {
         .generateCharacterResponse(
             ChatService.ChatCharacter.AIDEFENDANT,
             (String result) -> {
-              appendToChat("[AI Defendent] " + result);
+              appendToChat("[EaselMind] " + result);
               stopLoading();
             });
   }
@@ -179,6 +179,48 @@ public class AiDefendentMemoryController implements Interactable {
       droppedCount++;
       updateProgressBar();
       notTrainingDataLabel.setVisible(false); // Hide error message if visible
+    }
+    if (trainingData1.equals(imageView)) {
+      ChatService.get()
+          .addSystemMessage(
+              "Inside EaselMind's memory interactable, the user identifies The Moon Light by"
+                  + " Aurelio Vantini as a relevant piece of training data. (public domain work.)");
+      String message =
+          "The dark night sky in this training datum was a considerable factor in my generation.";
+      ChatService.get().addCharacterMessage(ChatService.ChatCharacter.AIDEFENDANT, message);
+      appendToChat("[EaselMind] " + message);
+
+    } else if (trainingData2.equals(imageView)) {
+      ChatService.get()
+          .addSystemMessage(
+              "Inside EaselMind's memory interactable, the user identifies 'The Island' created by"
+                  + " Mariana D'Orazio as a relevant piece of training data. This public domain"
+                  + " work has a floating island with a door and a balloon that looks extremely"
+                  + " similar to Jean-Luc's painting.");
+      String message = "D'Orazio's work was a major influence on my generated painting.";
+      ChatService.get().addCharacterMessage(ChatService.ChatCharacter.AIDEFENDANT, message);
+      appendToChat("[EaselMind] " + message);
+
+    } else if (trainingData3.equals(imageView)) {
+      ChatService.get()
+          .addSystemMessage(
+              "Inside EaselMind's memory interactable, the user identifies the Japanese origami"
+                  + " crane as a relevant piece of training data.");
+      String message =
+          "The Orizuru, or Japanese origami crane was a key training datum considered when"
+              + " generating my piece.";
+      ChatService.get().addCharacterMessage(ChatService.ChatCharacter.AIDEFENDANT, message);
+      appendToChat("[EaselMind] " + message);
+
+    } else if (trainingData4.equals(imageView)) {
+      ChatService.get()
+          .addSystemMessage(
+              "Inside EaselMind's memory interactable, the user identifies a public domain painting"
+                  + " with bear holding a red love heart balloon as a key piece of training data.");
+      String message =
+          "The heart-shaped balloon in this training datum certainly informed my generative model.";
+      ChatService.get().addCharacterMessage(ChatService.ChatCharacter.AIDEFENDANT, message);
+      appendToChat("[EaselMind] " + message);
     }
 
     // Make image disappear with fade animation
