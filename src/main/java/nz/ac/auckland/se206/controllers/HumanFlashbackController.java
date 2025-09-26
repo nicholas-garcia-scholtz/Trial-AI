@@ -11,11 +11,13 @@ import nz.ac.auckland.se206.controllerhelpers.Slides;
 import nz.ac.auckland.se206.interfaces.Flashback;
 
 public class HumanFlashbackController implements Flashback {
-  @FXML private Label timerLabel;
-  @FXML private ImageView myImageView1;
-  @FXML private ImageView myImageView2;
   @FXML private ImageView myImageView3;
+  @FXML private Label timerLabel;
+
+  @FXML private ImageView myImageView2;
+
   @FXML private Button btnNextSlide;
+  @FXML private ImageView myImageView1;
   private Slides slides;
 
   @FXML
@@ -27,7 +29,7 @@ public class HumanFlashbackController implements Flashback {
                 myImageView1,
                 myImageView2,
                 myImageView3,
-                btnNextSlide)
+                btnNextSlide) // Initial slide is a param
             .addSlide("images/humanflashback2.png")
             .addSlide("images/humanflashback3.png")
             .addSlide("images/humanflashback4.png")
@@ -37,12 +39,14 @@ public class HumanFlashbackController implements Flashback {
   @FXML
   private void onNextSlideClicked(ActionEvent event) {
     // when the next slide button is clicked, transition to the next slide
-    boolean continueSlides = slides.nextSlide();
-    if (!continueSlides) {
+    boolean willContinueSlides = slides.nextSlide();
+    if (!willContinueSlides) {
       try {
+        // Try set the new slides
         App.getGame().setRoot(HumanMemoryController.getName());
-      } catch (IOException e) {
-        e.printStackTrace();
+      } catch (IOException error) {
+        // in case of an error
+        error.printStackTrace();
       }
     }
   }

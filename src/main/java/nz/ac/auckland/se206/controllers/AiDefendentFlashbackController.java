@@ -11,23 +11,24 @@ import nz.ac.auckland.se206.controllerhelpers.Slides;
 import nz.ac.auckland.se206.interfaces.Flashback;
 
 public class AiDefendentFlashbackController implements Flashback {
-  @FXML private Label timerLabel;
+  @FXML private Button btnNextSlide;
   @FXML private ImageView myImageView1;
   @FXML private ImageView myImageView2;
-  @FXML private ImageView myImageView3;
-  @FXML private Button btnNextSlide;
   private Slides slides;
+  @FXML private ImageView myImageView3;
+  @FXML private Label timerLabel;
 
+  // Constructor
   @FXML
   public void initialize() {
     // Initialize the slides with the images
     slides =
         new Slides.Builder(
                 "images/AiDefendentFlashback1.png",
-                myImageView1,
+                myImageView1, // ImageView component
                 myImageView2,
                 myImageView3,
-                btnNextSlide)
+                btnNextSlide) // First slide passed as an argument
             .addSlide("images/AiDefendentFlashback2.png")
             .addSlide("images/AiDefendentFlashback3.png")
             .addSlide("images/AiDefendentFlashback4.png")
@@ -41,19 +42,22 @@ public class AiDefendentFlashbackController implements Flashback {
     boolean continueSlides = slides.nextSlide();
 
     // If there are no more slides, go to the next scene
-    if (!continueSlides) {
-      try {
-        App.getGame().setRoot(AiDefendentMemoryController.getName());
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
+    if (continueSlides) {
+      return;
+    }
+    try {
+      App.getGame().setRoot(AiDefendentMemoryController.getName());
+    } catch (IOException e) {
+
+      e.printStackTrace();
+      // Graceful error handling
     }
   }
 
   @Override
   public void prepareScene() {
     // Set up the timer
-    App.getGame().getTimer().setLabel(timerLabel);
+    App.getGame().getTimer().setLabel(this.timerLabel);
     timerLabel.setText(App.getGame().getTimer().getTime());
   }
 }
