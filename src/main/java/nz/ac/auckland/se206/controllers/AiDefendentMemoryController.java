@@ -3,7 +3,11 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import javafx.animation.*;
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
@@ -50,10 +54,13 @@ public class AiDefendentMemoryController implements Interactable {
 
   @FXML
   private void onBtnSendClicked() {
+    // Send the message to the chat service and display the response
     startLoading();
     ChatService.get().addPlayerMessage(userTextBox.getText());
     appendToChat("[You] " + userTextBox.getText());
+
     userTextBox.setText("");
+
     ChatService.get()
         .generateCharacterResponse(
             ChatService.ChatCharacter.AIDEFENDANT,
@@ -61,6 +68,13 @@ public class AiDefendentMemoryController implements Interactable {
               appendToChat("[EaselMind] " + result);
               stopLoading();
             });
+  }
+
+  private void stopLoading() {
+    thinkingHeadshot.setVisible(false);
+    neutralHeadshot.setVisible(true);
+    btnSend.setDisable(false);
+    userTextBox.setDisable(false);
   }
 
   @FXML
@@ -72,28 +86,21 @@ public class AiDefendentMemoryController implements Interactable {
     }
   }
 
+  private void appendToChat(String message) {
+    chatLog.setText(chatLog.getText() + "\n\n" + message);
+    Platform.runLater(() -> chatLog.positionCaret(chatLog.getLength()));
+  }
+
   private void startLoading() {
     thinkingHeadshot.setVisible(true);
-    neutralHeadshot.setVisible(false);
-    btnSend.setDisable(true);
     userTextBox.setDisable(true);
-  }
+    btnSend.setDisable(true);
 
-  private void stopLoading() {
-    thinkingHeadshot.setVisible(false);
-    neutralHeadshot.setVisible(true);
-    btnSend.setDisable(false);
-    userTextBox.setDisable(false);
-  }
-
-  private void appendToChat(String message) {
-    Platform.runLater(() -> chatLog.positionCaret(chatLog.getLength()));
-    chatLog.setText(chatLog.getText() + "\n\n" + message);
+    neutralHeadshot.setVisible(false);
   }
 
   @FXML
   public void initialize() {
-    // Store original positions
     storeOriginalPositions();
 
     progressBar.setProgress(0.0);
@@ -196,7 +203,8 @@ public class AiDefendentMemoryController implements Interactable {
               "Inside EaselMind's memory interactable, the user identifies 'The Island' created by"
                   + " Mariana D'Orazio as a relevant piece of training data. This public domain"
                   + " work has a floating island with a door and a balloon that looks extremely"
-                  + " similar to Jean-Luc's painting.");
+                  + " similar to Jean-Luc's painting. It is made clear from this interactable that"
+                  + " Jean-Luc also copied off the same source material.");
       String message = "D'Orazio's work was a major influence on my generated painting.";
       ChatService.get().addCharacterMessage(ChatService.ChatCharacter.AIDEFENDANT, message);
       appendToChat("[EaselMind] " + message);
@@ -216,9 +224,10 @@ public class AiDefendentMemoryController implements Interactable {
       ChatService.get()
           .addSystemMessage(
               "Inside EaselMind's memory interactable, the user identifies a public domain painting"
-                  + " with bear holding a red love heart balloon as a key piece of training data.");
+                  + " (Love Bear by Silvio Andretto) with a bear holding a red love heart balloon"
+                  + " as a key piece of training data.");
       String message =
-          "The heart-shaped balloon in this training datum certainly informed my generative model.";
+          "The heart-shaped balloon in Andretto's work certainly informed my generative model.";
       ChatService.get().addCharacterMessage(ChatService.ChatCharacter.AIDEFENDANT, message);
       appendToChat("[EaselMind] " + message);
     }
@@ -289,7 +298,7 @@ public class AiDefendentMemoryController implements Interactable {
 
   @Override
   public void prepareScene() {
-    // Set up the timer
+    // !!! Set up the timer
     App.getGame().getTimer().setLabel(timerLabel);
     timerLabel.setText(App.getGame().getTimer().getTime());
   }

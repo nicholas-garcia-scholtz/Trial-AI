@@ -18,6 +18,18 @@ import nz.ac.auckland.se206.controllers.CourtroomController;
 import nz.ac.auckland.se206.controllers.HumanMemoryController;
 
 public class Game {
+  /**
+   * Loads the FXML file and returns the associated node. The method expects that the file is
+   * located in "src/main/resources/fxml".
+   *
+   * @param fxml the name of the FXML file (without extension)
+   * @return the root node of the FXML file
+   * @throws IOException if the FXML file is not found
+   */
+  private static Parent loadFxml(final String fxml) throws IOException {
+    return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
+  }
+
   private Map<String, Person> characters = new HashMap<>();
 
   private Scene scene;
@@ -57,7 +69,7 @@ public class Game {
         AiDefendentMemoryController.getName(),
         new AiDefendent("AiDefendentFlashback", "AiDefendentMemory"));
     characters.put(
-        HumanMemoryController.getName(), new HumanArtist("ArtistFlashback", "HumanMemory"));
+        HumanMemoryController.getName(), new HumanArtist("HumanFlashback", "HumanMemory"));
   }
 
   /**
@@ -73,18 +85,6 @@ public class Game {
     } else {
       scene.setRoot(loadFxml(fxml));
     }
-  }
-
-  /**
-   * Loads the FXML file and returns the associated node. The method expects that the file is
-   * located in "src/main/resources/fxml".
-   *
-   * @param fxml the name of the FXML file (without extension)
-   * @return the root node of the FXML file
-   * @throws IOException if the FXML file is not found
-   */
-  private static Parent loadFxml(final String fxml) throws IOException {
-    return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
   }
 
   public void setVerdict(boolean guilty) {

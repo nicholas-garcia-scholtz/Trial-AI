@@ -10,7 +10,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.controllerhelpers.Slides;
 import nz.ac.auckland.se206.interfaces.Flashback;
 
-public class AiAuditorFlashbackController implements Flashback {
+public class HumanFlashbackController implements Flashback {
   @FXML private Label timerLabel;
   @FXML private ImageView myImageView1;
   @FXML private ImageView myImageView2;
@@ -22,14 +22,14 @@ public class AiAuditorFlashbackController implements Flashback {
   public void initialize() {
     slides =
         new Slides.Builder(
-                "images/AIAuditorMetaFlashback.png",
+                "images/humanflashback1.png",
                 myImageView1,
                 myImageView2,
                 myImageView3,
                 btnNextSlide)
-            .addSlide("images/AIAuditorCompareFlashback.png")
-            .addSlide("images/AIAuditorScanningFlashback.png")
-            .addSlide("images/AIAuditorPercentageFlashback.png")
+            .addSlide("images/humanflashback2.png")
+            .addSlide("images/humanflashback3.png")
+            .addSlide("images/humanflashback4.png")
             .build();
   }
 
@@ -38,7 +38,7 @@ public class AiAuditorFlashbackController implements Flashback {
     boolean continueSlides = slides.nextSlide();
     if (!continueSlides) {
       try {
-        App.getGame().setRoot(AiAuditorMemoryController.getName());
+        App.getGame().setRoot(HumanMemoryController.getName());
       } catch (IOException e) {
         e.printStackTrace();
       }

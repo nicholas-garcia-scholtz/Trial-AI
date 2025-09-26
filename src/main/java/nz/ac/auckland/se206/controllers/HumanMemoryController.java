@@ -79,6 +79,10 @@ public class HumanMemoryController implements Interactable {
     userTextBox.setDisable(true);
   }
 
+  public ImageView getCanvasBoundsTarget() {
+    return canvasBoundsTarget;
+  }
+
   private void stopLoading() {
     thinkingHeadshot.setVisible(false);
     neutralHeadshot.setVisible(true);
@@ -93,6 +97,9 @@ public class HumanMemoryController implements Interactable {
 
   public void revealLayer(ImageView bubble) {
     ImageView layer;
+
+    // Determine which layer to reveal based on which bubble was dragged
+    // Append relevant message to chat log and add to ChatService
     if (bubble.equals(bubble1)) {
       layer = artworkLayer1;
       ChatService.get()
@@ -132,9 +139,13 @@ public class HumanMemoryController implements Interactable {
       throw new Error("Bubble doesnt have corresponding artwork layer");
     }
     layerCount += 1;
+
+    // Painting finished, update title text
     if (layerCount == 3) {
       titleLabel.setText("Undeniably a masterpiece. But was it truly an original work?");
     }
+
+    // Fade in the revealed layer
     FadeTransition fadeTransition = new FadeTransition(Duration.millis(850), layer);
     fadeTransition.setFromValue(0);
     fadeTransition.setToValue(1);
@@ -146,10 +157,7 @@ public class HumanMemoryController implements Interactable {
   @Override
   public void prepareScene() {
     App.getGame().getTimer().setLabel(timerLabel);
+    // Add the timer to be bound to tick down!
     timerLabel.setText(App.getGame().getTimer().getTime());
-  }
-
-  public ImageView getCanvasBoundsTarget() {
-    return canvasBoundsTarget;
   }
 }
