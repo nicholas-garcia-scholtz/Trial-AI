@@ -16,6 +16,12 @@ import nz.ac.auckland.se206.ChatService;
 import nz.ac.auckland.se206.interfaces.Interactable;
 
 public class HumanMemoryController implements Interactable {
+  private static String characterName = "Jean-Luc";
+
+  public static String getName() {
+    return characterName;
+  }
+
   @FXML private ImageView artworkLayer1;
   @FXML private ImageView artworkLayer2;
   @FXML private ImageView artworkLayer3;
@@ -94,6 +100,11 @@ public class HumanMemoryController implements Interactable {
               "Through an interactable memory flashback, it is revealed that the balloons in"
                   + " Jean-Luc's painting were inspired by a balloon festival held in Jean-Luc's"
                   + " home town.");
+      String message =
+          "Those soaring balloons — of course, they're the joyful skies of my hometown, stitched"
+              + " into my soul and rising again on my canvas.";
+      ChatService.get().addCharacterMessage(ChatService.ChatCharacter.HUMANWITNESS, message);
+      appendToChat("[Jean-Luc] " + message);
     } else if (bubble.equals(bubble2)) {
       layer = artworkLayer2;
       ChatService.get()
@@ -102,6 +113,11 @@ public class HumanMemoryController implements Interactable {
                   + " with door in Jean-Luc's painting was subconciously inspired by a gallery"
                   + " painting he saw as a child. The painting wasn't actually a 100% original"
                   + " idea.");
+      String message =
+          "Mon dieu... perhaps a fleeting vision from some childhood galerie crept into my mind,"
+              + " and I painted an echo without even realising.";
+      ChatService.get().addCharacterMessage(ChatService.ChatCharacter.HUMANWITNESS, message);
+      appendToChat("[Jean-Luc] " + message);
     } else if (bubble.equals(bubble3)) {
       layer = artworkLayer3;
       ChatService.get()
@@ -109,6 +125,9 @@ public class HumanMemoryController implements Interactable {
               "Through an interactable memory flashback, it is revealed that the paper boat in"
                   + " Jean-Luc's painting was inspired by Jean-Luc playing with one in the rain as"
                   + " a child.");
+      String message = "Ah, a simple paper boat I once set afloat, now resurfacing on my canvas";
+      ChatService.get().addCharacterMessage(ChatService.ChatCharacter.HUMANWITNESS, message);
+      appendToChat("[Jean-Luc] " + message);
     } else {
       throw new Error("Bubble doesnt have corresponding artwork layer");
     }

@@ -12,10 +12,11 @@ import nz.ac.auckland.se206.characters.AiAuditor;
 import nz.ac.auckland.se206.characters.AiDefendent;
 import nz.ac.auckland.se206.characters.HumanArtist;
 import nz.ac.auckland.se206.characters.Person;
-import nz.ac.auckland.se206.controllers.AiArtCriticFlashBackController;
-import nz.ac.auckland.se206.controllers.AiArtistFlashbackController;
-import nz.ac.auckland.se206.controllers.ArtistFlashbackController;
+import nz.ac.auckland.se206.controllers.AiDefendentMemoryController;
+import nz.ac.auckland.se206.controllers.AiAuditorFlashbackController;
+import nz.ac.auckland.se206.controllers.AiAuditorMemoryController;
 import nz.ac.auckland.se206.controllers.CourtroomController;
+import nz.ac.auckland.se206.controllers.HumanMemoryController;
 
 public class Game {
   private Map<String, Person> characters = new HashMap<>();
@@ -51,13 +52,13 @@ public class Game {
   public void setUpGame() {
     // Initialize characters
     characters.put(
-        AiArtCriticFlashBackController.getName(),
-        new AiAuditor("AIAuditorFlashBack", "AIAuditorMemory"));
+        AiAuditorMemoryController.getName(),
+        new AiAuditor("AIAuditorFlashback", "AIAuditorMemory"));
     characters.put(
-        AiArtistFlashbackController.getName(),
+        AiDefendentMemoryController.getName(),
         new AiDefendent("AiDefendentFlashback", "AiDefendentMemory"));
     characters.put(
-        ArtistFlashbackController.getName(), new HumanArtist("ArtistFlashback", "HumanMemory"));
+        HumanMemoryController.getName(), new HumanArtist("ArtistFlashback", "HumanMemory"));
   }
 
   /**

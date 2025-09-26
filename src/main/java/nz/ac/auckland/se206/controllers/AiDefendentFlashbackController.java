@@ -22,14 +22,15 @@ public class AiDefendentFlashbackController implements Flashback {
   public void initialize() {
     slides =
         new Slides.Builder(
-                "images/ArtistFlashback.png",
+                "images/AiDefendentFlashback1.png",
                 myImageView1,
                 myImageView2,
                 myImageView3,
                 btnNextSlide)
-            .addSlide("images/ArtistFlashback.png")
-            .addSlide("images/ArtistFlashback.png")
-            .addSlide("images/ArtistFlashback.png")
+            .addSlide("images/AiDefendentFlashback2.png")
+            .addSlide("images/AiDefendentFlashback3.png")
+            .addSlide("images/AiDefendentFlashback4.png")
+            .addSlide("images/AiDefendentFlashback5.png")
             .build();
   }
 
@@ -38,7 +39,7 @@ public class AiDefendentFlashbackController implements Flashback {
     boolean continueSlides = slides.nextSlide();
     if (!continueSlides) {
       try {
-        App.getGame().setRoot("courtroom");
+        App.getGame().setRoot(AiDefendentMemoryController.getName());
       } catch (IOException e) {
         e.printStackTrace();
       }
