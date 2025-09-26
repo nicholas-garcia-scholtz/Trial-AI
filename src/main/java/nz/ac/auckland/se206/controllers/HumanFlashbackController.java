@@ -38,7 +38,7 @@ public class HumanFlashbackController implements Flashback {
     boolean continueSlides = slides.nextSlide();
     if (!continueSlides) {
       try {
-        App.getGame().setRoot("HumanMemory");
+        App.getGame().setRoot(HumanMemoryController.getName());
       } catch (IOException e) {
         e.printStackTrace();
       }
