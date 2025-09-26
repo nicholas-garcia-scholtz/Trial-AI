@@ -12,6 +12,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.ChatService; // Add this import
 
 public class CourtroomController {
   private static boolean isInitialised;
@@ -80,6 +81,12 @@ public class CourtroomController {
         e.printStackTrace();
       }
       App.getGame().setPlayedGameContext();
+
+      // Disable the button until the audio has finished playing
+      btnMakeDecision.setDisable(true);
+    } else {
+      // Enable/disable the button based on chat progress
+      btnMakeDecision.setDisable(!ChatService.get().readyToMakeVerdict());
     }
 
     // Update the timer label
