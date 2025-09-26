@@ -3,7 +3,11 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import javafx.animation.*;
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
@@ -50,6 +54,7 @@ public class AiDefendentMemoryController implements Interactable {
 
   @FXML
   private void onBtnSendClicked() {
+    // Send the message to the chat service and display the response
     startLoading();
     ChatService.get().addPlayerMessage(userTextBox.getText());
     appendToChat("[You] " + userTextBox.getText());
@@ -93,7 +98,6 @@ public class AiDefendentMemoryController implements Interactable {
 
   @FXML
   public void initialize() {
-    // Store original positions
     storeOriginalPositions();
 
     progressBar.setProgress(0.0);
