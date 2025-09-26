@@ -7,6 +7,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.ParallelTransition;
 import javafx.animation.Timeline;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
@@ -15,6 +16,7 @@ public class Slides {
   private ImageView myImageView1;
   private ImageView myImageView2;
   private ImageView myImageView3;
+  private Button btnNextSlide;
   private int index = 0;
 
   private double layoutX1 = -1600.0;
@@ -26,11 +28,16 @@ public class Slides {
   private List<Image> slides;
 
   private Slides(
-      Builder builder, ImageView myImageView1, ImageView myImageView2, ImageView myImageView3) {
+      Builder builder,
+      ImageView myImageView1,
+      ImageView myImageView2,
+      ImageView myImageView3,
+      Button btnNextSlide) {
     this.slides = builder.slides;
     this.myImageView1 = myImageView1;
     this.myImageView2 = myImageView2;
     this.myImageView3 = myImageView3;
+    this.btnNextSlide = btnNextSlide;
 
     myImageView1.setOpacity(0);
     myImageView2.setOpacity(1);
@@ -99,7 +106,9 @@ public class Slides {
     Timeline t3 = animateSlide(myImageView3, myImageView3.getLayoutX());
 
     ParallelTransition parallel = new ParallelTransition(t1, t2, t3);
+    btnNextSlide.setDisable(true);
     parallel.play();
+    parallel.setOnFinished(event -> btnNextSlide.setDisable(false));
 
     return true;
   }
@@ -109,13 +118,19 @@ public class Slides {
     private ImageView myImageView1;
     private ImageView myImageView2;
     private ImageView myImageView3;
+    private Button btnNextSlide;
 
     public Builder(
-        String path, ImageView myImageView1, ImageView myImageView2, ImageView myImageView3) {
+        String path,
+        ImageView myImageView1,
+        ImageView myImageView2,
+        ImageView myImageView3,
+        Button btnNextSlide) {
       this.slides.add(new Image(path));
       this.myImageView1 = myImageView1;
       this.myImageView2 = myImageView2;
       this.myImageView3 = myImageView3;
+      this.btnNextSlide = btnNextSlide;
     }
 
     public Builder addSlide(String path) {
@@ -124,7 +139,7 @@ public class Slides {
     }
 
     public Slides build() {
-      return new Slides(this, myImageView1, myImageView2, myImageView3);
+      return new Slides(this, myImageView1, myImageView2, myImageView3, btnNextSlide);
     }
   }
 }

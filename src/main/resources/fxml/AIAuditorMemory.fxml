@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollBar?>
@@ -8,75 +9,113 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.AiAuditorMemoryController">
    <children>
-   <ImageView fitHeight="558.0" fitWidth="847.0" layoutX="-8.0" layoutY="-51.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="667.0" fitWidth="766.0" layoutX="-1.0" layoutY="55.0" pickOnBounds="true">
           <image>
               <Image url="@../images/AIProvenanceBackground.png" />
           </image>
           </ImageView>
-           <Text fill="#3aff47" layoutX="211.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-fill: #3aff47;" text="AI Provenance Auditor Timeline:" textAlignment="CENTER" wrappingWidth="212.39996337890625">
+           <Text fill="#3aff47" layoutX="243.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-fill: #3aff47;" text="AI Provenance Auditor Timeline:" textAlignment="CENTER" wrappingWidth="282.79998779296875">
          <font>
-            <Font size="14.0" />
+            <Font size="17.0" />
          </font>
       </Text>
-<ImageView fx:id="draggableImage" fitHeight="118.0" fitWidth="511.0" layoutX="24.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+<ImageView fx:id="draggableImage" fitHeight="118.0" fitWidth="511.0" layoutX="106.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
       <image>
             <Image url="@../images/AIProvenanceAuditorTimeline.png" />
       </image>
       </ImageView>
-      <Text fill="#3aff47" layoutX="196.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-fill: #3aff47;" text="Human Artist Timeline:" textAlignment="CENTER" wrappingWidth="212.39996337890625">
+      <Text fill="#3aff47" layoutX="276.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-fill: #3aff47;" text="Human Artist Timeline:" textAlignment="CENTER" wrappingWidth="212.39996337890625">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font>
       </Text>
-      <ImageView fx:id="humanTimeline" fitHeight="115.0" fitWidth="367.0" layoutX="26.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="humanTimeline" fitHeight="115.0" fitWidth="367.0" layoutX="106.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true">
           <image>
               <Image url="@../images/HumanTimeline.png" />
           </image>
           </ImageView>
-      <TextArea fx:id="chatLog" editable="false" layoutX="600.0" prefHeight="385.0" prefWidth="200.0" style="-fx-control-inner-background: #000000; -fx-text-fill: #3aff47;" wrapText="true" />
-      <TextField fx:id="userTextBox" alignment="TOP_LEFT" layoutX="600.0" layoutY="385.0" prefHeight="75.0" prefWidth="200.0" promptText="Talk to the AI art critic" style="-fx-control-inner-background: #000000; -fx-text-fill: #3aff47; -fx-border-color: #3aff47; -fx-prompt-text-fill: #3aff47; -fx-border-width: 2px; -fx-background-radius: 5;" />
-      <Button fx:id="btnSend" layoutX="600.0" layoutY="460.0" mnemonicParsing="false" onAction="#onBtnSendClicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #000000; -fx-text-fill: #3aff47;" text="Send">
-         <font>
-            <Font size="18.0" />
-         </font></Button>
-      <Button fx:id="btnBack" layoutX="700.0" layoutY="460.0" mnemonicParsing="false" onAction="#onBtnBackClicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #000000; -fx-text-fill: #3aff47;" text="Back">
-         <font>
-            <Font size="18.0" />
-         </font></Button>
-      <Label fx:id="timerLabel" alignment="CENTER" layoutX="14.0" layoutY="439.0" prefHeight="42.0" prefWidth="94.0" style="-fx-background-color: #000000;" text="02:00" textAlignment="CENTER" textFill="#3aff47">
-         <font>
-            <Font size="32.0" />
-         </font></Label>
-      <ScrollBar fx:id="timelineScrollBar" layoutX="26.0" layoutY="371.0" prefHeight="27.0" prefWidth="532.0" style="-fx-background-color: #384646ff;" />
-         <Text fx:id="slideInstructionText" fill="#29fafa" layoutX="142.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-fill: #3aff47;" text="Slide to match the human timeline to AI" wrappingWidth="351.0960388183594">
+      <ScrollBar fx:id="timelineScrollBar" layoutX="106.0" layoutY="503.0" prefHeight="27.0" prefWidth="532.0" style="-fx-background-color: #384646ff;" />
+         <Text fx:id="slideInstructionText" fill="#29fafa" layoutX="222.0" layoutY="524.0" mouseTransparent="true" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-fill: #3aff47;" text="Slide to match the human timeline to AI" wrappingWidth="351.0960388183594">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <ImageView fx:id="humanTimelineAligned" fitHeight="115.0" fitWidth="338.0" layoutX="248.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="humanTimelineAligned" fitHeight="115.0" fitWidth="338.0" layoutX="328.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true">
       <image>
               <Image url="@../images/HumanTimelineAligned.png" />
           </image>
           </ImageView>
-      <Text fx:id="timelinesAlignedText" fill="#3aff47" layoutX="140.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMELINES ALIGNED!" wrappingWidth="394.13665771484375">
+      <Text fx:id="timelinesAlignedText" fill="#3aff47" layoutX="220.0" layoutY="555.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMELINES ALIGNED!" wrappingWidth="394.13665771484375">
          <font>
             <Font size="36.0" />
          </font>
       </Text>
-      <ImageView fx:id="aiExclamation" fitHeight="59.0" fitWidth="40.0" layoutX="178.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="aiExclamation" fitHeight="59.0" fitWidth="40.0" layoutX="260.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
       <image>
               <Image url="@../images/exclamationmark.png" />
           </image>
           </ImageView>
-      <ImageView fx:id="humanExclamation" fitHeight="59.0" fitWidth="40.0" layoutX="504.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="humanExclamation" fitHeight="59.0" fitWidth="40.0" layoutX="584.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/exclamationmark.png" />
          </image>
       </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="59.0" layoutX="-1.0" stroke="BLACK" strokeType="INSIDE" width="766.0" />
+      <Label fx:id="titleLabel" alignment="CENTER" layoutX="87.0" layoutY="5.0" prefHeight="47.0" prefWidth="674.0" text="Align the timelines in ARPA's analytical memory dump" textFill="#3aff47">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnBack" alignment="CENTER" layoutX="14.0" layoutY="8.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onBtnBackClicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #000000; -fx-text-fill: #3aff47; -fx-border-color: #3aff47; -fx-border-width: 2;" text="◀  Back" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <TextArea fx:id="chatLog" editable="false" focusTraversable="false" layoutX="762.0" layoutY="197.0" prefHeight="370.0" prefWidth="318.0" style="-fx-control-inner-background: #000000; -fx-text-fill: #3aff47; -fx-border-color: #3aff47; -fx-border-width: 2;" stylesheets="@../css/textarea.css" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></TextArea>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" layoutX="762.0" stroke="#3aff47" strokeType="INSIDE" strokeWidth="3.0" width="318.0" />
+      <ImageView fitHeight="189.0" fitWidth="309.0" layoutX="767.0" layoutY="4.0" opacity="0.77" pickOnBounds="true">
+         <image>
+            <Image url="@../images/neuronbackground.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="neutralHeadshot" fitHeight="189.0" fitWidth="206.0" layoutX="826.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/AIWitnessHeadshot.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="thinkingHeadshot" fitHeight="189.0" fitWidth="206.0" layoutX="827.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/AIWitnessHeadshotThinking.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="userTextBox" alignment="TOP_LEFT" layoutX="762.0" layoutY="567.0" onAction="#onBtnSendClicked" prefHeight="114.0" prefWidth="318.0" promptText="Talk to Art Rights &amp; Provenance Auditor (ARPA)" style="-fx-control-inner-background: #000000; -fx-text-fill: #3aff47; -fx-border-color: #3aff47; -fx-prompt-text-fill: #3aff47; -fx-border-width: 2px; -fx-background-radius: 5;">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Button fx:id="btnSend" layoutX="762.0" layoutY="681.0" mnemonicParsing="false" onAction="#onBtnSendClicked" prefHeight="33.0" prefWidth="318.0" style="-fx-background-color: #000000; -fx-text-fill: #3aff47; -fx-border-color: #3aff47; -fx-border-width: 2;" text="Send">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label fx:id="timerLabel" alignment="CENTER" layoutX="45.0" layoutY="624.0" prefHeight="42.0" prefWidth="94.0" style="-fx-background-color: #000000;" text="02:00" textAlignment="CENTER" textFill="#3aff47">
+         <font>
+            <Font size="32.0" />
+         </font></Label>
    </children>
 </Pane>

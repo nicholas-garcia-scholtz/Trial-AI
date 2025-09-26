@@ -55,7 +55,7 @@ public class Game {
         new AiAuditor("AIAuditorFlashBack", "AIAuditorMemory"));
     characters.put(
         AiArtistFlashbackController.getName(),
-        new AiDefendent("AiDefendentFlashback", "AIArtistFlashback"));
+        new AiDefendent("AiDefendentFlashback", "AiDefendentMemory"));
     characters.put(
         ArtistFlashbackController.getName(), new HumanArtist("ArtistFlashback", "HumanMemory"));
   }
