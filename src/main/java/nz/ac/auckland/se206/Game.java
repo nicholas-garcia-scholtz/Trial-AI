@@ -42,7 +42,7 @@ public class Game {
     // Initialise all other game variables
     playedGameContext = false;
     isGuilty = false;
-    timer = new TimerCountdown(1, 0, "verdict");
+    timer = new TimerCountdown(5, 0, "verdict");
 
     // Change all static variables for the controller classes to indicate that a new game has
     // started
