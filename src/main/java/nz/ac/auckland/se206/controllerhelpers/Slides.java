@@ -13,6 +13,36 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 public class Slides {
+  public static class Builder {
+    private List<Image> slides = new ArrayList<>();
+    private ImageView myImageView1;
+    private ImageView myImageView2;
+    private ImageView myImageView3;
+    private Button btnNextSlide;
+
+    public Builder(
+        String path,
+        ImageView myImageView1,
+        ImageView myImageView2,
+        ImageView myImageView3,
+        Button btnNextSlide) {
+      this.slides.add(new Image(path));
+      this.myImageView1 = myImageView1;
+      this.myImageView2 = myImageView2;
+      this.myImageView3 = myImageView3;
+      this.btnNextSlide = btnNextSlide;
+    }
+
+    public Builder addSlide(String path) {
+      this.slides.add(new Image(path));
+      return this;
+    }
+
+    public Slides build() {
+      return new Slides(this, myImageView1, myImageView2, myImageView3, btnNextSlide);
+    }
+  }
+
   private ImageView myImageView1;
   private ImageView myImageView2;
   private ImageView myImageView3;
@@ -56,9 +86,9 @@ public class Slides {
 
   private Timeline animateSlide(ImageView imageView, double currentX) {
 
-    double firstOpacity = 0.0;
-    double secondOpacity = 0.0;
-    double nextLayoutX = 0.0;
+    double firstOpacity;
+    double secondOpacity;
+    double nextLayoutX;
 
     // Fade out
     if (currentX == layoutX2) {
@@ -92,6 +122,7 @@ public class Slides {
       return false;
     }
 
+    // Update the image in the ImageView that is moving off screen
     index = (index + 1);
     if (index % 3 == 0) {
       myImageView2.setImage(slides.get(index));
@@ -101,45 +132,21 @@ public class Slides {
       myImageView1.setImage(slides.get(index));
     }
 
+    // Animate all three ImageViews
     Timeline t1 = animateSlide(myImageView1, myImageView1.getLayoutX());
     Timeline t2 = animateSlide(myImageView2, myImageView2.getLayoutX());
     Timeline t3 = animateSlide(myImageView3, myImageView3.getLayoutX());
 
+    // Combine all animations
     ParallelTransition parallel = new ParallelTransition(t1, t2, t3);
     btnNextSlide.setDisable(true);
+
+    // Play the animations
     parallel.play();
+
+    // Enable the button after the animation is done
     parallel.setOnFinished(event -> btnNextSlide.setDisable(false));
 
     return true;
-  }
-
-  public static class Builder {
-    private List<Image> slides = new ArrayList<>();
-    private ImageView myImageView1;
-    private ImageView myImageView2;
-    private ImageView myImageView3;
-    private Button btnNextSlide;
-
-    public Builder(
-        String path,
-        ImageView myImageView1,
-        ImageView myImageView2,
-        ImageView myImageView3,
-        Button btnNextSlide) {
-      this.slides.add(new Image(path));
-      this.myImageView1 = myImageView1;
-      this.myImageView2 = myImageView2;
-      this.myImageView3 = myImageView3;
-      this.btnNextSlide = btnNextSlide;
-    }
-
-    public Builder addSlide(String path) {
-      this.slides.add(new Image(path));
-      return this;
-    }
-
-    public Slides build() {
-      return new Slides(this, myImageView1, myImageView2, myImageView3, btnNextSlide);
-    }
   }
 }

@@ -20,6 +20,7 @@ public class AiDefendentFlashbackController implements Flashback {
 
   @FXML
   public void initialize() {
+    // Initialize the slides with the images
     slides =
         new Slides.Builder(
                 "images/AiDefendentFlashback1.png",
@@ -37,6 +38,8 @@ public class AiDefendentFlashbackController implements Flashback {
   @FXML
   private void onNextSlideClicked(ActionEvent event) {
     boolean continueSlides = slides.nextSlide();
+
+    // If there are no more slides, go to the next scene
     if (!continueSlides) {
       try {
         App.getGame().setRoot(AiDefendentMemoryController.getName());
