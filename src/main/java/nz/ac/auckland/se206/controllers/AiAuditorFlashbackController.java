@@ -22,7 +22,11 @@ public class AiAuditorFlashbackController implements Flashback {
   public void initialize() {
     slides =
         new Slides.Builder(
-                "images/AIAuditorMetaFlashback.png", myImageView1, myImageView2, myImageView3, btnNextSlide)
+                "images/AIAuditorMetaFlashback.png",
+                myImageView1,
+                myImageView2,
+                myImageView3,
+                btnNextSlide)
             .addSlide("images/AIAuditorCompareFlashback.png")
             .addSlide("images/AIAuditorScanningFlashback.png")
             .addSlide("images/AIAuditorPercentageFlashback.png")
@@ -34,7 +38,7 @@ public class AiAuditorFlashbackController implements Flashback {
     boolean continueSlides = slides.nextSlide();
     if (!continueSlides) {
       try {
-        App.getGame().setRoot("AIAuditorMemory");
+        App.getGame().setRoot(AiAuditorMemoryController.getName());
       } catch (IOException e) {
         e.printStackTrace();
       }
