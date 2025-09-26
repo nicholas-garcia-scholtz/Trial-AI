@@ -52,8 +52,12 @@ public class ChatService {
   private String transcript;
 
   private Map<ChatCharacter, ChatCompletionRequest> chatCompletionMap = new HashMap<>();
+  private Map<ChatCharacter, Boolean> didChatMap = new HashMap<>();
 
   public ChatService() {
+    didChatMap.put(ChatCharacter.AIDEFENDANT, false);
+    didChatMap.put(ChatCharacter.AIWITNESS, false);
+    didChatMap.put(ChatCharacter.HUMANWITNESS, false);
     for (ChatCharacter character : ChatCharacter.values()) {
       try {
         ApiProxyConfig config = ApiProxyConfig.readConfig();
@@ -114,6 +118,7 @@ public class ChatService {
 
   public void generateCharacterResponse(
       ChatService.ChatCharacter character, Consumer<String> callback) {
+    didChatMap.put(character, true);
     Task<String> task =
         new Task<>() {
           @Override
@@ -139,5 +144,14 @@ public class ChatService {
 
   public String getTranscript() {
     return transcript;
+  }
+
+  public boolean readyToMakeVerdict() {
+    for (Map.Entry<ChatCharacter, Boolean> entry : didChatMap.entrySet()) {
+      if (entry.getValue() == false) {
+        return false;
+      }
+    }
+    return true;
   }
 }
