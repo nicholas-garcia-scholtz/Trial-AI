@@ -196,7 +196,8 @@ public class AiDefendentMemoryController implements Interactable {
               "Inside EaselMind's memory interactable, the user identifies 'The Island' created by"
                   + " Mariana D'Orazio as a relevant piece of training data. This public domain"
                   + " work has a floating island with a door and a balloon that looks extremely"
-                  + " similar to Jean-Luc's painting.");
+                  + " similar to Jean-Luc's painting. It is made clear from this interactable that"
+                  + " Jean-Luc also copied off the same source material.");
       String message = "D'Orazio's work was a major influence on my generated painting.";
       ChatService.get().addCharacterMessage(ChatService.ChatCharacter.AIDEFENDANT, message);
       appendToChat("[EaselMind] " + message);
@@ -216,9 +217,10 @@ public class AiDefendentMemoryController implements Interactable {
       ChatService.get()
           .addSystemMessage(
               "Inside EaselMind's memory interactable, the user identifies a public domain painting"
-                  + " with bear holding a red love heart balloon as a key piece of training data.");
+                  + " (Love Bear by Silvio Andretto) with a bear holding a red love heart balloon"
+                  + " as a key piece of training data.");
       String message =
-          "The heart-shaped balloon in this training datum certainly informed my generative model.";
+          "The heart-shaped balloon in Andretto's work certainly informed my generative model.";
       ChatService.get().addCharacterMessage(ChatService.ChatCharacter.AIDEFENDANT, message);
       appendToChat("[EaselMind] " + message);
     }
