@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+
 import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -14,12 +15,9 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatService;
 import nz.ac.auckland.se206.interfaces.Interactable;
 
-public class AiProvenanceAuditorMemoryController implements Interactable {
-  private static String characterName = "AI Art Provenance Auditor";
 
-  public static String getName() {
-    return characterName;
-  }
+public class AiAuditorMemoryController implements Interactable {
+
 
   @FXML private Label timerLabel;
   @FXML private Button btnBack;
@@ -36,18 +34,22 @@ public class AiProvenanceAuditorMemoryController implements Interactable {
   @FXML private ImageView thinkingHeadshot;
   @FXML private ImageView neutralHeadshot;
 
+
   @FXML
   public void initialize() {
+
 
     if (timelineScrollBar != null && humanTimeline != null && humanTimelineAligned != null) {
       timelineScrollBar.setMin(0);
       timelineScrollBar.setMax(220);
       timelineScrollBar.setValue(0);
 
+
       humanTimelineAligned.setVisible(false); // aligned timeline hidden initially
       timelinesAlignedText.setVisible(false); // aligned message hidden initially
       aiExclamation.setVisible(false); // hide AI exclamation initially
       humanExclamation.setVisible(false); // hide Human exclamation initially
+
 
       timelineScrollBar
           .valueProperty()
@@ -55,13 +57,16 @@ public class AiProvenanceAuditorMemoryController implements Interactable {
               (obs, oldVal, newVal) -> {
                 humanTimeline.setTranslateX(newVal.doubleValue());
 
+
                 if (newVal.doubleValue() >= timelineScrollBar.getMax()) {
                   humanTimeline.setVisible(false);
                   humanTimelineAligned.setVisible(true);
 
+
                   timelineScrollBar.setVisible(false); // hide the scrollbar
                   slideInstructionText.setVisible(false); // hide instruction
                   timelinesAlignedText.setVisible(true); // show "timelines aligned" text
+
 
                   aiExclamation.setVisible(true); // show AI exclamation
                   humanExclamation.setVisible(true); // show Human exclamation
@@ -69,9 +74,11 @@ public class AiProvenanceAuditorMemoryController implements Interactable {
                   humanTimeline.setVisible(true);
                   humanTimelineAligned.setVisible(false);
 
+
                   timelineScrollBar.setVisible(true);
                   slideInstructionText.setVisible(true);
                   timelinesAlignedText.setVisible(false);
+
 
                   aiExclamation.setVisible(false);
                   humanExclamation.setVisible(false);
@@ -79,6 +86,7 @@ public class AiProvenanceAuditorMemoryController implements Interactable {
               });
     }
   }
+
 
   @FXML
   private void onBtnBackClicked() {
@@ -131,3 +139,6 @@ public class AiProvenanceAuditorMemoryController implements Interactable {
     timerLabel.setText(App.getGame().getTimer().getTime());
   }
 }
+
+
+

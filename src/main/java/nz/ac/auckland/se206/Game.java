@@ -13,7 +13,8 @@ import nz.ac.auckland.se206.characters.AiDefendent;
 import nz.ac.auckland.se206.characters.HumanArtist;
 import nz.ac.auckland.se206.characters.Person;
 import nz.ac.auckland.se206.controllers.AiDefendentMemoryController;
-import nz.ac.auckland.se206.controllers.AiProvenanceAuditorMemoryController;
+import nz.ac.auckland.se206.controllers.AiAuditorFlashbackController;
+import nz.ac.auckland.se206.controllers.AiAuditorMemoryController;
 import nz.ac.auckland.se206.controllers.CourtroomController;
 import nz.ac.auckland.se206.controllers.HumanMemoryController;
 
@@ -51,8 +52,8 @@ public class Game {
   public void setUpGame() {
     // Initialize characters
     characters.put(
-        AiProvenanceAuditorMemoryController.getName(),
-        new AiAuditor("AIArtCriticFlashBack", "AIArtProvenanceMemory"));
+        AiAuditorMemoryController.getName(),
+        new AiAuditor("AIAuditorFlashback", "AIAuditorMemory"));
     characters.put(
         AiDefendentMemoryController.getName(),
         new AiDefendent("AiDefendentFlashback", "AiDefendentMemory"));
