@@ -19,10 +19,11 @@ public class AiAuditorFlashbackController implements Flashback {
   @FXML
   public void initialize() {
     slides =
-        new Slides.Builder("images/ArtistFlashback.png", myImageView1, myImageView2, myImageView3)
-            .addSlide("images/ArtistFlashback.png")
-            .addSlide("images/ArtistFlashback.png")
-            .addSlide("images/ArtistFlashback.png")
+        new Slides.Builder(
+                "images/AIAuditorMetaFlashback.png", myImageView1, myImageView2, myImageView3)
+            .addSlide("images/AIAuditorCompareFlashback.png")
+            .addSlide("images/AIAuditorScanningFlashback.png")
+            .addSlide("images/AIAuditorPercentageFlashback.png")
             .build();
   }
 
