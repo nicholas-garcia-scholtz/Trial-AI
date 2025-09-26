@@ -70,7 +70,7 @@ public class VerdictController {
     verdictMap.put(btnNotGuilty, "Not Guilty");
 
     // Set up the timer
-    timer = new TimerCountdown(0, 10, "outcome");
+    timer = new TimerCountdown(0, 60, "outcome");
     timer.setLabel(timerLabel);
     timerLabel.setText(timer.getTime());
     Thread timerThread =
