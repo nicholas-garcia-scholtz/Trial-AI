@@ -116,12 +116,21 @@ public class AiAuditorMemoryController implements Interactable {
     }
   }
 
+  private void startLoading() {
+    neutralHeadshot.setVisible(false);
+    thinkingHeadshot.setVisible(true);
+
+    userTextBox.setDisable(true);
+    btnSend.setDisable(true);
+  }
+
   @FXML
   private void onBtnSendClicked() {
     // When the send button is clicked, send the message to the LLM
     startLoading();
-    ChatService.get().addPlayerMessage(userTextBox.getText());
     appendToChat("[You] " + userTextBox.getText());
+    ChatService.get().addPlayerMessage(userTextBox.getText());
+
     userTextBox.setText("");
     ChatService.get()
         .generateCharacterResponse(
@@ -132,28 +141,23 @@ public class AiAuditorMemoryController implements Interactable {
             });
   }
 
-  private void startLoading() {
-    thinkingHeadshot.setVisible(true);
-    neutralHeadshot.setVisible(false);
-    btnSend.setDisable(true);
-    userTextBox.setDisable(true);
+  private void appendToChat(String message) {
+    Platform.runLater(() -> chatLog.positionCaret(chatLog.getLength()));
+
+    chatLog.setText(chatLog.getText() + "\n\n" + message);
   }
 
   private void stopLoading() {
-    thinkingHeadshot.setVisible(false);
     neutralHeadshot.setVisible(true);
-    btnSend.setDisable(false);
-    userTextBox.setDisable(false);
-  }
+    thinkingHeadshot.setVisible(false);
 
-  private void appendToChat(String message) {
-    Platform.runLater(() -> chatLog.positionCaret(chatLog.getLength()));
-    chatLog.setText(chatLog.getText() + "\n\n" + message);
+    userTextBox.setDisable(false);
+    btnSend.setDisable(false);
   }
 
   @Override
   public void prepareScene() {
-    // Set up the timer
+    // Set up the timer!!!
     App.getGame().getTimer().setLabel(timerLabel);
     timerLabel.setText(App.getGame().getTimer().getTime());
   }

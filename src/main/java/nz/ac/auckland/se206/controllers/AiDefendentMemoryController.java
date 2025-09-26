@@ -58,7 +58,9 @@ public class AiDefendentMemoryController implements Interactable {
     startLoading();
     ChatService.get().addPlayerMessage(userTextBox.getText());
     appendToChat("[You] " + userTextBox.getText());
+
     userTextBox.setText("");
+
     ChatService.get()
         .generateCharacterResponse(
             ChatService.ChatCharacter.AIDEFENDANT,
@@ -66,6 +68,13 @@ public class AiDefendentMemoryController implements Interactable {
               appendToChat("[EaselMind] " + result);
               stopLoading();
             });
+  }
+
+  private void stopLoading() {
+    thinkingHeadshot.setVisible(false);
+    neutralHeadshot.setVisible(true);
+    btnSend.setDisable(false);
+    userTextBox.setDisable(false);
   }
 
   @FXML
@@ -77,23 +86,17 @@ public class AiDefendentMemoryController implements Interactable {
     }
   }
 
+  private void appendToChat(String message) {
+    chatLog.setText(chatLog.getText() + "\n\n" + message);
+    Platform.runLater(() -> chatLog.positionCaret(chatLog.getLength()));
+  }
+
   private void startLoading() {
     thinkingHeadshot.setVisible(true);
-    neutralHeadshot.setVisible(false);
-    btnSend.setDisable(true);
     userTextBox.setDisable(true);
-  }
+    btnSend.setDisable(true);
 
-  private void stopLoading() {
-    thinkingHeadshot.setVisible(false);
-    neutralHeadshot.setVisible(true);
-    btnSend.setDisable(false);
-    userTextBox.setDisable(false);
-  }
-
-  private void appendToChat(String message) {
-    Platform.runLater(() -> chatLog.positionCaret(chatLog.getLength()));
-    chatLog.setText(chatLog.getText() + "\n\n" + message);
+    neutralHeadshot.setVisible(false);
   }
 
   @FXML
@@ -295,7 +298,7 @@ public class AiDefendentMemoryController implements Interactable {
 
   @Override
   public void prepareScene() {
-    // Set up the timer
+    // !!! Set up the timer
     App.getGame().getTimer().setLabel(timerLabel);
     timerLabel.setText(App.getGame().getTimer().getTime());
   }

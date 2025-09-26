@@ -79,6 +79,10 @@ public class HumanMemoryController implements Interactable {
     userTextBox.setDisable(true);
   }
 
+  public ImageView getCanvasBoundsTarget() {
+    return canvasBoundsTarget;
+  }
+
   private void stopLoading() {
     thinkingHeadshot.setVisible(false);
     neutralHeadshot.setVisible(true);
@@ -146,10 +150,7 @@ public class HumanMemoryController implements Interactable {
   @Override
   public void prepareScene() {
     App.getGame().getTimer().setLabel(timerLabel);
+    // Add the timer to be bound to tick down!
     timerLabel.setText(App.getGame().getTimer().getTime());
-  }
-
-  public ImageView getCanvasBoundsTarget() {
-    return canvasBoundsTarget;
   }
 }
