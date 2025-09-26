@@ -27,6 +27,10 @@ public class TimerCountdown {
     }
   }
 
+  public void changeNextScene(String nextScene) {
+    this.nextScene = nextScene;
+  }
+
   public void endTimer() {
     continueTimer = false;
   }
@@ -80,7 +84,15 @@ public class TimerCountdown {
         () -> {
           label.setText("00:00");
           try {
-            App.getGame().setRoot(nextScene);
+            if (nextScene.equals("verdict")
+                && continueTimer
+                && !ChatService.get().readyToMakeVerdict()) {
+              App.getGame().setRoot("GameOverInteract");
+            } else if (nextScene.equals("outcome") && continueTimer) {
+              App.getGame().setRoot("GameOver");
+            } else {
+              App.getGame().setRoot(nextScene);
+            }
           } catch (IOException e) {
             e.printStackTrace();
           }
