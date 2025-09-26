@@ -92,8 +92,8 @@ public class CourtroomController {
     }
 
     // Link the rectangles with the scenes
-    rectangleSceneMap.put(rectCritic, AiArtCriticFlashBackController.getName());
-    rectangleSceneMap.put(rectArtist, ArtistFlashbackController.getName());
-    rectangleSceneMap.put(rectDefendant, AiArtistFlashbackController.getName());
+    rectangleSceneMap.put(rectCritic, AiProvenanceAuditorMemoryController.getName());
+    rectangleSceneMap.put(rectArtist, HumanMemoryController.getName());
+    rectangleSceneMap.put(rectDefendant, AiDefendentMemoryController.getName());
   }
 }
