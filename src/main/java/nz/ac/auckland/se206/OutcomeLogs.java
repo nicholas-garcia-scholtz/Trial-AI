@@ -49,18 +49,22 @@ public class OutcomeLogs {
    * @param rationale user input rationale
    */
   public void evaluateRationale(boolean verdict, String rationale) {
+    // Evaluate the rationale by sending it to the LLM and updating the screen with a response
     if (chatCompletionRequest == null) {
       Platform.runLater(() -> txtOutcome.setText("Error: LLM request not initialized."));
       return;
     }
 
+    // Create a concurrent task background thread so we dont interrupt the main thread
     Task<Void> task =
         new Task<>() {
           @Override
           protected Void call() {
             try {
+              // Load the outcome prompt that instructs the llm how to make its decision.
               String basePrompt = loadPrompt("/prompts/outcomeprompt.txt");
 
+              // Format the full prompt
               String fullPrompt =
                   basePrompt
                       + "\n\nVerdict: "
@@ -76,6 +80,7 @@ public class OutcomeLogs {
               Choice choice = result.getChoices().iterator().next();
               ChatMessage llmResponse = choice.getChatMessage();
 
+              // Write the outcome in the application thread
               Platform.runLater(() -> txtOutcome.setText(llmResponse.getContent()));
 
             } catch (ApiProxyException e) {
@@ -85,7 +90,7 @@ public class OutcomeLogs {
             return null;
           }
         };
-
+    // Start the thread
     new Thread(task).start();
   }
 
@@ -96,6 +101,7 @@ public class OutcomeLogs {
    * @return the contents of the file, or empty string if not found
    */
   private String loadPrompt(String resourcePath) {
+    // Load the prompt from the resource path provided into a string
     try (InputStream input = getClass().getResourceAsStream(resourcePath)) {
       if (input == null) {
         throw new IOException("Prompt file not found: " + resourcePath);
@@ -103,6 +109,7 @@ public class OutcomeLogs {
       return new String(input.readAllBytes(), StandardCharsets.UTF_8);
     } catch (IOException e) {
       e.printStackTrace();
+      // Default
       return "";
     }
   }
