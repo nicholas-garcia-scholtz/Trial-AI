@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206;
 
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -15,21 +14,17 @@ import nz.ac.auckland.apiproxy.chat.openai.Choice;
 import nz.ac.auckland.apiproxy.config.ApiProxyConfig;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 
-
 /**
  * Handles sending the user’s verdict + rationale to the LLM and displaying the outcome in a Text
  * node.
  */
 public class OutcomeLogs {
 
-
   private final Text txtOutcome;
   private final ChatCompletionRequest chatCompletionRequest;
 
-
   public OutcomeLogs(Text txtOutcome) {
     this.txtOutcome = txtOutcome;
-
 
     ChatCompletionRequest tempRequest = null;
     try {
@@ -47,7 +42,6 @@ public class OutcomeLogs {
     chatCompletionRequest = tempRequest;
   }
 
-
   /**
    * Sends the user’s verdict + rationale to the LLM and updates the Text node with the response.
    *
@@ -60,7 +54,6 @@ public class OutcomeLogs {
       return;
     }
 
-
     Task<Void> task =
         new Task<>() {
           @Override
@@ -68,24 +61,22 @@ public class OutcomeLogs {
             try {
               String basePrompt = loadPrompt("/prompts/outcomeprompt.txt");
 
-
-              String fullPrompt = basePrompt + "\n\nVerdict: " + (verdict ? "Not Guilty" : "Guilty") +
-                  "\nRationale: " + rationale;
-
+              String fullPrompt =
+                  basePrompt
+                      + "\n\nVerdict: "
+                      + (verdict ? "Not Guilty" : "Guilty")
+                      + "\nRationale: "
+                      + rationale;
 
               ChatMessage userMessage = new ChatMessage("user", fullPrompt);
 
-
               chatCompletionRequest.addMessage(userMessage);
-
 
               ChatCompletionResult result = chatCompletionRequest.execute();
               Choice choice = result.getChoices().iterator().next();
               ChatMessage llmResponse = choice.getChatMessage();
 
-
               Platform.runLater(() -> txtOutcome.setText(llmResponse.getContent()));
-
 
             } catch (ApiProxyException e) {
               e.printStackTrace();
@@ -95,10 +86,8 @@ public class OutcomeLogs {
           }
         };
 
-
     new Thread(task).start();
   }
-
 
   /**
    * Utility to load a text file from resources.
@@ -108,7 +97,9 @@ public class OutcomeLogs {
    */
   private String loadPrompt(String resourcePath) {
     try (InputStream input = getClass().getResourceAsStream(resourcePath)) {
-      if (input == null) throw new IOException("Prompt file not found: " + resourcePath);
+      if (input == null) {
+        throw new IOException("Prompt file not found: " + resourcePath);
+      }
       return new String(input.readAllBytes(), StandardCharsets.UTF_8);
     } catch (IOException e) {
       e.printStackTrace();
@@ -116,8 +107,3 @@ public class OutcomeLogs {
     }
   }
 }
-
-
-
-
-

@@ -15,7 +15,7 @@ public class OutcomeController {
   @FXML private Text verdictText;
   @FXML private Text verdictMark;
   @FXML private Pane outcome;
-  @FXML private Text txtAIRationaleText;
+  @FXML private Text txtAiRationaleText;
   @FXML private Button btnRestartGame;
 
   @FXML
@@ -28,16 +28,16 @@ public class OutcomeController {
       outcome.setStyle("-fx-background-color: #00FF00;"); // green
       verdictText.setText("Correct Verdict");
       verdictMark.setText("✓");
-      txtAIRationaleText.setStyle("-fx-fill: white; -fx-font-size: 16px;");
+      txtAiRationaleText.setStyle("-fx-fill: white; -fx-font-size: 16px;");
     } else {
       outcome.setStyle("-fx-background-color: #FF0000;"); // red
       verdictText.setText("Incorrect Verdict");
       verdictMark.setText("X");
-      txtAIRationaleText.setStyle("-fx-fill: white; -fx-font-size: 16px;");
+      txtAiRationaleText.setStyle("-fx-fill: white; -fx-font-size: 16px;");
     }
 
     // Call LLM to evaluate rationale and set TextArea
-    OutcomeLogs outcomeLogs = new OutcomeLogs(txtAIRationaleText);
+    OutcomeLogs outcomeLogs = new OutcomeLogs(txtAiRationaleText);
     outcomeLogs.evaluateRationale(verdict, rationale);
   }
 
