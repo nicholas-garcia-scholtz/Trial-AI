@@ -38,7 +38,7 @@ public class AiDefendentFlashbackController implements Flashback {
     boolean continueSlides = slides.nextSlide();
     if (!continueSlides) {
       try {
-        App.getGame().setRoot("courtroom");
+        App.getGame().setRoot(AiDefendentMemoryController.getName());
       } catch (IOException e) {
         e.printStackTrace();
       }

@@ -16,6 +16,12 @@ import nz.ac.auckland.se206.ChatService;
 import nz.ac.auckland.se206.interfaces.Interactable;
 
 public class HumanMemoryController implements Interactable {
+  private static String characterName = "Jean-Luc";
+
+  public static String getName() {
+    return characterName;
+  }
+
   @FXML private ImageView artworkLayer1;
   @FXML private ImageView artworkLayer2;
   @FXML private ImageView artworkLayer3;
