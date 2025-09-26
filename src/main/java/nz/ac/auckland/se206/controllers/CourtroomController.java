@@ -90,9 +90,8 @@ public class CourtroomController {
       timerThread.setDaemon(true);
       timerThread.start();
     }
-
     // Link the rectangles with the scenes
-    rectangleSceneMap.put(rectCritic, AiProvenanceAuditorMemoryController.getName());
+    rectangleSceneMap.put(rectCritic, AiAuditorMemoryController.getName());
     rectangleSceneMap.put(rectArtist, HumanMemoryController.getName());
     rectangleSceneMap.put(rectDefendant, AiDefendentMemoryController.getName());
   }
