@@ -5,24 +5,22 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="outcome" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #FF0000;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.OutcomeController">
+<Pane fx:id="outcome" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #651414ff;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.OutcomeController">
    <children>
-      <Text fx:id="verdictText" fill="WHITE" layoutX="283.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Incorrect Verdict" textAlignment="CENTER">
+      <Text fx:id="verdictText" fill="WHITE" layoutX="368.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Incorrect Verdict" textAlignment="CENTER">
          <font>
-            <Font size="32.0" />
+            <Font size="48.0" />
          </font>
       </Text>
-      <Text fx:id="verdictMark" fill="WHITE" layoutX="390.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
+      <Text fx:id="verdictMark" fill="WHITE" layoutX="530.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
          <font>
-            <Font size="31.0" />
+            <Font size="48.0" />
          </font>
       </Text>
-      <Text fx:id="txtAIRationaleText" layoutX="172.0" layoutY="267.0" style="-fx-font-size: 16px; -fx-fill: white;" text="AI evaluation will appear here..." textAlignment="CENTER" wrappingWidth="457.0" />
-      <Text fill="WHITE" layoutX="216.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When it comes to creative pieces such as art which is sold commercially, AI should be aware not to copy an artist’s idea too closely and should adhere to creative integrity." textAlignment="CENTER" wrappingWidth="367.87499999999994">
+      <Text fx:id="txtAIRationaleText" layoutX="312.0" layoutY="391.0" style="-fx-font-size: 16px; -fx-fill: white;" text="AI evaluation will appear here..." textAlignment="CENTER" wrappingWidth="457.0">
          <font>
-            <Font size="21.0" />
-         </font>
-      </Text>
-      <Button fx:id="btnRestartGame" layoutX="326.0" layoutY="407.0" mnemonicParsing="false" onAction="#onBtnRestartGame" prefHeight="49.0" prefWidth="147.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30px; -fx-border-width: 0; -fx-font-size: 18px;" text="Restart Game" />
+            <Font size="24.0" />
+         </font></Text>
+      <Button fx:id="btnRestartGame" layoutX="437.0" layoutY="519.0" mnemonicParsing="false" onAction="#onBtnRestartGame" prefHeight="67.0" prefWidth="207.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30px; -fx-border-width: 0; -fx-font-size: 18px;" text="Restart Game" />
    </children>
 </Pane>
