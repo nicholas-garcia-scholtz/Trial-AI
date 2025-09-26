@@ -35,6 +35,7 @@ public class AiAuditorMemoryController implements Interactable {
   @FXML private ImageView humanExclamation;
   @FXML private ImageView thinkingHeadshot;
   @FXML private ImageView neutralHeadshot;
+  private boolean finishedDebounce = false;
 
   @FXML
   public void initialize() {
@@ -53,18 +54,44 @@ public class AiAuditorMemoryController implements Interactable {
           .valueProperty()
           .addListener(
               (obs, oldVal, newVal) -> {
+                if (finishedDebounce) {
+                  return;
+                }
                 humanTimeline.setTranslateX(newVal.doubleValue());
 
                 if (newVal.doubleValue() >= timelineScrollBar.getMax()) {
-                  humanTimeline.setVisible(false);
-                  humanTimelineAligned.setVisible(true);
+                  if (!finishedDebounce) {
+                    finishedDebounce = true;
+                    humanTimeline.setVisible(false);
+                    humanTimelineAligned.setVisible(true);
 
-                  timelineScrollBar.setVisible(false); // hide the scrollbar
-                  slideInstructionText.setVisible(false); // hide instruction
-                  timelinesAlignedText.setVisible(true); // show "timelines aligned" text
+                    timelineScrollBar.setVisible(false); // hide the scrollbar
+                    slideInstructionText.setVisible(false); // hide instruction
+                    timelinesAlignedText.setVisible(true); // show "timelines aligned" text
 
-                  aiExclamation.setVisible(true); // show AI exclamation
-                  humanExclamation.setVisible(true); // show Human exclamation
+                    aiExclamation.setVisible(true); // show AI exclamation
+                    humanExclamation.setVisible(true); // show Human exclamation
+
+                    ChatService.get()
+                        .addSystemMessage(
+                            "Through ARPA's interactable memory flashback, the user aligns a"
+                                + " timeline of EaselMind and Jean-Luc's actions. AI Provenance"
+                                + " Auditor timeline shows dataset preparation in July, AI"
+                                + " ingesting training data in August (important moment), AI"
+                                + " generating test images in September, and the AI version"
+                                + " releasing in October. The Human Artist timeline shows artwork"
+                                + " completed in the studio in September, scanned for digital"
+                                + " format in October, and first published online in November"
+                                + " (important moment). The AI training and data ingestion happened"
+                                + " before the human artist's work was publicly posted.");
+                    String message =
+                        "Through my analysis it is clear that EaselMind ingested its training data"
+                            + " before Jean-Luc first published his painting online. EaselMind"
+                            + " plagiarising Jean-Luc is unlikely.";
+                    ChatService.get()
+                        .addCharacterMessage(ChatService.ChatCharacter.AIWITNESS, message);
+                    appendToChat("[ARPA] " + message);
+                  }
                 } else {
                   humanTimeline.setVisible(true);
                   humanTimelineAligned.setVisible(false);
