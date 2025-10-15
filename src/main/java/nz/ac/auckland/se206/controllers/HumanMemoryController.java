@@ -2,8 +2,10 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.animation.FadeTransition;
+import javafx.animation.SequentialTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -12,6 +14,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.BubbleDragUtil;
 import nz.ac.auckland.se206.ChatService;
+import nz.ac.auckland.se206.GhostDragUtil;
 import nz.ac.auckland.se206.TextAreaSubmitUtil;
 import nz.ac.auckland.se206.interfaces.Interactable;
 
@@ -35,9 +38,13 @@ public class HumanMemoryController implements Interactable {
   @FXML private ImageView thinkingHeadshot;
   @FXML private ImageView neutralHeadshot;
   @FXML private Button btnSend;
+  @FXML private ImageView bubbleGhost;
+  @FXML private ImageView ghostCursor;
+  @FXML private Group ghostGroup;
 
   private ImageView canvasBoundsTarget;
   private int layerCount = 0;
+  private SequentialTransition ghostSequenceTransition;
 
   @FXML
   public void initialize() {
@@ -45,6 +52,7 @@ public class HumanMemoryController implements Interactable {
     new BubbleDragUtil(bubble2, this, "Young Jean-Luc admires a painting at his local gallery.");
     new BubbleDragUtil(bubble3, this, "Young Jean-Luc floats a paper boat on a rainy day.");
     canvasBoundsTarget = artworkLayer1;
+    showGhostAnimation();
     TextAreaSubmitUtil.bindEnterSubmit(userTextBox, () -> onBtnSendClicked());
   }
 
@@ -73,6 +81,11 @@ public class HumanMemoryController implements Interactable {
     }
   }
 
+  private void showGhostAnimation() {
+    ghostSequenceTransition =
+        GhostDragUtil.createGhostDragAnimation(ghostGroup, bubble1, artworkLayer1);
+  }
+
   private void startLoading() {
     thinkingHeadshot.setVisible(true);
     neutralHeadshot.setVisible(false);
@@ -94,6 +107,14 @@ public class HumanMemoryController implements Interactable {
   private void appendToChat(String message) {
     Platform.runLater(() -> chatLog.positionCaret(chatLog.getLength()));
     chatLog.setText(chatLog.getText() + "\n\n" + message);
+  }
+
+  public void hideGhostAnimation() {
+    ghostCursor.setVisible(false);
+    bubbleGhost.setVisible(false);
+    if (ghostSequenceTransition != null) {
+      ghostSequenceTransition.stop();
+    }
   }
 
   public void revealLayer(ImageView bubble) {

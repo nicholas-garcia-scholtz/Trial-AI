@@ -53,6 +53,7 @@ public class BubbleDragUtil {
           if (debounce) {
             return;
           }
+          humanMemoryController.hideGhostAnimation();
           bubble.setLayoutX(event.getSceneX() - mouseOriginX);
           bubble.setLayoutY(event.getSceneY() - mouseOriginY);
           popup.show(
