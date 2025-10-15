@@ -109,6 +109,8 @@ public class AiDefendentMemoryController implements Interactable {
   public void initialize() {
     storeOriginalPositions();
 
+    TextAreaSubmitUtil.bindEnterSubmit(userTextBox, () -> onBtnSendClicked());
+
     progressBar.setProgress(0.0);
 
     // Make images draggable
@@ -128,7 +130,6 @@ public class AiDefendentMemoryController implements Interactable {
     if (ghostTransition != null) {
       ghostTransition.stop();
     }
-    TextAreaSubmitUtil.bindEnterSubmit(userTextBox, () -> onBtnSendClicked());
   }
 
   private void storeOriginalPositions() {
