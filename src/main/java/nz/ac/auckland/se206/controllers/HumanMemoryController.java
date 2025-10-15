@@ -7,12 +7,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.BubbleDragUtil;
 import nz.ac.auckland.se206.ChatService;
+import nz.ac.auckland.se206.TextAreaSubmitUtil;
 import nz.ac.auckland.se206.interfaces.Interactable;
 
 public class HumanMemoryController implements Interactable {
@@ -30,7 +30,7 @@ public class HumanMemoryController implements Interactable {
   @FXML private ImageView bubble3;
   @FXML private Label timerLabel;
   @FXML private Label titleLabel;
-  @FXML private TextField userTextBox;
+  @FXML private TextArea userTextBox;
   @FXML private TextArea chatLog;
   @FXML private ImageView thinkingHeadshot;
   @FXML private ImageView neutralHeadshot;
@@ -45,6 +45,7 @@ public class HumanMemoryController implements Interactable {
     new BubbleDragUtil(bubble2, this, "Young Jean-Luc admires a painting at his local gallery.");
     new BubbleDragUtil(bubble3, this, "Young Jean-Luc floats a paper boat on a rainy day.");
     canvasBoundsTarget = artworkLayer1;
+    TextAreaSubmitUtil.bindEnterSubmit(userTextBox, () -> onBtnSendClicked());
   }
 
   @FXML
