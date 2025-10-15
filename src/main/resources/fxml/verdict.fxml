@@ -34,7 +34,7 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <TextArea fx:id="txtRationale" layoutX="260.0" layoutY="399.0" prefHeight="162.0" prefWidth="532.0" style="-fx-control-inner-background: #000000; -fx-text-fill: #3aff47; -fx-border-color: #3aff47; -fx-prompt-text-fill: #3aff47; -fx-border-width: 2px; -fx-background-radius: 5;" text="hello&#10;" wrapText="true">
+      <TextArea fx:id="txtRationale" layoutX="260.0" layoutY="399.0" prefHeight="162.0" prefWidth="532.0" style="-fx-control-inner-background: #000000; -fx-text-fill: #3aff47; -fx-border-color: #3aff47; -fx-prompt-text-fill: #3aff47; -fx-border-width: 2px; -fx-background-radius: 5;"  wrapText="true">
          <font>
             <Font size="14.0" />
          </font></TextArea>
