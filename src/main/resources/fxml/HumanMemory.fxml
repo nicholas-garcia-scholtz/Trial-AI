@@ -18,10 +18,10 @@
           <Image url="@../images/HumanInteractableCanvas.png" />
       </image>
     </ImageView>
-      <TextField fx:id="userTextBox" alignment="TOP_LEFT" layoutX="762.0" layoutY="567.0" onAction="#onBtnSendClicked" prefHeight="114.0" prefWidth="318.0" promptText="Talk to Jean-Luc" style="-fx-control-inner-background: #000000; -fx-text-fill: #3aff47; -fx-border-color: #3aff47; -fx-prompt-text-fill: #3aff47; -fx-border-width: 2px; -fx-background-radius: 5;">
+      <TextArea fx:id="userTextBox" layoutX="762.0" layoutY="567.0" prefHeight="114.0" prefWidth="318.0" promptText="Talk to EaselMind" style="-fx-control-inner-background: #000000; -fx-text-fill: #3aff47; -fx-border-color: #3aff47; -fx-prompt-text-fill: #3aff47; -fx-border-width: 2px; -fx-background-radius: 5;" wrapText="true">
          <font>
             <Font size="14.0" />
-         </font></TextField>
+         </font></TextArea>
       <Button fx:id="btnSend" layoutX="762.0" layoutY="681.0" mnemonicParsing="false" onAction="#onBtnSendClicked" prefHeight="33.0" prefWidth="318.0" style="-fx-background-color: #000000; -fx-text-fill: #3aff47; -fx-border-color: #3aff47; -fx-border-width: 2;" text="Send">
          <font>
             <Font size="14.0" />

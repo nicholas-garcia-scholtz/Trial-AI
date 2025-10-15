@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -19,10 +18,6 @@
           <Image url="@../images/AiDefendentMemoryBackground.png" />
       </image>
     </ImageView>
-      <TextField fx:id="userTextBox" alignment="TOP_LEFT" layoutX="762.0" layoutY="567.0" onAction="#onBtnSendClicked" prefHeight="114.0" prefWidth="318.0" promptText="Talk to EaselMind" style="-fx-control-inner-background: #000000; -fx-text-fill: #3aff47; -fx-border-color: #3aff47; -fx-prompt-text-fill: #3aff47; -fx-border-width: 2px; -fx-background-radius: 5;">
-         <font>
-            <Font size="14.0" />
-         </font></TextField>
       <Button fx:id="btnSend" layoutX="762.0" layoutY="681.0" mnemonicParsing="false" onAction="#onBtnSendClicked" prefHeight="33.0" prefWidth="318.0" style="-fx-background-color: #000000; -fx-text-fill: #3aff47; -fx-border-color: #3aff47; -fx-border-width: 2;" text="Send">
          <font>
             <Font size="14.0" />
@@ -118,5 +113,9 @@
       </ImageView>
       <Rectangle fx:id="rectDropZone" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="469.0" layoutX="493.0" layoutY="228.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="259.0" />
       <Label fx:id="notTrainingDataLabel" layoutX="499.0" layoutY="188.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Not used for the training data" textFill="red" visible="false" />
+      <TextArea fx:id="userTextBox" layoutX="762.0" layoutY="567.0" prefHeight="114.0" prefWidth="318.0" promptText="Talk to EaselMind" style="-fx-control-inner-background: #000000; -fx-text-fill: #3aff47; -fx-border-color: #3aff47; -fx-prompt-text-fill: #3aff47; -fx-border-width: 2px; -fx-background-radius: 5;" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></TextArea>
    </children>
 </Pane>
