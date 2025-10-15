@@ -124,7 +124,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="ghostCursor" fitHeight="59.0" fitWidth="37.0" layoutX="119.0" layoutY="114.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ghostCursor" fitHeight="37.0" fitWidth="22.0" layoutX="123.0" layoutY="137.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/cursor.png" />
                </image>
