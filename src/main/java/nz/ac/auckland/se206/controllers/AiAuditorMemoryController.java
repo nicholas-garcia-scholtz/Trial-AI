@@ -7,11 +7,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatService;
+import nz.ac.auckland.se206.TextAreaSubmitUtil;
 import nz.ac.auckland.se206.interfaces.Interactable;
 
 public class AiAuditorMemoryController implements Interactable {
@@ -25,7 +25,7 @@ public class AiAuditorMemoryController implements Interactable {
   @FXML private Button btnBack;
   @FXML private Button btnSend;
   @FXML private TextArea chatLog;
-  @FXML private TextField userTextBox;
+  @FXML private TextArea userTextBox;
   @FXML private ScrollBar timelineScrollBar;
   @FXML private ImageView humanTimeline;
   @FXML private ImageView humanTimelineAligned;
@@ -39,6 +39,8 @@ public class AiAuditorMemoryController implements Interactable {
 
   @FXML
   public void initialize() {
+
+    TextAreaSubmitUtil.bindEnterSubmit(userTextBox, () -> onBtnSendClicked());
 
     if (timelineScrollBar != null && humanTimeline != null && humanTimelineAligned != null) {
       timelineScrollBar.setMin(0);

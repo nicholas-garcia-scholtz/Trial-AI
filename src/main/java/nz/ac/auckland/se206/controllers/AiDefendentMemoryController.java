@@ -18,13 +18,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatService;
 import nz.ac.auckland.se206.GhostDragUtil;
+import nz.ac.auckland.se206.TextAreaSubmitUtil;
 import nz.ac.auckland.se206.interfaces.Interactable;
 
 public class AiDefendentMemoryController implements Interactable {
@@ -44,7 +44,7 @@ public class AiDefendentMemoryController implements Interactable {
   @FXML private Label timerLabel;
   @FXML private Label titleLabel;
   @FXML private Label notTrainingDataLabel;
-  @FXML private TextField userTextBox;
+  @FXML private TextArea userTextBox;
   @FXML private TextArea chatLog;
   @FXML private ImageView thinkingHeadshot;
   @FXML private ImageView neutralHeadshot;
@@ -128,6 +128,7 @@ public class AiDefendentMemoryController implements Interactable {
     if (ghostTransition != null) {
       ghostTransition.stop();
     }
+    TextAreaSubmitUtil.bindEnterSubmit(userTextBox, () -> onBtnSendClicked());
   }
 
   private void storeOriginalPositions() {
