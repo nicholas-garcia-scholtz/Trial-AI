@@ -7,12 +7,12 @@ import javafx.animation.PauseTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Group;
-import javafx.scene.image.ImageView;
+import javafx.scene.Node;
 import javafx.util.Duration;
 
 public class GhostDragUtil {
   public static SequentialTransition createGhostDragAnimation(
-      Group ghostGroup, ImageView origin, ImageView target) {
+      Group ghostGroup, Node origin, Node target) {
     double x1 = origin.localToScene(0, 0).getX();
     double y1 = origin.localToScene(0, 0).getY();
     double x2 = target.localToScene(0, 0).getX();

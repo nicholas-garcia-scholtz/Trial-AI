@@ -7,11 +7,13 @@ import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -22,6 +24,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.ChatService;
+import nz.ac.auckland.se206.GhostDragUtil;
 import nz.ac.auckland.se206.interfaces.Interactable;
 
 public class AiDefendentMemoryController implements Interactable {
@@ -47,10 +50,13 @@ public class AiDefendentMemoryController implements Interactable {
   @FXML private ImageView neutralHeadshot;
   @FXML private Button btnSend;
   @FXML private ProgressBar progressBar;
+  @FXML private Group ghostGroup;
+  @FXML private Rectangle ghostTargetPoint;
 
   private int droppedCount = 0;
   private int totalTrainingImages = 4;
   private Map<ImageView, Point2D> originalPositions = new HashMap<>();
+  private SequentialTransition ghostTransition;
 
   @FXML
   private void onBtnSendClicked() {
@@ -112,6 +118,16 @@ public class AiDefendentMemoryController implements Interactable {
     makeDraggable(trainingData4);
     makeDraggable(publicDomain1);
     makeDraggable(publicDomain2);
+
+    ghostTransition =
+        GhostDragUtil.createGhostDragAnimation(ghostGroup, publicDomain1, ghostTargetPoint);
+  }
+
+  private void stopDragGhost() {
+    ghostGroup.setVisible(false);
+    if (ghostTransition != null) {
+      ghostTransition.stop();
+    }
   }
 
   private void storeOriginalPositions() {
@@ -137,6 +153,7 @@ public class AiDefendentMemoryController implements Interactable {
     // Mouse pressed - start drag
     imageView.setOnMousePressed(
         event -> {
+          stopDragGhost();
           dragAnchorX[0] = event.getX();
           dragAnchorY[0] = event.getY();
           imageView.toFront(); // Bring to front while dragging

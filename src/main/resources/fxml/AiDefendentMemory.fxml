@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
@@ -118,5 +119,23 @@
       </ImageView>
       <Rectangle fx:id="rectDropZone" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="469.0" layoutX="493.0" layoutY="228.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="259.0" />
       <Label fx:id="notTrainingDataLabel" layoutX="499.0" layoutY="188.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Not used for the training data" textFill="red" visible="false" />
+      <Group fx:id="ghostGroup" layoutX="329.0" layoutY="371.0">
+         <children>
+            <ImageView disable="true" fitHeight="134.0" fitWidth="147.0" mouseTransparent="true" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/PublicDomainPainting1.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView disable="true" fitHeight="37.0" fitWidth="22.0" layoutX="100.0" layoutY="125.0" mouseTransparent="true" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/cursor.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Group>
+      <Rectangle fx:id="ghostTargetPoint" arcHeight="5.0" arcWidth="5.0" disable="true" fill="DODGERBLUE" height="18.0" layoutX="540.0" layoutY="323.0" mouseTransparent="true" stroke="BLACK" strokeType="INSIDE" visible="false" width="22.0" />
    </children>
 </Pane>
