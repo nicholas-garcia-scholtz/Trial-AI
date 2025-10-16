@@ -2,13 +2,14 @@ package nz.ac.auckland.se206.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.TextAreaSubmitUtil;
 import nz.ac.auckland.se206.TimerCountdown;
 
 public class VerdictController {
@@ -45,7 +46,7 @@ public class VerdictController {
   }
 
   @FXML
-  private void onBtnSendClicked() {
+  private void onBtnSendClicked(ActionEvent event) {
     if (selectedVerdict != null && !txtRationale.getText().isBlank()) {
       // Save the verdict and rationale into App
       App.getGame().setVerdict(selectedVerdict.equals("Not Guilty"));
@@ -78,9 +79,8 @@ public class VerdictController {
         new Thread(
             () -> {
               timer.count();
+              Platform.runLater(()-> onBtnSendClicked(new ActionEvent())); // Auto-submit when timer ends
             });
     timerThread.start();
-
-    TextAreaSubmitUtil.bindEnterSubmit(txtRationale, () -> onBtnSendClicked());
   }
 }
