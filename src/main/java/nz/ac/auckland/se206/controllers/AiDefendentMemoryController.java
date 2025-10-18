@@ -123,6 +123,7 @@ public class AiDefendentMemoryController implements Interactable {
 
     ghostTransition =
         GhostDragUtil.createGhostDragAnimation(ghostGroup, publicDomain1, ghostTargetPoint);
+    TextAreaSubmitUtil.clearTextAreaEvents(chatLog);
   }
 
   private void stopDragGhost() {

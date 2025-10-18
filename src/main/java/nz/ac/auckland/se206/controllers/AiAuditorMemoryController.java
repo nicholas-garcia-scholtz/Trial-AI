@@ -107,6 +107,7 @@ public class AiAuditorMemoryController implements Interactable {
                 }
               });
     }
+    TextAreaSubmitUtil.clearTextAreaEvents(chatLog);
   }
 
   @FXML

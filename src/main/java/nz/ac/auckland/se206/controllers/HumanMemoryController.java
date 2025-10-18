@@ -54,6 +54,7 @@ public class HumanMemoryController implements Interactable {
     canvasBoundsTarget = artworkLayer1;
     showGhostAnimation();
     TextAreaSubmitUtil.bindEnterSubmit(userTextBox, () -> onBtnSendClicked());
+    TextAreaSubmitUtil.clearTextAreaEvents(chatLog);
   }
 
   @FXML

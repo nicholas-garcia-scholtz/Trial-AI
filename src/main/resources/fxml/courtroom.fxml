@@ -37,32 +37,47 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Rectangle>
-      <Label layoutX="74.0" layoutY="639.0" text="Jean-Luc Picassough" textFill="WHITE">
+      <Label layoutX="68.0" layoutY="639.0" style="-fx-font-weight: bold;" text="Jean-Luc Picassough" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="495.0" layoutY="639.0" text="EaselMind" textFill="WHITE">
+      <Label layoutX="492.0" layoutY="639.0" style="-fx-font-weight: bold;" text="EaselMind" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="877.0" layoutY="639.0" text="ARPA" textFill="WHITE">
+      <Label layoutX="877.0" layoutY="639.0" style="-fx-font-weight: bold;" text="ARPA" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="119.0" layoutY="668.0" text="Human Witness" textFill="#00aeff">
+      <Label layoutX="123.0" layoutY="668.0" style="-fx-font-weight: bold;" text="Human Artist" textFill="#00aeff">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <Label layoutX="502.0" layoutY="668.0" text="AI Defendant" textFill="#00aeff">
+      <Label layoutX="515.0" layoutY="668.0" style="-fx-font-weight: bold;" text="AI Artist" textFill="#00aeff">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <Label layoutX="871.0" layoutY="668.0" text="AI Witness" textFill="#00aeff">
+      <Label layoutX="795.0" layoutY="668.0" style="-fx-font-weight: bold;" text="Art Rights and Provenance Auditor" textFill="#00aeff">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="137.0" layoutY="615.0" style="-fx-font-weight: bold;" text="WITNESS" textFill="#acacac">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="501.0" layoutY="615.0" style="-fx-font-weight: bold;" text="DEFENDANT" textFill="#acacac">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="875.0" layoutY="615.0" style="-fx-font-weight: bold;" text="WITNESS" textFill="#acacac">
          <font>
             <Font size="13.0" />
          </font>
