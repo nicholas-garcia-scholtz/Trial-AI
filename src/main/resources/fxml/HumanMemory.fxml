@@ -18,7 +18,7 @@
           <Image url="@../images/HumanInteractableCanvas.png" />
       </image>
     </ImageView>
-      <TextArea fx:id="userTextBox" layoutX="762.0" layoutY="567.0" prefHeight="114.0" prefWidth="318.0" promptText="Talk to Jean-Luc" style="-fx-control-inner-background: #000000; -fx-text-fill: #00aeff; -fx-border-color: #00aeff; -fx-prompt-text-fill: #00aeff; -fx-border-width: 2px; -fx-background-radius: 5; -fx-font-weight: bold; -fx-font-size: 16;" stylesheets="@../css/textarea.css" wrapText="true">
+      <TextArea fx:id="userTextBox" layoutX="762.0" layoutY="567.0" prefHeight="114.0" prefWidth="318.0" promptText="Talk to EaselMind" style="-fx-control-inner-background: #000000; -fx-text-fill: #00aeff; -fx-border-color: #00aeff; -fx-prompt-text-fill: #00aeff; -fx-border-width: 2px; -fx-background-radius: 5; -fx-font-weight: bold; -fx-font-size: 16;" wrapText="true">
          <font>
             <Font size="14.0" />
          </font></TextArea>
@@ -100,7 +100,7 @@
             <Image url="@../images/neuronbackground.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="neutralHeadshot" fitHeight="189.0" fitWidth="206.0" layoutX="826.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="neutralHeadshot" fitHeight="189.0" fitWidth="206.0" layoutX="826.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" visible="true">
          <image>
             <Image url="@../images/HumanWitnessHeadshot.png" />
          </image>
@@ -108,6 +108,11 @@
       <ImageView fx:id="thinkingHeadshot" fitHeight="189.0" fitWidth="206.0" layoutX="827.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/HumanWitnessHeadshotThinking.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="loadingSpinner" fitHeight="33.0" fitWidth="32.0" layoutX="1038.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/LoadingSpinner.gif" />
          </image>
       </ImageView>
       <Group fx:id="ghostGroup" layoutX="45.0" layoutY="275.0">

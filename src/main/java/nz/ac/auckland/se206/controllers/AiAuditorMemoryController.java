@@ -34,6 +34,7 @@ public class AiAuditorMemoryController implements Interactable {
   @FXML private ImageView aiExclamation;
   @FXML private ImageView humanExclamation;
   @FXML private ImageView thinkingHeadshot;
+  @FXML private ImageView loadingSpinner;
   @FXML private ImageView neutralHeadshot;
   private boolean finishedDebounce = false;
 
@@ -121,6 +122,7 @@ public class AiAuditorMemoryController implements Interactable {
   private void startLoading() {
     neutralHeadshot.setVisible(false);
     thinkingHeadshot.setVisible(true);
+    loadingSpinner.setVisible(true);
 
     userTextBox.setDisable(true);
     btnSend.setDisable(true);
@@ -152,6 +154,7 @@ public class AiAuditorMemoryController implements Interactable {
   private void stopLoading() {
     neutralHeadshot.setVisible(true);
     thinkingHeadshot.setVisible(false);
+    loadingSpinner.setVisible(false);
 
     userTextBox.setDisable(false);
     btnSend.setDisable(false);
