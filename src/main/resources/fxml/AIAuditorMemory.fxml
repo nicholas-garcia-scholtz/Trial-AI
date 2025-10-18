@@ -106,7 +106,7 @@
             <Image url="@../images/LoadingSpinner.gif" />
          </image>
       </ImageView>
-      <TextArea fx:id="userTextBox" layoutX="762.0" layoutY="567.0" prefHeight="114.0" prefWidth="318.0" promptText="Talk to APRA" style="-fx-control-inner-background: #000000; -fx-text-fill: #00aeff; -fx-border-color: #00aeff; -fx-prompt-text-fill: #00aeff; -fx-border-width: 2px; -fx-background-radius: 5; -fx-font-weight: bold; -fx-font-size: 16;" wrapText="true" stylesheets="@../css/textarea.css">
+      <TextArea fx:id="userTextBox" layoutX="762.0" layoutY="567.0" prefHeight="114.0" prefWidth="318.0" promptText="Talk to the Art Rights and Provenance Auditor (ARPA)" style="-fx-control-inner-background: #000000; -fx-text-fill: #00aeff; -fx-border-color: #00aeff; -fx-prompt-text-fill: #00aeff; -fx-border-width: 2px; -fx-background-radius: 5; -fx-font-weight: bold; -fx-font-size: 16;" stylesheets="@../css/textarea.css" wrapText="true">
          <font>
             <Font size="14.0" />
          </font></TextArea>

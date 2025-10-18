@@ -46,6 +46,7 @@ public class HumanMemoryController implements Interactable {
   private ImageView canvasBoundsTarget;
   private int layerCount = 0;
   private SequentialTransition ghostSequenceTransition;
+  private boolean loadingDebounce = false;
 
   @FXML
   public void initialize() {
@@ -55,10 +56,14 @@ public class HumanMemoryController implements Interactable {
     canvasBoundsTarget = artworkLayer1;
     showGhostAnimation();
     TextAreaSubmitUtil.bindEnterSubmit(userTextBox, () -> onBtnSendClicked());
+    TextAreaSubmitUtil.clearTextAreaEvents(chatLog);
   }
 
   @FXML
   private void onBtnSendClicked() {
+    if (loadingDebounce) {
+      return;
+    }
     // When the send button is clicked, send the message to the LLM
     startLoading();
     ChatService.get().addPlayerMessage(userTextBox.getText());
@@ -89,6 +94,7 @@ public class HumanMemoryController implements Interactable {
 
   private void startLoading() {
     loadingSpinner.setVisible(true);
+    loadingDebounce = true;
     thinkingHeadshot.setVisible(true);
     neutralHeadshot.setVisible(false);
     btnSend.setDisable(true);
@@ -100,6 +106,7 @@ public class HumanMemoryController implements Interactable {
   }
 
   private void stopLoading() {
+    loadingDebounce = false;
     thinkingHeadshot.setVisible(false);
     loadingSpinner.setVisible(false);
     neutralHeadshot.setVisible(true);

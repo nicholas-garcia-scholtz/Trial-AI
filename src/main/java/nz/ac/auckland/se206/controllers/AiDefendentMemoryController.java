@@ -58,9 +58,13 @@ public class AiDefendentMemoryController implements Interactable {
   private int totalTrainingImages = 4;
   private Map<ImageView, Point2D> originalPositions = new HashMap<>();
   private SequentialTransition ghostTransition;
+  private boolean loadingDebounce = false;
 
   @FXML
   private void onBtnSendClicked() {
+    if (loadingDebounce) {
+      return;
+    }
     // Send the message to the chat service and display the response
     startLoading();
     ChatService.get().addPlayerMessage(userTextBox.getText());
@@ -78,6 +82,7 @@ public class AiDefendentMemoryController implements Interactable {
   }
 
   private void stopLoading() {
+    loadingDebounce = false;
     thinkingHeadshot.setVisible(false);
     loadingSpinner.setVisible(false);
     neutralHeadshot.setVisible(true);
@@ -100,6 +105,7 @@ public class AiDefendentMemoryController implements Interactable {
   }
 
   private void startLoading() {
+    loadingDebounce = true;
     thinkingHeadshot.setVisible(true);
     loadingSpinner.setVisible(true);
     userTextBox.setDisable(true);
@@ -126,6 +132,7 @@ public class AiDefendentMemoryController implements Interactable {
 
     ghostTransition =
         GhostDragUtil.createGhostDragAnimation(ghostGroup, publicDomain1, ghostTargetPoint);
+    TextAreaSubmitUtil.clearTextAreaEvents(chatLog);
   }
 
   private void stopDragGhost() {

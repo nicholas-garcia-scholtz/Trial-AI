@@ -19,7 +19,7 @@
           <Image url="@../images/AiDefendentMemoryBackground.png" />
       </image>
     </ImageView>
-      <Button fx:id="btnSend" layoutX="762.0" layoutY="681.0" mnemonicParsing="false" onAction="#onBtnSendClicked" prefHeight="33.0" prefWidth="318.0" style="-fx-background-color: #000000; -fx-text-fill: #00aeff; -fx-border-color: #00aeff; -fx-border-width: 2; -fx-font-weight: bold; -fx-font-size: 16;" text="Send">
+      <Button fx:id="btnSend" focusTraversable="false" layoutX="762.0" layoutY="681.0" mnemonicParsing="false" onAction="#onBtnSendClicked" prefHeight="33.0" prefWidth="318.0" style="-fx-background-color: #000000; -fx-text-fill: #00aeff; -fx-border-color: #00aeff; -fx-border-width: 2; -fx-font-weight: bold; -fx-font-size: 16;" text="Send">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -82,7 +82,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Button fx:id="btnBack" alignment="CENTER" layoutX="14.0" layoutY="8.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onBtnBackClicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #000000; -fx-text-fill: #00aeff; -fx-border-color: #00aeff; -fx-border-width: 2; -fx-font-weight: bold; -fx-font-size: 18;" text="◀  Back" textAlignment="CENTER">
+      <Button fx:id="btnBack" alignment="CENTER" focusTraversable="false" layoutX="14.0" layoutY="8.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onBtnBackClicked" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #000000; -fx-text-fill: #00aeff; -fx-border-color: #00aeff; -fx-border-width: 2; -fx-font-weight: bold; -fx-font-size: 18;" text="◀  Back" textAlignment="CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -131,6 +131,6 @@
          </children>
       </Group>
       <Rectangle fx:id="ghostTargetPoint" arcHeight="5.0" arcWidth="5.0" disable="true" fill="DODGERBLUE" height="18.0" layoutX="540.0" layoutY="323.0" mouseTransparent="true" stroke="BLACK" strokeType="INSIDE" visible="false" width="22.0" />
-      <TextArea fx:id="userTextBox" layoutX="762.0" layoutY="567.0" prefHeight="114.0" prefWidth="318.0" promptText="Talk to EaselMind" style="-fx-control-inner-background: #000000; -fx-text-fill: #00aeff; -fx-border-color: #00aeff; -fx-prompt-text-fill: #00aeff; -fx-border-width: 2px; -fx-background-radius: 5; -fx-font-weight: bold; -fx-font-size: 16;" wrapText="true" stylesheets="@../css/textarea.css" />
+      <TextArea fx:id="userTextBox" layoutX="762.0" layoutY="567.0" prefHeight="114.0" prefWidth="318.0" promptText="Talk to EaselMind" style="-fx-control-inner-background: #000000; -fx-text-fill: #00aeff; -fx-border-color: #00aeff; -fx-prompt-text-fill: #00aeff; -fx-border-width: 2px; -fx-background-radius: 5; -fx-font-weight: bold; -fx-font-size: 16;" stylesheets="@../css/textarea.css" wrapText="true" />
    </children>
 </Pane>
