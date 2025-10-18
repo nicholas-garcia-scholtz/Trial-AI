@@ -37,6 +37,7 @@ public class HumanMemoryController implements Interactable {
   @FXML private TextArea chatLog;
   @FXML private ImageView thinkingHeadshot;
   @FXML private ImageView neutralHeadshot;
+  @FXML private ImageView loadingSpinner;
   @FXML private Button btnSend;
   @FXML private ImageView bubbleGhost;
   @FXML private ImageView ghostCursor;
@@ -92,6 +93,7 @@ public class HumanMemoryController implements Interactable {
   }
 
   private void startLoading() {
+    loadingSpinner.setVisible(true);
     loadingDebounce = true;
     thinkingHeadshot.setVisible(true);
     neutralHeadshot.setVisible(false);
@@ -106,6 +108,7 @@ public class HumanMemoryController implements Interactable {
   private void stopLoading() {
     loadingDebounce = false;
     thinkingHeadshot.setVisible(false);
+    loadingSpinner.setVisible(false);
     neutralHeadshot.setVisible(true);
     btnSend.setDisable(false);
     userTextBox.setDisable(false);
