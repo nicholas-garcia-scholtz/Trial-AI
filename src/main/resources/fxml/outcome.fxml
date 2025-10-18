@@ -7,22 +7,22 @@
 
 <Pane fx:id="outcome" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #000000ff;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.OutcomeController">
    <children>
-      <Text fx:id="verdictText" fill="#3aff47" layoutX="353.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Incorrect Verdict" textAlignment="CENTER">
+      <Text fx:id="verdictText" fill="#00aeff" layoutX="353.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Incorrect Verdict" textAlignment="CENTER">
          <font>
             <Font size="48.0" />
          </font>
       </Text>
-      <Text fx:id="verdictMark" fill="#3aff47" layoutX="514.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
+      <Text fx:id="verdictMark" fill="#00aeff" layoutX="514.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
          <font>
             <Font size="48.0" />
          </font>
       </Text>
-      <Text fx:id="txtAiRationaleText" layoutX="312.0" layoutY="391.0" style="-fx-font-size: 20px; -fx-fill: #3aff47;" text="Loading..." textAlignment="CENTER" wrappingWidth="457.0">
+      <Text fx:id="txtAiRationaleText" layoutX="312.0" layoutY="391.0" style="-fx-font-size: 20px; -fx-fill: #00aeff;" text="Loading..." textAlignment="CENTER" wrappingWidth="457.0">
          <font>
             <Font size="24.0" />
          </font></Text>
-        <Button fx:id="btnRestartGame" layoutX="437.0" layoutY="592.0" mnemonicParsing="false" onAction="#onBtnRestartGame" prefHeight="67.0" prefWidth="207.0" style="-fx-background-color: #000000; -fx-background-radius: 30px; -fx-border-width: 2px; -fx-border-color: #3aff47; -fx-border-radius: 30px; -fx-font-size: 20px; -fx-text-fill: #3aff47;" text="Restart Game" />
-      <Text fill="#3aff47" layoutX="359.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feedback on your rationale:">
+        <Button fx:id="btnRestartGame" layoutX="437.0" layoutY="592.0" mnemonicParsing="false" onAction="#onBtnRestartGame" prefHeight="67.0" prefWidth="207.0" style="-fx-background-color: #000000; -fx-background-radius: 30px; -fx-border-width: 2px; -fx-border-color: #00aeff; -fx-border-radius: 30px; -fx-font-size: 20px; -fx-text-fill: #00aeff;" text="Restart Game" />
+      <Text fill="#00aeff" layoutX="359.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feedback on your rationale:">
          <font>
             <Font size="30.0" />
          </font>

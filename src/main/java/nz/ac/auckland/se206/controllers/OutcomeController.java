@@ -27,11 +27,11 @@ public class OutcomeController {
     if (verdict) {
       verdictText.setText("Correct Verdict");
       verdictMark.setText("✓");
-      txtAiRationaleText.setStyle("-fx-fill: #3aff47; -fx-font-size: 20px;");
+      txtAiRationaleText.setStyle("-fx-fill: #00aeff; -fx-font-size: 20px;");
     } else {
       verdictText.setText("Incorrect Verdict");
       verdictMark.setText("X");
-      txtAiRationaleText.setStyle("-fx-fill: #3aff47; -fx-font-size: 20px;");
+      txtAiRationaleText.setStyle("-fx-fill: #00aeff; -fx-font-size: 20px;");
     }
 
     // Call LLM to evaluate rationale and set TextArea

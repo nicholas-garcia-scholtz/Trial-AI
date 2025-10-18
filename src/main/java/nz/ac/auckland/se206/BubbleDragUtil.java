@@ -29,7 +29,7 @@ public class BubbleDragUtil {
     Label tooltipLabel = new Label(tooltipText);
     tooltipLabel.setStyle(
         "-fx-background-color: black; "
-            + "-fx-text-fill: #3aff47; "
+            + "-fx-text-fill: #00aeff; "
             + "-fx-font-size: 12px; "
             + "-fx-padding: 6 8 6 8;");
     popup.getContent().add(tooltipLabel);
