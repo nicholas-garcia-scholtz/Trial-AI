@@ -45,6 +45,7 @@ public class HumanMemoryController implements Interactable {
   private ImageView canvasBoundsTarget;
   private int layerCount = 0;
   private SequentialTransition ghostSequenceTransition;
+  private boolean loadingDebounce = false;
 
   @FXML
   public void initialize() {
@@ -59,6 +60,9 @@ public class HumanMemoryController implements Interactable {
 
   @FXML
   private void onBtnSendClicked() {
+    if (loadingDebounce) {
+      return;
+    }
     // When the send button is clicked, send the message to the LLM
     startLoading();
     ChatService.get().addPlayerMessage(userTextBox.getText());
@@ -88,6 +92,7 @@ public class HumanMemoryController implements Interactable {
   }
 
   private void startLoading() {
+    loadingDebounce = true;
     thinkingHeadshot.setVisible(true);
     neutralHeadshot.setVisible(false);
     btnSend.setDisable(true);
@@ -99,6 +104,7 @@ public class HumanMemoryController implements Interactable {
   }
 
   private void stopLoading() {
+    loadingDebounce = false;
     thinkingHeadshot.setVisible(false);
     neutralHeadshot.setVisible(true);
     btnSend.setDisable(false);

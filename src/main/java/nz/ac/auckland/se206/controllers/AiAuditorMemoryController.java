@@ -36,6 +36,7 @@ public class AiAuditorMemoryController implements Interactable {
   @FXML private ImageView thinkingHeadshot;
   @FXML private ImageView neutralHeadshot;
   private boolean finishedDebounce = false;
+  private boolean loadingDebounce = false;
 
   @FXML
   public void initialize() {
@@ -120,6 +121,7 @@ public class AiAuditorMemoryController implements Interactable {
   }
 
   private void startLoading() {
+    loadingDebounce = true;
     neutralHeadshot.setVisible(false);
     thinkingHeadshot.setVisible(true);
 
@@ -129,6 +131,9 @@ public class AiAuditorMemoryController implements Interactable {
 
   @FXML
   private void onBtnSendClicked() {
+    if (loadingDebounce) {
+      return;
+    }
     // When the send button is clicked, send the message to the LLM
     startLoading();
     appendToChat("[You] " + userTextBox.getText());
@@ -151,6 +156,7 @@ public class AiAuditorMemoryController implements Interactable {
   }
 
   private void stopLoading() {
+    loadingDebounce = false;
     neutralHeadshot.setVisible(true);
     thinkingHeadshot.setVisible(false);
 
