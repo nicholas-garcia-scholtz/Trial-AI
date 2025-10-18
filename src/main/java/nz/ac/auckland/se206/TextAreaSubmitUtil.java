@@ -40,6 +40,7 @@ public class TextAreaSubmitUtil {
   }
 
   public static void clearTextAreaEvents(TextArea textArea) {
+    // Prevent focus changes via mouse clicks
     textArea.addEventFilter(
         MouseEvent.MOUSE_PRESSED,
         event -> {
@@ -47,6 +48,7 @@ public class TextAreaSubmitUtil {
             event.consume();
           }
         });
+    // Prevent text selection via dragging
     textArea.addEventFilter(
         MouseEvent.MOUSE_DRAGGED,
         event -> {
