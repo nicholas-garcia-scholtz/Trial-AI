@@ -50,6 +50,7 @@ public class HumanMemoryController implements Interactable {
 
   @FXML
   public void initialize() {
+    // Initialize drag-and-drop for the memory bubbles
     new BubbleDragUtil(bubble1, this, "A balloon festival held in Jean-Luc's home town.");
     new BubbleDragUtil(bubble2, this, "Young Jean-Luc admires a painting at his local gallery.");
     new BubbleDragUtil(bubble3, this, "Young Jean-Luc floats a paper boat on a rainy day.");
