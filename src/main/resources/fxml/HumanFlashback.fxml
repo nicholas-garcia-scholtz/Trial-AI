@@ -15,14 +15,14 @@
             <Image url="@../images/Ai_Flashback_Background.png" />
         </image>
       </ImageView>
-      <Label fx:id="timerLabel" alignment="CENTER" layoutX="60.0" layoutY="649.0" prefHeight="42.0" prefWidth="94.0" style="-fx-background-color: #000000;" text="05:00" textAlignment="CENTER" textFill="#3aff47">
+      <Label fx:id="timerLabel" alignment="CENTER" layoutX="60.0" layoutY="649.0" prefHeight="42.0" prefWidth="94.0" style="-fx-background-color: #000000; -fx-font-weight: bold;" text="05:00" textAlignment="CENTER" textFill="#00aeff">
          <font>
             <Font size="32.0" />
          </font></Label>
       <ImageView fx:id="myImageView1" fitHeight="555.0" fitWidth="922.0" layoutX="60.0" layoutY="58.0" />
       <ImageView fx:id="myImageView2" fitHeight="555.0" fitWidth="922.0" layoutX="60.0" layoutY="58.0" />
       <ImageView fx:id="myImageView3" fitHeight="555.0" fitWidth="922.0" layoutX="60.0" layoutY="58.0" />
-      <Button fx:id="btnNextSlide" layoutX="1029.0" layoutY="301.0" mnemonicParsing="false" onAction="#onNextSlideClicked" style="-fx-background-color: transparent; -fx-padding: -5px -5px -5px -5px;" text="&gt;" textFill="#3aff47">
+      <Button fx:id="btnNextSlide" layoutX="1029.0" layoutY="301.0" mnemonicParsing="false" onAction="#onNextSlideClicked" style="-fx-background-color: transparent; -fx-padding: -5px -5px -5px -5px;" text="&gt;" textFill="#00aeff">
          <font>
             <Font size="88.0" />
          </font>

@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,11 +27,11 @@ public class VerdictController {
     selectedVerdict = verdictMap.get(btnClicked); // "Guilty" or "Not Guilty"
 
     // Reset both buttons to default color
-    btnGuilty.setStyle("-fx-background-color: #3aff47;");
-    btnNotGuilty.setStyle("-fx-background-color: #3aff47;");
+    btnGuilty.setStyle("-fx-background-color: #00aeff;");
+    btnNotGuilty.setStyle("-fx-background-color: #00aeff;");
 
     // Highlight the clicked button
-    btnClicked.setStyle("-fx-background-color: #207c26ff;"); // change to any highlight color
+    btnClicked.setStyle("-fx-background-color: #0050a6ff;"); // change to any highlight color
   }
 
   @FXML
@@ -79,7 +78,8 @@ public class VerdictController {
         new Thread(
             () -> {
               timer.count();
-              Platform.runLater(()-> onBtnSendClicked(new ActionEvent())); // Auto-submit when timer ends
+              Platform.runLater(
+                  () -> onBtnSendClicked(new ActionEvent())); // Auto-submit when timer ends
             });
     timerThread.start();
   }

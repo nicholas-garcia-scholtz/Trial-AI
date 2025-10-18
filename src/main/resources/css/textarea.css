@@ -2,9 +2,9 @@
   -fx-control-inner-background: black;
   /* background inside the text area */
   -fx-background-color: black;
-  -fx-border-color: #3aff47;
+  -fx-border-color: #00aeff;
   -fx-border-width: 2px;
-  -fx-text-fill: #3aff47;
+  -fx-text-fill: #00aeff;
   /* text color */
 }
 
@@ -21,7 +21,7 @@
 
 .text-area .scroll-bar:vertical .thumb,
 .text-area .scroll-bar:horizontal .thumb {
-  -fx-background-color: #3aff47;
+  -fx-background-color: #00aeff;
   /* draggable part */
   -fx-background-radius: 5;
 }
@@ -38,6 +38,6 @@
 .text-area .scroll-bar:vertical .decrement-arrow,
 .text-area .scroll-bar:horizontal .increment-arrow,
 .text-area .scroll-bar:horizontal .decrement-arrow {
-  -fx-background-color: #3aff47;
+  -fx-background-color: #00aeff;
   /* arrow color if you keep them */
 }

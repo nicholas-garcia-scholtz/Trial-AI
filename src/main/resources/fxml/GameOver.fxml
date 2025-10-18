@@ -17,8 +17,8 @@
                   <Image url="@../images/gameover.png" />
               </image>
             </ImageView>
-            <Button fx:id="btnRestartGame" layoutX="437.0" layoutY="519.0" mnemonicParsing="false" onAction="#onBtnRestartGame" prefHeight="67.0" prefWidth="207.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30px; -fx-border-width: 0; -fx-font-size: 18px;" text="Restart Game" />
-            <Label layoutX="251.0" layoutY="433.0" text="You did not make a verdict on time" textFill="WHITE">
+            <Button fx:id="btnRestartGame" layoutX="437.0" layoutY="519.0" mnemonicParsing="false" onAction="#onBtnRestartGame" prefHeight="67.0" prefWidth="207.0" style="-fx-background-color: #000000; -fx-border-width: 0; -fx-font-size: 26px; -fx-font-weight: bold;" text="Restart Game" textFill="#00aeff" />
+            <Label layoutX="251.0" layoutY="433.0" text="You did not make a verdict on time" textFill="#00aeff">
                <font>
                   <Font size="36.0" />
                </font>

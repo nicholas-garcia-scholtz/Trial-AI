@@ -16,14 +16,11 @@
           <Image url="@../images/AICourtRoom.png" />
       </image>
     </ImageView>
-    <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="42.0" prefWidth="94.0" style="-fx-background-color: #000000;" text="02:00" textFill="#3aff47">
+    <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="42.0" prefWidth="94.0" style="-fx-background-color: #000000; -fx-font-weight: bold;" text="02:00" textFill="#00aeff">
          <font>
             <Font size="32.0" />
          </font></Label>
-      <Button fx:id="btnMakeDecision" layoutX="889.0" layoutY="14.0" mnemonicParsing="false" onAction="#onMakeDecision" prefHeight="47.0" prefWidth="171.0" style="-fx-padding: 1 2 1 2; -fx-background-color: #000000;" text="Make Decision" textFill="#3aff47">
-         <font>
-            <Font size="25.0" />
-         </font>
+      <Button fx:id="btnMakeDecision" layoutX="859.0" layoutY="14.0" mnemonicParsing="false" onAction="#onMakeDecision" prefHeight="47.0" prefWidth="201.0" style="-fx-padding: 1 2 1 2; -fx-background-color: #000000; -fx-font-weight: bold; -fx-font-size: 25;" text="Make Decision" textFill="#00aeff">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -55,17 +52,17 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="119.0" layoutY="668.0" text="Human Witness" textFill="#3aff47">
+      <Label layoutX="119.0" layoutY="668.0" text="Human Witness" textFill="#00aeff">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <Label layoutX="502.0" layoutY="668.0" text="AI Defendant" textFill="#3aff47">
+      <Label layoutX="502.0" layoutY="668.0" text="AI Defendant" textFill="#00aeff">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <Label layoutX="871.0" layoutY="668.0" text="AI Witness" textFill="#3aff47">
+      <Label layoutX="871.0" layoutY="668.0" text="AI Witness" textFill="#00aeff">
          <font>
             <Font size="13.0" />
          </font>
