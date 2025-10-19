@@ -28,11 +28,11 @@ public class VerdictController {
 
     // Highlight the selected one with a darker shade
     if (selectedVerdict.equals("Guilty")) {
-      btnGuilty.setStyle("-fx-background-color: #0f3f03ff;"); // darker green
-      btnNotGuilty.setStyle("-fx-background-color: #176104ff;"); // original color
+      btnGuilty.setStyle("-fx-background-color: #0f3f03ff;");
+      btnNotGuilty.setStyle("-fx-background-color: #176104ff;");
     } else if (selectedVerdict.equals("Not Guilty")) {
-      btnNotGuilty.setStyle("-fx-background-color: #0f3f03ff;"); // darker green
-      btnGuilty.setStyle("-fx-background-color: #176104ff;"); // original color
+      btnNotGuilty.setStyle("-fx-background-color: #0f3f03ff;");
+      btnGuilty.setStyle("-fx-background-color: #176104ff;");
     }
   }
 
