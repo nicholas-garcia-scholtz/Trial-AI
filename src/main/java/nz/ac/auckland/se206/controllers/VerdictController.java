@@ -28,9 +28,11 @@ public class VerdictController {
 
     // Highlight the selected one with a darker shade
     if (selectedVerdict.equals("Guilty")) {
-      btnGuilty.setStyle("-fx-background-color: #530702ff;"); // darker red
+      btnGuilty.setStyle("-fx-background-color: #0f3f03ff;"); // darker green
+      btnNotGuilty.setStyle("-fx-background-color: #176104ff;"); // original color
     } else if (selectedVerdict.equals("Not Guilty")) {
       btnNotGuilty.setStyle("-fx-background-color: #0f3f03ff;"); // darker green
+      btnGuilty.setStyle("-fx-background-color: #176104ff;"); // original color
     }
   }
 
