@@ -26,12 +26,14 @@ public class VerdictController {
     Button btnClicked = (Button) event.getSource();
     selectedVerdict = verdictMap.get(btnClicked); // "Guilty" or "Not Guilty"
 
-    // Reset both buttons to default color
-    btnGuilty.setStyle("-fx-background-color: #00aeff;");
-    btnNotGuilty.setStyle("-fx-background-color: #00aeff;");
-
-    // Highlight the clicked button
-    btnClicked.setStyle("-fx-background-color: #0050a6ff;"); // change to any highlight color
+    // Highlight the selected one with a darker shade
+    if (selectedVerdict.equals("Guilty")) {
+      btnGuilty.setStyle("-fx-background-color: #0f3f03ff;"); // darker green
+      btnNotGuilty.setStyle("-fx-background-color: #176104ff;"); // original color
+    } else if (selectedVerdict.equals("Not Guilty")) {
+      btnNotGuilty.setStyle("-fx-background-color: #0f3f03ff;"); // darker green
+      btnGuilty.setStyle("-fx-background-color: #176104ff;"); // original color
+    }
   }
 
   @FXML
