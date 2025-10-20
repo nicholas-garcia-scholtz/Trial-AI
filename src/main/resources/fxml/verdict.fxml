@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -24,6 +25,9 @@
          <effect>
             <InnerShadow />
          </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Button fx:id="btnGuilty" layoutX="188.0" layoutY="134.0" mnemonicParsing="false" onAction="#onBtnGuiltyClicked" prefHeight="77.0" prefWidth="210.0" style="-fx-background-color: #176104ff;" text="Guilty" textFill="WHITE">
          <font>
@@ -32,6 +36,9 @@
          <effect>
             <InnerShadow />
          </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Text layoutX="404.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #00aeff;" text="Render your verdict" wrappingWidth="297.53204345703125">
          <font>
@@ -56,6 +63,9 @@
          <font>
             <Font size="25.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
    </children>
 </Pane>
