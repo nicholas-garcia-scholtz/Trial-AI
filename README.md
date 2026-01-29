@@ -1,5 +1,3 @@
-# Sample JavaFX application using Proxy API
-
 ## To setup the API to access Chat Completions and TTS
 
 - add in the root of the project (i.e., the same level where `pom.xml` is located) a file named `apiproxy.config`
